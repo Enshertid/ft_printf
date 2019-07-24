@@ -24,6 +24,7 @@ typedef struct	s_spec
 	unsigned		flag_plus;
 	unsigned		flag_space;
 	unsigned		flag_zero;
+	unsigned		reshetka;
 	unsigned 		tochnost;
 	unsigned		shirina;
 	unsigned		modificate;
