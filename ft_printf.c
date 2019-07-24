@@ -50,10 +50,7 @@ char			*ft_check_modificate(char *str, t_spec *list)
 	// Или для явного преобразования при выводе целочисленного числа к типу short int или unsigned short int.
 	// Используется совместно с типами преобразования:d, i, o, u, x и X, n.
 	else if (*str == 'h' && *(str + 1) == 'h')
-	{
 		list->modificate = 2;
-		str++;
-	}
 	// Для вывода числа типа char или unsigned char.
 	// Или для явного преобразования при выводе целочисленного числа к типу char или unsigned char.
 	// Используется совместно с типами преобразования:d, i, o, u, x и X, n.
@@ -63,10 +60,7 @@ char			*ft_check_modificate(char *str, t_spec *list)
 	// Или для явного преобразования при выводе целочисленного числа к типу long int или unsigned long int.
 	// Используется совместно с типами преобразования:d, i, o, u, x и X, n.
 	else if (*str == 'l' && *(str + 1) == 'l')
-	{
 		list->modificate = 4;
-		str++;
-	}
 	// Для вывода числа типа long long int или unsigned long long int.
 	// Или для явного преобразования при выводе целочисленного числа к типу long long int или unsigned long long int.
 	// Используется совместно с типами преобразования:d, i, o, u, x и X, n.
@@ -80,22 +74,24 @@ char			*ft_check_modificate(char *str, t_spec *list)
 
 char			*ft_check_flags(char *str, t_spec *list)
 {
-	while (*str != '.' || ft_check_format(*str))
+	while (*str != '.' && (!(ft_check_format(*str))))
 	{
 		if (*str == '-')
-			list->flags[0] = '-';
+			list->flag_min = 1;
 		else if (*str == '+')
-			list->flags[1] = '+';
+			list->flag_plus = 1;
 		else if (*str == ' ')
-			list->flags[2] = ' ';
-		else if (*str == '0' && *(str--) != '0')
-			list->flags[3] = '0';
+			list->flag_space = 1;
+		else if (*str == '0' && *(++str) != '.')
+		{
+			list->flag_zero = 1;
+		str--;
+		}
 		else
 			list->shirina = list->shirina * 10 + (*str + '0');
 		str++;
 	}
-	str++;
-	while (*str >= '0' && *str <= '9')
+	while (*str >= '0' && *str <= '9' && (!(ft_check_format(*str))))
 	{
 		list->tochnost = list->tochnost * 10 + (*str + '0');
 		str++;

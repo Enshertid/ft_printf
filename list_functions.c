@@ -20,12 +20,10 @@ t_spec		*ft_list_new()
 	if (!(list = malloc(sizeof(t_spec))))
 		return (NULL);
 	i = 0;
-	while (list->flags[i])
-	{
-		list->flags[i] = '1';
-		i++;
-	}
-	list->flags[4] = '\0';
+	list->flag_space = 0;
+	list->flag_plus = 0;
+	list->flag_min = 0;
+	list->flag_zero = 0;
 	list->shirina = 0;
 	list->tochnost = 0;
 	list->modificate = 0;
@@ -40,7 +38,7 @@ void		ft_list_add_end(t_spec **list, t_spec *new)
 	if (*list && list && new)
 	{
 		tmp = *list;
-		while (tmp)
+	while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = new;
 		new->next = NULL;

@@ -20,10 +20,13 @@
 
 typedef struct	s_spec
 {
-	char 			flags[5];
-	int 			tochnost;
-	int 			shirina;
-	int				modificate;
+	unsigned		flag_min;
+	unsigned		flag_plus;
+	unsigned		flag_space;
+	unsigned		flag_zero;
+	unsigned 		tochnost;
+	unsigned		shirina;
+	unsigned		modificate;
 	struct s_spec	*next;
 }				t_spec;
 
