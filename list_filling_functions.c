@@ -15,7 +15,7 @@
 
 char			*ft_check_flags(char *str, t_spec *list)
 {
-	while (*str != '.' && (!(ft_check_format(*str))))
+	while (*str != '.' && (!(ft_check_format(*str))) && (!ft_check_modificate(*str, list)))
 	{
 		if (*str == '-')
 			list->flag_min = 1;
@@ -34,8 +34,12 @@ char			*ft_check_flags(char *str, t_spec *list)
 			list->shirina = list->shirina * 10 + (*str - '0');
 		str++;
 	}
-	str++;
-	while (*str >= '0' && *str <= '9' && (!(ft_check_format(*str))))
+	if(*str == '.')
+	{
+		list->t_presence = 1;
+		str++;
+	}
+	while (*str >= '0' && *str <= '9')
 	{
 		list->tochnost = list->tochnost * 10 + (*str - '0');
 		str++;

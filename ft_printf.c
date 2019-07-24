@@ -14,10 +14,13 @@
 
 unsigned 		ft_ten_signts_system(unsigned num, t_spec *list)
 {
-	unsigned i;
+	unsigned	i;
+	int 		sum;
+	char 		*s;
+	unsigned	j;
 
 	i = 0;
-//	if (list->flag_min == 1)
+	sum = num;
 	if (num < 0)
 	{
 		ft_putchar('-');
@@ -28,13 +31,37 @@ unsigned 		ft_ten_signts_system(unsigned num, t_spec *list)
 		ft_putchar('+');
 		i++;
 	}
-	ft_putnbr(num);
+	else if (num > 0 && list->flag_space == 1)
+	{
+		ft_putchar(' ');
+		i++;
+	}
 	while (num % 10)
 	{
 		i++;
 		num /= 10;
 	}
-	return (i);
+	num = sum;
+	if (list->tochnost == 0 && list->t_presence == 0
+	&& list->shirina != 0 && list->flag_zero == 1 && list->flag_min == 0)
+	{
+		while (list->shirina)
+		{
+			i++;
+			list->shirina--;
+		}
+		if (!(s = (char *) malloc(sizeof(char) * (i + 1))))
+			exit(0);
+		s[i] = '\0';
+		j = i - 1;
+		while (j != 0)
+		{
+			s[j] = 0;
+			j--;
+		}
+	}
+	else if (list->tochnost )
+	return (j);
 }
 
 unsigned 		ft_str_system(const char *s, t_spec *list)

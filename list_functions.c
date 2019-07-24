@@ -25,6 +25,7 @@ t_spec		*ft_list_new()
 	list->flag_min = 0;
 	list->flag_zero = 0;
 	list->shirina = 0;
+	list->t_presence = 0;
 	list->tochnost = 0;
 	list->modificate = 0;
 	list->next = NULL;
