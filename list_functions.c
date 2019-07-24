@@ -35,7 +35,7 @@ void		ft_list_add_end(t_spec **list, t_spec *new)
 {
 	t_spec *tmp;
 
-	if (*list && list && new)
+	if (*list && new)
 	{
 		tmp = *list;
 	while (tmp->next)
@@ -43,10 +43,5 @@ void		ft_list_add_end(t_spec **list, t_spec *new)
 		tmp->next = new;
 		new->next = NULL;
 		*list = tmp;
-	}
-	else if (!list && new)
-	{
-		*list = new;
-		(*list)->next = NULL;
 	}
 }

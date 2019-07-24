@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-int 		ft_ten_signts_system(num)
+unsigned 		ft_ten_signts_system(unsigned num, t_spec *list)
 {
-	int i;
+	unsigned i;
 
 	i = 0;
 	ft_putnbr(num);
@@ -26,13 +26,13 @@ int 		ft_ten_signts_system(num)
 	return (i);
 }
 
-int 		ft_str_system(const char *s)
+unsigned 		ft_str_system(const char *s, t_spec *list)
 {
 	ft_putstr(s);
 	return (ft_strlen(s));
 }
 
-int				ft_check_format(char s)
+unsigned				ft_check_format(char s)
 {
 	if(s == 'd' || s == 'i' || s == 's' || s == 'u'
 	|| s == 'o' || s == 'x' || s == 'X' || s == 'c' || s == 'S'
@@ -101,7 +101,7 @@ char			*ft_check_flags(char *str, t_spec *list)
 }
 
 
-int				ft_printf(const char	*str, ...)
+unsigned				ft_printf(const char	*str, ...)
 {
 	va_list		per;
 	t_spec		*list;
@@ -129,9 +129,9 @@ int				ft_printf(const char	*str, ...)
 //					// Вывод целого числа со знаком в десятичной систем счисления.
 //					// По умолчанию выводится число размером sizeof( int )
 //					// С правым выравниванием, указанием знака только для отрицательных чисел.
-				num += ft_ten_signts_system(va_arg(per,int));
+				num += ft_ten_signts_system(va_arg(per,int), list);
 			else if (*s == 's')
-				num += ft_str_system(va_arg(per, char*));
+				num += ft_str_system(va_arg(per, char*), list);
 //					num += ft_str_system(va_arg(per, char*));
 					// Вывод строки, на которую ссылается указатель в аргументе функции printf.
 					// Строка выводится пока не будет встречен символ конец строки (/0).
@@ -163,7 +163,7 @@ int				ft_printf(const char	*str, ...)
 //				// А на 32-битной платформе с плоской адресацией - 00FC0120.
 			else if (*s == 'n')
 			{}
-				// Запись по адресу, указанному в аргументе функции, количества выведенных символов функцией printf до встречи преобразователя %n.
+				// Запись по адресу, указанному в аргументе функции, количества выведенных символов функцией pr-f до встречи преобразователя %n.
 //				// При обработке преобразователя %n никакого вывода символов не производится.
 			else if (*s == 'f' || *str == 'F')
 			{}
@@ -171,7 +171,7 @@ int				ft_printf(const char	*str, ...)
 //				// По умолчанию выводится число с точностью 6, если число по модулю меньше единицы, то пред десятично точкой выводится ноль.
 //				// знак указывается только для отрицательных чисел, с правым выравниванием.
 //				// Размер по умолчанию sizeof( double ).y
-				s++;
+			s++;
 		}
 		else
 		{
