@@ -12,56 +12,42 @@
 
 #include "ft_printf.h"
 
-unsigned 		ft_ten_signts_system(unsigned num, t_spec *list)
+char 			ft_done_for_aligning_left_with_sight(int num, t_spec *list)
 {
-	unsigned	i;
-	int 		sum;
-	char 		*s;
-	unsigned	j;
+	char			*s;
+	char 			*s1;
+	char 			*str;
+	unsigned 		i;
 
-	i = 0;
-	sum = num;
 	if (num < 0)
+		s = ft_itoa(num);
+	else if (num > 0)
 	{
-		ft_putchar('-');
-		i++;
+		s = ft_itoa(num * -1);
+		s[0] = '+';
 	}
-	else if (num > 0 && list->flag_plus == 1)
+	if (list->tochnost > (ft_strlen(s) - 1))
 	{
-		ft_putchar('+');
-		i++;
+		i = list->tochnost - ft_strlen(s) - 1;
+		str = ft_strnew(i);
+		ft_bzero (str, i);
 	}
-	else if (num > 0 && list->flag_space == 1)
-	{
-		ft_putchar(' ');
-		i++;
-	}
-	while (num % 10)
-	{
-		i++;
-		num /= 10;
-	}
-	num = sum;
-	if (list->tochnost == 0 && list->t_presence == 0
-	&& list->shirina != 0 && list->flag_zero == 1 && list->flag_min == 0)
-	{
-		while (list->shirina)
-		{
-			i++;
-			list->shirina--;
-		}
-		if (!(s = (char *) malloc(sizeof(char) * (i + 1))))
-			exit(0);
-		s[i] = '\0';
-		j = i - 1;
-		while (j != 0)
-		{
-			s[j] = 0;
-			j--;
-		}
-	}
-	else if (list->tochnost )
-	return (j);
+	s1 = ft_strnew(list->shirina + 1);
+	ft_bzero(s1, ft_strlen(s1));
+	str = ft_strjoin(s, s1);
+	free(s1);
+	free(s);
+}
+
+unsigned 		ft_ten_signts_system(int num, t_spec *list)
+{
+	unsigned		i;
+	unsigned		j;
+	char 			*s;
+	char 			*s1;
+
+	if (list->flag_plus == 1 && list->flag_min == 1)
+		ft_done_for_aligning_left_with_sight(num, list);
 }
 
 unsigned 		ft_str_system(const char *s, t_spec *list)
@@ -91,6 +77,25 @@ unsigned				ft_printf(const char	*str, ...)
 			s++;
 			if(!(ft_check_format(*s)))
 				s = ft_check_flags(s, list);
+			list->shirina = ft_atoi(s);
+			if (*s == "*")
+			{
+				list->shirina = va_arg(per, int);
+				s++;
+			}
+			while (ft_isdigit(*s))
+				s++;
+			if (*s == '.')
+				list->tochnost = ft_atoi(++s);
+			if (*s == '*')
+			{
+				list->tochnost = va_arg(per,int);
+				s++;
+			}
+			while (ft_isdigit(*s))
+				s++;
+			if (ft_check_modificate(s, list))
+				s++;
 			if (*s == 'd' || *str == 'i')
 //					// Вывод целого числа со знаком в десятичной систем счисления.
 //					// По умолчанию выводится число размером sizeof( int )

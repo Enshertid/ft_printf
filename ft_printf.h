@@ -18,6 +18,14 @@
 # include <stdarg.h>
 # include "libft/includes/libft.h"
 
+enum types
+{
+	LONG_LONG,
+	LONG_UNSIGNED,
+	LONG_DOUBLE,
+	UNSIGNED_CHAR
+};
+
 typedef struct	s_spec
 {
 	unsigned		flag_min;
@@ -28,12 +36,13 @@ typedef struct	s_spec
 	unsigned 		t_presence;
 	unsigned 		tochnost;
 	unsigned		shirina;
-	unsigned		modificate;
+	//unsigned		modificate;
+	enum types			modificate;
 	struct s_spec	*next;
 }				t_spec;
 
 unsigned				ft_printf(const char *str, ...);
-unsigned				ft_ten_signts_system(unsigned num, t_spec *list);
+unsigned				ft_ten_signts_system(int num, t_spec *list);
 unsigned				ft_str_system(const char *s, t_spec *list);
 void					ft_list_add_end(t_spec **list, t_spec *new);
 t_spec					*ft_list_new();

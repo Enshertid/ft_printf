@@ -15,7 +15,8 @@
 
 char			*ft_check_flags(char *str, t_spec *list)
 {
-	while (*str != '.' && (!(ft_check_format(*str))) && (!ft_check_modificate(*str, list)))
+	while (*str == '+' || *str == '-' || *str == '#' ||
+	*str == ' '|| (*str == '0' && list->flag_zero == 0))
 	{
 		if (*str == '-')
 			list->flag_min = 1;
@@ -23,28 +24,11 @@ char			*ft_check_flags(char *str, t_spec *list)
 			list->flag_plus = 1;
 		else if (*str == ' ')
 			list->flag_space = 1;
-		else if (*str == '0' && *(++str) != '.')
-		{
+		else if (*str == '0')
 			list->flag_zero = 1;
-			str--;
-		}
 		else if (*str == '#')
 			list->reshetka = 1;
-		else
-			list->shirina = list->shirina * 10 + (*str - '0');
-		str++;
 	}
-	if(*str == '.')
-	{
-		list->t_presence = 1;
-		str++;
-	}
-	while (*str >= '0' && *str <= '9')
-	{
-		list->tochnost = list->tochnost * 10 + (*str - '0');
-		str++;
-	}
-	str = ft_check_modificate(str, list);
 	return (str);
 }
 
@@ -69,7 +53,7 @@ char			*ft_check_modificate(char *str, t_spec *list)
 		// Или для явного преобразования при выводе целочисленного числа к типу short int или unsigned short int.
 		// Используется совместно с типами преобразования:d, i, o, u, x и X, n.
 	else if (*str == 'h' && *(str + 1) == 'h')
-		list->modificate = 2;
+		list->modificate = UNSIGNED_CHAR;
 		// Для вывода числа типа char или unsigned char.
 		// Или для явного преобразования при выводе целочисленного числа к типу char или unsigned char.
 		// Используется совместно с типами преобразования:d, i, o, u, x и X, n.
