@@ -17,38 +17,46 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include "libft/includes/libft.h"
+# include <stdio.h>
+
+#define MIN(spec) spec & 1
+#define PLUS(spec) spec & 2
+#define SPACE(spec) spec & 4
+#define ZERO(spec) spec & 8
+#define HASH(spec) spec & 16
+#define PRECISION(spec) spec & 32
+#define WIDTH(spec) spec & 64
+
 
 enum types
 {
-	LONG_LONG,
-	LONG_UNSIGNED,
-	LONG_DOUBLE,
-	UNSIGNED_CHAR
+						LONG_INT,
+						CHAR,
+						SHORT_INT,
+						LONG_DOUBLE,
+						LONG_LONG_INT
 };
 
 typedef struct	s_spec
 {
-	unsigned		flag_min;
-	unsigned		flag_plus;
-	unsigned		flag_space;
-	unsigned		flag_zero;
-	unsigned		reshetka;
-	unsigned 		t_presence;
-	unsigned 		tochnost;
-	unsigned		shirina;
-	//unsigned		modificate;
+	unsigned			flag_min;
+	unsigned			flag_plus;
+	unsigned			flag_space;
+	unsigned			flag_zero;
+	unsigned			hash;
+	unsigned 			precision;
+	unsigned			width;
 	enum types			modificate;
-	struct s_spec	*next;
-}				t_spec;
+}						t_spec;
 
-unsigned				ft_printf(const char *str, ...);
+int						ft_printf(const char *str, ...);
 unsigned				ft_ten_signts_system(int num, t_spec *list);
 unsigned				ft_str_system(const char *s, t_spec *list);
 void					ft_list_add_end(t_spec **list, t_spec *new);
 t_spec					*ft_list_new();
-char					*ft_check_flags(char *str, t_spec *list);
-char					*ft_check_modificate(char *str, t_spec *list);
+const char				*ft_check_flags(const char *str, t_spec *list);
+const char				*ft_check_modificate(const char *str, t_spec *list);
 unsigned				ft_check_format(char s);
-
+int						ft_type_definition(const char *str, va_list per, t_spec *list);
 
 #endif

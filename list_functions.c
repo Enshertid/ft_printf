@@ -24,25 +24,8 @@ t_spec		*ft_list_new()
 	list->flag_plus = 0;
 	list->flag_min = 0;
 	list->flag_zero = 0;
-	list->shirina = 0;
-	list->t_presence = 0;
-	list->tochnost = 0;
+	list->width = 0;
+	list->precision = 0;
 	list->modificate = 0;
-	list->next = NULL;
 	return (list);
-}
-
-void		ft_list_add_end(t_spec **list, t_spec *new)
-{
-	t_spec *tmp;
-
-	if (*list && new)
-	{
-		tmp = *list;
-	while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
-		new->next = NULL;
-		*list = tmp;
-	}
 }
