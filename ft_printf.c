@@ -12,35 +12,52 @@
 
 #include "ft_printf.h"
 
-int					ft_type_definition(const char **str, va_list per, t_spec *list)
+int					ft_type_definition(const char **str,
+					t_spec *list, va_list per)
 {
 	(*str)++;
 	return (1);
 }
 
+void				ft_check_width_and_precision(const char **str,
+										t_spec *list, va_list per)
+{
+	if (**str == '*')
+	{
+		list->width = va_arg(per, int);
+		list->presence_width = 1;
+		(*str)++;
+	}
+	while (ft_isdigit(**str))
+	{
+		list->presence_width = 1;
+		(*str)++;
+	}
+	if (**str == '.')
+	{
+		list->precision = ft_atoi(++(*str));
+		list->presence_dot = 1;
+	}
+	if (**str == '*')
+	{
+		list->precision = va_arg(per, int);
+		list->presence_precision = 1;
+		(*str)++;
+	}
+}
+
 int					ft_second_step(const char **str, va_list per, t_spec *list)
 {
 		if (!(ft_check_format(**str)))
-			ft_check_flags(str, list);
-		list->width = ft_atoi(*str);
-		if (**str == '*')
-		{
-			list->width = va_arg(per, int);
-			(*str)++;
-		}
+			ft_check_flags(str, list, per);
+		ft_check_width_and_precision(str, list, per);
 		while (ft_isdigit(**str))
-			(*str)++;
-		if (**str == '.')
-			list->precision = ft_atoi(++(*str));
-		if (**str == '*')
 		{
-			list->precision = va_arg(per, int);
 			(*str)++;
+			list->presence_precision = 1;
 		}
-		while (ft_isdigit(**str))
-			(*str)++;
 		ft_check_modificate(str, list);
-		return (ft_type_definition(str, per, list));
+		return (ft_type_definition(str, list, per));
 }
 
 int 		ft_first_step(const char *str, va_list per)

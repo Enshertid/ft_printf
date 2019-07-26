@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void		ft_check_flags(const char **str, t_spec *list)
+void		ft_check_flags(const char **str, t_spec *list, va_list per)
 {
 	while (**str == '+' || **str == '-' || **str == '#' ||
 		   **str == ' '|| (**str == '0' && list->flag_zero == 0))
