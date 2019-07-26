@@ -15,17 +15,28 @@
 t_spec		*ft_list_new()
 {
 	t_spec	*list;
-	int		i;
 
 	if (!(list = malloc(sizeof(t_spec))))
 		return (NULL);
-	i = 0;
-	list->flag_space = 0;
+	list->flag_minus = 0;
 	list->flag_plus = 0;
-	list->flag_min = 0;
 	list->flag_zero = 0;
+	list->flag_hash = 0;
+	list->flag_space = 0;
 	list->width = 0;
 	list->precision = 0;
-	list->modificate = 0;
+	list->modificate = DEFAULT;
 	return (list);
+}
+
+void		ft_list_clear(t_spec *list)
+{
+	list->flag_minus = 0;
+	list->flag_plus = 0;
+	list->flag_zero = 0;
+	list->flag_hash = 0;
+	list->flag_space = 0;
+	list->width = 0;
+	list->precision = 0;
+	list->modificate = DEFAULT;
 }
