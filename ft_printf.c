@@ -15,8 +15,29 @@
 int					ft_type_definition(const char **str,
 					t_spec *list, va_list per)
 {
-	(*str)++;
-	return (1);
+	if (**str == 'd' || **str == 'i')
+		return (ft_signed_digital(str, list, va_arg(per, int)));
+//	else if (**str == 'u')
+//		return (ft_unsigned_digital(str, list, va_arg(per, unsigned)));
+//	else if (**str == 'o')
+//		return (ft_unsigned_octal(str, list, per));
+//	else if (**str == 'x')
+//		return (ft_hexical_low(str, list, per));
+//	else if (**str == 'X')
+//		return (ft_hexical_hight(str, list, per));
+//	else if (**str == 'c')
+//		return (ft_signed_char(str, list, per));
+//	else if (**str == 's')
+//		return (ft_string_output(str, list, per));
+//	else if (**str == 'p')
+//		return (ft_pointer_output(str, list, per));
+//	else if (**str == 'f')
+//		return (ft_signed_float(str, list, per));
+	else
+	{
+		(*str)++;
+		return (1);
+	}
 }
 
 void				ft_check_width_and_precision(const char **str,
@@ -28,6 +49,7 @@ void				ft_check_width_and_precision(const char **str,
 		list->presence_width = 1;
 		(*str)++;
 	}
+	list->width = ft_atoi(*str);
 	while (ft_isdigit(**str))
 	{
 		list->presence_width = 1;
@@ -75,9 +97,11 @@ int 		ft_first_step(const char *str, va_list per)
 			str++;
 		write (1, output, str - output);
 		return_value += (str - output);
-		str++;
 		if(*str)
+		{
+			str++;
 			return_value += ft_second_step(&str, per, list);
+		}
 		output = str;
 		ft_list_clear(list);
 	}

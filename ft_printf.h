@@ -55,5 +55,7 @@ int						ft_type_definition(const char **str, t_spec *list,
 void					ft_list_clear(t_spec *list);
 void					ft_check_width_and_precision(const char **str,
 						t_spec *list, va_list per);
+int						ft_signed_digital(const char **str, t_spec *list, int num);
+char					*ft_pars_num(int num, t_spec *list);
 
 #endif
