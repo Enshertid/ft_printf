@@ -12,58 +12,37 @@
 
 #include "ft_printf.h"
 
-char				*ft_pars_num(int num, t_spec *list)
+int			ft_digitals(const char **str, t_spec *list, va_list per)
 {
-	char				*numb;
-
-	if (num > 0 && list->flag_plus == 1)
-	{
-		numb = ft_itoa(-num);
-		numb[0] = '+';
-	}
-	else if (num > 0 && list->flag_space == 1)
-	{
-		numb = ft_itoa(-num);
-		numb[0] = ' ';
-	}
-	else //(num < 0 || num > 0)
-		numb = ft_itoa(num);
-	return (numb);
+	if (**str == 'd' || **str == 'i')
+		ft_signed_digital(str, list, va_arg(per, int));
+	else if (**str == 'u')
+		return (ft_unsigned_digital(str, list, va_arg(per, int)));
+	else if (**str == 'o')
+		return (ft_unsigned_octal(str, list, va_arg(per, int)));
+	else if (**str == 'x')
+		return (ft_unsigned_hex_low(str, list, va_arg(per, int)));
+	else if (**str == 'X')
+		return (ft_unsigned_hex_hight(str, list, va_arg(per, int)));
 }
 
-
-int					ft_start_pars_width(t_spec *list, char *numb)
+int					ft_type_definition(const char **str,
+										  t_spec *list, va_list per)
 {
-	char				*str_head;
-	char				*str;
-
-	str = ft_strnew(list->width);
-	if (list->presence_dot == 0 && list->flag_zero == 1 && list->flag_minus == 0)
-		ft_memset(str, '0', list->width);
+	if (**str == 'd' || **str == 'i' || **str == 'u' || **str == 'o' ||
+		**str == 'x' || **str == 'X')
+		return (ft_digitals(str, list, per));
+//		else if (**str == 'c')
+//		return (ft_signed_char(str, list, per));
+//	else if (**str == 's')
+//		return (ft_string_output(str, list, per));
+//	else if (**str == 'p')
+//		return (ft_pointer_output(str, list, per));
+//	else if (**str == 'f')
+//		return (ft_signed_float(str, list, per));
 	else
-		ft_memset(str, ' ', list->width);
-	str_head = str;
-	if (ft_strlen(numb) > list->precision && list->flag_minus == 0)
-		return (ft_width_noprecision(numb, list, str, str_head));
-	else if (ft_strlen(numb) < list->precision && list->flag_minus == 0)
-		return (ft_width_with_precision(numb, list, str, str_head));
-	else if (list->flag_minus == 1 && ft_strlen(numb) > list->precision)
-		return (ft_right_aligned_without_precision(numb, str, str_head));
-	else if (list->flag_minus == 1 && ft_strlen(numb) < list->precision)
-		return (ft_right_aligned_with_precision(numb, str, list, str_head));
-}
-
-int			ft_signed_digital(const char **str, t_spec *list, int num)
-{
-	char			*numb;
-
-	(*str)++;
-	numb = ft_pars_num(num, list);
-	if (list->precision > list->width && list->precision > ft_strlen(numb))
-		return (ft_output_only_precision(numb, list));
-	else if (ft_strlen(numb) > list->precision &&
-	ft_strlen(numb) > list->width)
-		return (ft_output_only_digital(numb));
-	else if (list->width > list->precision)
-		return(ft_start_pars_width(list, numb));
+	{
+		(*str)++;
+		return (1);
+	}
 }

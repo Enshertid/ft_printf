@@ -12,34 +12,6 @@
 
 #include "ft_printf.h"
 
-int					ft_type_definition(const char **str,
-					t_spec *list, va_list per)
-{
-	if (**str == 'd' || **str == 'i')
-		return (ft_signed_digital(str, list, va_arg(per, int)));
-//	else if (**str == 'u')
-//		return (ft_unsigned_digital(str, list, va_arg(per, unsigned)));
-//	else if (**str == 'o')
-//		return (ft_unsigned_octal(str, list, per));
-//	else if (**str == 'x')
-//		return (ft_hexical_low(str, list, per));
-//	else if (**str == 'X')
-//		return (ft_hexical_hight(str, list, per));
-//	else if (**str == 'c')
-//		return (ft_signed_char(str, list, per));
-//	else if (**str == 's')
-//		return (ft_string_output(str, list, per));
-//	else if (**str == 'p')
-//		return (ft_pointer_output(str, list, per));
-//	else if (**str == 'f')
-//		return (ft_signed_float(str, list, per));
-	else
-	{
-		(*str)++;
-		return (1);
-	}
-}
-
 void				ft_check_width_and_precision(const char **str,
 										t_spec *list, va_list per)
 {
@@ -65,7 +37,8 @@ void				ft_check_width_and_precision(const char **str,
 	}
 }
 
-int					ft_second_step(const char **str, va_list per, t_spec *list)
+int					ft_second_step(const char **str,
+					va_list per, t_spec *list)
 {
 		if (!(ft_check_format(**str)))
 			ft_check_flags(str, list, per);
