@@ -56,5 +56,18 @@ void					ft_check_width_and_precision(const char **str,
 int						ft_signed_digital(const char **str, t_spec *list,
 						int num);
 char					*ft_pars_num(int num, t_spec *list);
+int					ft_right_aligned_with_precision(char *numb, char *str,
+					t_spec *list, char *str_head);
+int					ft_right_aligned_without_precision(char *numb,
+					char *str, char *str_head);
+int					ft_width_with_precision(char *numb, t_spec *list,
+					char *str , char *str_head);
+int					ft_width_noprecision(char *numb, t_spec *list,
+					char *str, char *str_head);
+int					ft_output_only_digital(char *numb);
+int					ft_output_only_precision(char *numb, t_spec *list);
+char				*ft_itoa_hex(long long int num, unsigned size);
+char				*ft_itoa_oct(long long int num);
+char				*ft_itoa_base(long long int num, unsigned system, unsigned size);
 
 #endif
