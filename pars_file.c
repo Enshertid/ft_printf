@@ -2,6 +2,7 @@
 // Created by Yaxley Manilow on 2019-07-31.
 //
 #include "ft_printf.h"
+
 char				*ft_pars_num(int num, t_spec *list)
 {
 	char				*numb;

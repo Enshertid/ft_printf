@@ -24,6 +24,7 @@ t_spec		*ft_list_new()
 	list->flag_hash = 0;
 	list->flag_space = 0;
 	list->width = 0;
+	list->presence_dot = 0;
 	list->precision = 0;
 	list->modificate = DEFAULT;
 	return (list);
@@ -38,5 +39,6 @@ void		ft_list_clear(t_spec *list)
 	list->flag_space = 0;
 	list->width = 0;
 	list->precision = 0;
+	list->presence_dot = 0;
 	list->modificate = DEFAULT;
 }

@@ -46,13 +46,11 @@ void				ft_check_width_and_precision(const char **str,
 	if (**str == '*')
 	{
 		list->width = va_arg(per, int);
-		list->presence_width = 1;
 		(*str)++;
 	}
 	list->width = ft_atoi(*str);
 	while (ft_isdigit(**str))
 	{
-		list->presence_width = 1;
 		(*str)++;
 	}
 	if (**str == '.')
@@ -63,7 +61,6 @@ void				ft_check_width_and_precision(const char **str,
 	if (**str == '*')
 	{
 		list->precision = va_arg(per, int);
-		list->presence_precision = 1;
 		(*str)++;
 	}
 }
@@ -74,10 +71,7 @@ int					ft_second_step(const char **str, va_list per, t_spec *list)
 			ft_check_flags(str, list, per);
 		ft_check_width_and_precision(str, list, per);
 		while (ft_isdigit(**str))
-		{
 			(*str)++;
-			list->presence_precision = 1;
-		}
 		ft_check_modificate(str, list);
 		return (ft_type_definition(str, list, per));
 }

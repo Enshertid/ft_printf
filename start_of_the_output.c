@@ -18,7 +18,7 @@ int					ft_width_noprecision(char *numb, t_spec *list, char *str, char *str_head
 	int					return_value;
 
 	numb_head = numb;
-	if (numb[0] == '+' || numb[0] == '-' || numb[0] == ' ')
+	if ((numb[0] == '+' || numb[0] == '-' || numb[0] == ' ') && list->presence_dot == 0)
 	{
 		str[0] = numb[0];
 		numb++;
@@ -46,13 +46,13 @@ int					ft_width_with_precision(char *numb, t_spec *list, char *str , char *str_
 	int					iter;
 
 	numb_head = numb;
+	iter = (ft_strlen(str) - list->precision - 1);
 	if (numb[0] == '+' || numb[0] == '-' || numb[0] == ' ')
 	{
-		str[0] = numb[0];
+		str[iter] = numb[0];
 		numb++;
-		str++;
+		iter++;
 	}
-	iter = (ft_strlen(str) - list->precision);
 	start_of_numb = ft_strlen(str) - ft_strlen(numb);
 	while (iter != start_of_numb)
 	{
@@ -158,8 +158,8 @@ int					ft_output_only_with_precision(char *numb, t_spec *list)
 	char				*numb_head;
 	int					return_value;
 
-	str = ft_strnew(list->precision + 1);
-	ft_memset(str,'0', list->precision);
+	str = ft_strnew(list->precision + 2);
+	ft_memset(str,'0', list->precision + 1);
 	str_head = str;
 	numb_head = numb;
 	if (numb[0] == '+' || numb[0] == '-' || numb[0] == ' ')
@@ -198,8 +198,7 @@ int			ft_signed_digital(const char **str, t_spec *list, int num)
 
 	(*str)++;
 	numb = ft_pars_num(num, list);
-	if (list->precision > list->width && list->precision > ft_strlen(numb)
-	&& list->flag_minus == 0)
+	if (list->precision > list->width && list->precision > ft_strlen(numb))
 		return (ft_output_only_with_precision(numb, list));
 	else if (ft_strlen(numb) > list->precision &&
 	ft_strlen(numb) > list->width)
