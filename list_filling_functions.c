@@ -41,6 +41,31 @@ unsigned				ft_check_format(const char s)
 		return (0);
 }
 
+void				ft_check_width_and_precision(const char **str,
+												 t_spec *list, va_list per)
+{
+	if (**str == '*')
+	{
+		list->width = va_arg(per, int);
+		(*str)++;
+	}
+	list->width = ft_atoi(*str);
+	while (ft_isdigit(**str))
+	{
+		(*str)++;
+	}
+	if (**str == '.')
+	{
+		list->precision = ft_atoi(++(*str));
+		list->presence_dot = 1;
+	}
+	if (**str == '*')
+	{
+		list->precision = va_arg(per, int);
+		(*str)++;
+	}
+}
+
 void			ft_check_modificate(const char **str, t_spec *list)
 {
 	if (**str == 'h' && **(str + 1) != 'h')

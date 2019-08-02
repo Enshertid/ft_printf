@@ -12,31 +12,6 @@
 
 #include "ft_printf.h"
 
-void				ft_check_width_and_precision(const char **str,
-										t_spec *list, va_list per)
-{
-	if (**str == '*')
-	{
-		list->width = va_arg(per, int);
-		(*str)++;
-	}
-	list->width = ft_atoi(*str);
-	while (ft_isdigit(**str))
-	{
-		(*str)++;
-	}
-	if (**str == '.')
-	{
-		list->precision = ft_atoi(++(*str));
-		list->presence_dot = 1;
-	}
-	if (**str == '*')
-	{
-		list->precision = va_arg(per, int);
-		(*str)++;
-	}
-}
-
 int					ft_second_step(const char **str,
 					va_list per, t_spec *list)
 {

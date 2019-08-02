@@ -20,10 +20,11 @@ char				*ft_flagsfor_signed(int num, t_spec *list)
 	}
 	else //(num < 0 || num > 0)
 		numb = ft_itoa(num);
+	if (num < 0)
 	return (numb);
 }
 
-char				*ft_fillingflag_hexlow(char *numb, int base, int size)
+char				*ft_fillingflag_hexlow(char *numb, int base, int size, t_spec *list)
 {
 	char		*flag;
 	size_t		i;
@@ -42,7 +43,6 @@ char				*ft_fillingflag_hexlow(char *numb, int base, int size)
 	else
 	{
 		flag = ft_memalloc(ft_strlen(numb) + 2);
-
 		flag[0] = '0';
 		i = 1;
 	}
@@ -62,7 +62,7 @@ char				*ft_flagsfor_unsigned(unsigned int num, t_spec *list,
 
 	numb = ft_unsigned_itoa_base(num, base, size);
 	if (list->flag_hash == 1 && (base == 16 || base == 8))
-		return (ft_fillingflag_hexlow(numb, base, size));
+		return (ft_fillingflag_hexlow(numb, base, size, list));
 	else
 		return (numb);
 }
