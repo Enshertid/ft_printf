@@ -10,7 +10,14 @@ int					ft_width_noprecision(char *numb, t_spec *list,
 	int					return_value;
 
 	numb_head = numb;
-	if ((numb[0] == '+' || numb[0] == '-' || numb[0] == ' ') && list->presence_dot == 0)
+	if (numb[0] == '0' && (numb[1] == 'x' || numb[1] == 'X' ) && list->presence_dot == 0)
+	{
+		str[0] = numb[0];
+		str[1] = numb[1];
+		str += 2;
+		numb += 2;
+	}
+	else if ((numb[0] == '+' || numb[0] == '-' || numb[0] == ' ') && list->presence_dot == 0)
 	{
 		str[0] = numb[0];
 		numb++;
@@ -40,7 +47,15 @@ int					ft_width_with_precision(char *numb,
 
 	numb_head = numb;
 	iter = (ft_strlen(str) - list->precision - 1);
-	if (numb[0] == '+' || numb[0] == '-' || numb[0] == ' ')
+	if (numb[0] == '0' && (numb[1] == 'x' || numb[1] == 'X'))
+	{
+		str[iter] = numb[0];
+		iter++;
+		str[iter] = numb[1];
+		str += 2;
+		numb += 2;
+	}
+	else if (numb[0] == '+' || numb[0] == '-' || numb[0] == ' ' || numb[0] == '0')
 	{
 		str[iter] = numb[0];
 		numb++;
@@ -72,7 +87,14 @@ int					ft_right_aligned_without_precision(char *numb,
 	int					return_value;
 
 	numb_head = numb;
-	if (numb[0] == '+' || numb[0] == '-' || numb[0] == ' ')
+	if (numb[0] == '0' && (numb[1] == 'x' || numb[1] == 'X'))
+	{
+		str[0] = numb[0];
+		str[1] = numb[1];
+		str += 2;
+		numb += 2;
+	}
+	else if (numb[0] == '+' || numb[0] == '-' || numb[0] == ' ' || numb[0] == '0')
 	{
 		str[0] = numb[0];
 		numb++;
@@ -100,7 +122,14 @@ int					ft_right_aligned_with_precision(char *numb,
 	int					start_of_numb;
 
 	numb_head = numb;
-	if (numb[0] == '+' || numb[0] == '-' || numb[0] == ' ')
+	if (numb[0] == '0' && (numb[1] == 'x' || numb[1] == 'X'))
+	{
+		str[0] = numb[0];
+		str[1] = numb[1];
+		str += 2;
+		numb += 2;
+	}
+	else if (numb[0] == '+' || numb[0] == '-' || numb[0] == ' ' || numb[0] == '0')
 	{
 		str[0] = numb[0];
 		numb++;

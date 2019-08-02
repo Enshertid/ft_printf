@@ -14,16 +14,26 @@
 
 int			ft_digitals(const char **str, t_spec *list, va_list per)
 {
+	char			*numb;
+
 	if (**str == 'd' || **str == 'i')
-		ft_signed_digital(str, list, va_arg(per, int));
-	else if (**str == 'u')
-		return (ft_unsigned_digital(str, list, va_arg(per, int)));
+		numb = ft_flagsfor_signed(va_arg(per, int), list);
+	if (**str == 'u')
+		numb = ft_flagsfor_unsigned(va_arg(per, unsigned int), list, 10, 0);
 	else if (**str == 'o')
-		return (ft_unsigned_octal(str, list, va_arg(per, int)));
+		numb = ft_flagsfor_unsigned(va_arg(per, unsigned int), list, 8, 0);
 	else if (**str == 'x')
-		return (ft_unsigned_hex_low(str, list, va_arg(per, int)));
+		numb = ft_flagsfor_unsigned(va_arg(per, unsigned int), list, 16, 0);
 	else if (**str == 'X')
-		return (ft_unsigned_hex_hight(str, list, va_arg(per, int)));
+		numb = ft_flagsfor_unsigned(va_arg(per, unsigned int), list, 16, 1);
+	(*str)++;
+	if (list->precision > list->width && list->precision > ft_strlen(numb))
+		return (ft_output_only_precision(numb, list));
+	else if (ft_strlen(numb) > list->precision &&
+								ft_strlen(numb) > list->width)
+		return (ft_output_only_digital(numb));
+	else if (list->width > list->precision)
+		return (ft_start_pars_width(list, numb));
 }
 
 int					ft_type_definition(const char **str,

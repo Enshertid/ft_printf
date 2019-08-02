@@ -15,19 +15,19 @@ unsigned	ft_checklenght(unsigned num, int base)
 	return (i + 1);
 }
 
-char		*ft_unsigned_itoa_base(long long unsigned int num,int baze , unsigned size)
+char		*ft_unsigned_itoa_base(unsigned int num,int base , unsigned size)
 {
 	char						*s;
-	char						*base;
+	char						*base_ar;
 	unsigned					lenght;
 
-	lenght =ft_checklenght(num, baze);
-	if (baze == 16)
-		base = (size == 0) ? "0123456789abcdef" : "0123456789ABCDEF";
-	else if (baze == 8)
-		base = "01234567";
-	else if (baze == 10)
-		base = "0123456789";
+	lenght =ft_checklenght(num, base);
+	if (base == 16)
+		base_ar = (size == 0) ? "0123456789abcdef" : "0123456789ABCDEF";
+	else if (base == 8)
+		base_ar = "01234567";
+	else if (base == 10)
+		base_ar = "0123456789";
 	else
 		return ("check base");
 	s = ft_memalloc(lenght + 1);
@@ -35,8 +35,8 @@ char		*ft_unsigned_itoa_base(long long unsigned int num,int baze , unsigned size
 		s[0] = '0';
 	while (num > 0)
 	{
-		s[--lenght] = base[num % baze];
-		num /= baze;
+		s[--lenght] = base_ar[num % base];
+		num /= base;
 	}
 	return (s);
 }
