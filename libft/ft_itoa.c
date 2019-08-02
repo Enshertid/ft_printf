@@ -3,55 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 20:14:35 by dbendu            #+#    #+#             */
-/*   Updated: 2019/04/08 20:14:36 by dbendu           ###   ########.fr       */
+/*   Updated: 2019/08/01 23:12:14 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		ft_isnegative_topos(int *num, size_t *is_negative)
+char	*ft_itoa(int num, unsigned base)
 {
-	if (*num < 0)
+	const char alphabet[16] =
 	{
-		*is_negative = 1;
-		*num = -*num;
-	}
-	else
-		*is_negative = 0;
-}
+		'0', '1', '2', '3', '4', '5', '6', '7',
+		'8', '9', 'a', 'b', 'c', 'd', 'e', 'f'
+	};
+	char *result;
+	size_t pos;
 
-static size_t	ft_size_of_num(int n)
-{
-	size_t size;
-
-	size = 0;
-	while (n /= 10)
-		++size;
-	return (size + 1);
-}
-
-char			*ft_itoa(int num)
-{
-	register char	*str;
-	register size_t	size;
-	size_t			sign;
-
-	if (num == MIN_INT)
-		return (ft_strdup("-2147483648"));
-	size = ft_size_of_num(num) + 1 + (num < 0);
-	ft_isnegative_topos(&num, &sign);
-	if (!(str = (char*)malloc(size)))
+	if (base < 2 || base > 16 ||
+		!(result = ft_strnew(sizeof_num(num, base))))
 		return (NULL);
-	str[--size] = '\0';
-	while (size--)
+	pos = (base == 10 && num < 0);
+	if (base == 10 && num < 0)
 	{
-		str[size] = (num % 10 + 48);
-		num /= 10;
+		num = -num;
+		result[0] = '-';
 	}
-	if (sign)
-		str[0] = '-';
-	return (str);
+	result[0] = '0';
+	while (num)
+	{
+		result[pos++] = alphabet[num % base];
+		num /= base;
+	}
+	ft_strrev(result + (result[0] == '-'));
+	return (result);
 }

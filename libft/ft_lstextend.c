@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstexpend.c                                     :+:      :+:    :+:   */
+/*   ft_lstextend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 16:49:20 by dbendu            #+#    #+#             */
-/*   Updated: 2019/04/18 16:49:21 by dbendu           ###   ########.fr       */
+/*   Updated: 2019/07/30 20:30:17 by dbendu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_lstextend(t_list **list, t_list **add)
 {
 	if (!list || !add)
-		return;
+		return ;
 	if (*list)
 	{
 		if (*add)
@@ -24,7 +24,6 @@ void	ft_lstextend(t_list **list, t_list **add)
 			(*list)->end = (*add)->end;
 		}
 	}
-	else
-		if (*add)
-			*list = *add;
+	else if (*add)
+		*list = *add;
 }

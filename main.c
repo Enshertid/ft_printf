@@ -1,12 +1,12 @@
 
-#include "ft_printf.h"
+#include "printf.h"
 
 int			main(void)
 {
-//	int a = ft_printf("first_primer:%#-+00.*dsecondblabla", 10, 10, 525);
-	int b = printf("%+0 11.3d\n", 55);
-//	printf("original_return_value = %d\n ft_pritnf_return_value = %%\n", b);
-
+	printf("%s\n\n\n|%+-10.*i|\n\n", "% 15.6i", 5, 154);
+	ft_printf("%+-10.*i", 5, 154);
+	// printf("%s\n\n\n|%- 6.12i|\n\n", "% 15.6i", -154);
+	// ft_printf(      "%- 6.12i", -154);
 
 	return (0);
 }

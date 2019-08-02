@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 20:15:59 by dbendu            #+#    #+#             */
-/*   Updated: 2019/04/08 20:50:32 by dbendu           ###   ########.fr       */
+/*   Updated: 2019/08/01 23:18:41 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_list	*ft_lstmap(t_list *list, t_list *(*f)(t_list *elem))
 	{
 		if (!(iter->next = f(list)))
 		{
-			ft_lstremove(&new_list);
+			ft_lstpurge(&new_list);
 			return (NULL);
 		}
 		iter = iter->next;

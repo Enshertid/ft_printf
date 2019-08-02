@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_reverse_str.c                                   :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/08 20:20:07 by dbendu            #+#    #+#             */
-/*   Updated: 2019/04/08 20:20:08 by dbendu           ###   ########.fr       */
+/*   Created: 2019/04/16 14:47:22 by dbendu            #+#    #+#             */
+/*   Updated: 2019/08/01 23:15:40 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_reverse_str(char *str)
+void	ft_lstpurge(t_list **list)
 {
-	register size_t start;
-	register size_t end;
+	register t_list *iter;
+	register t_list *temp;
 
-	if (!str)
+	if (!list || !*list)
 		return ;
-	start = 0;
-	end = ft_strlen(str) - 1;
-	while (start < end)
-		ft_cswap((str + start++), (str + end--));
+	iter = *list;
+	while (iter)
+	{
+		free(iter->content);
+		temp = iter;
+		iter = iter->next;
+		free(temp);
+	}
+	*list = NULL;
 }

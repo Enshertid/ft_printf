@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/08 20:15:40 by dbendu            #+#    #+#             */
-/*   Updated: 2019/04/08 20:15:41 by dbendu           ###   ########.fr       */
+/*   Created: 2019/07/30 20:08:29 by dbendu            #+#    #+#             */
+/*   Updated: 2019/07/30 20:09:23 by dbendu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstremove(t_list **list)
+void	error(const char *error_msg, int error_code)
 {
-	if (!list || !*list)
-		return ;
-	free((*list)->content);
-	free(*list);
-	*list = NULL;
+	write(1, error_msg, ft_strlen(error_msg));
+	exit(error_code);
 }

@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_charrdel.c                                      :+:      :+:    :+:   */
+/*   ft_sizeof_num.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/16 16:37:30 by dbendu            #+#    #+#             */
-/*   Updated: 2019/04/16 16:39:56 by dbendu           ###   ########.fr       */
+/*   Created: 2019/08/01 23:13:17 by user              #+#    #+#             */
+/*   Updated: 2019/08/02 21:04:35 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_charrdel(char ***arr)
+size_t	sizeof_num(int num, unsigned base)
 {
-	size_t iter;
+	size_t size;
 
-	if (!arr || !*arr)
-		return ;
-	iter = 0;
-	while ((*arr)[iter])
+	if (!num)
+		return (1);
+	if (num == MIN_INT)
+		return (10);
+	if (base == 10 && num < 0)
+		num = -num;
+	size = 0;
+	while (num)
 	{
-		free((*arr)[iter]);
-		(*arr)[iter] = NULL;
-		++iter;
+		++size;
+		num /= base;
 	}
-	free(*arr);
-	*arr = NULL;
+	return (size);
 }

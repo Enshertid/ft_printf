@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dswap.c                                         :+:      :+:    :+:   */
+/*   ft_charrdel.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/08 20:12:56 by dbendu            #+#    #+#             */
-/*   Updated: 2019/04/08 20:12:57 by dbendu           ###   ########.fr       */
+/*   Created: 2019/04/16 16:37:30 by dbendu            #+#    #+#             */
+/*   Updated: 2019/08/01 22:34:59 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_dswap(double *a, double *b)
+void	ft_arrdel(void ***mem)
 {
-	double temp;
+	size_t iter;
+	char ***arr;
 
-	if (a && b)
+	arr = (char***)mem;
+	if (!arr || !*arr)
+		return ;
+	iter = 0;
+	while ((*arr)[iter])
 	{
-		temp = *a;
-		*a = *b;
-		*b = temp;
+		free((*arr)[iter]);
+		(*arr)[iter] = NULL;
+		++iter;
 	}
+	free(*arr);
+	*arr = NULL;
 }

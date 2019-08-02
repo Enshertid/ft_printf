@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_max.c                                           :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/08 20:17:49 by dbendu            #+#    #+#             */
-/*   Updated: 2019/08/01 21:55:37 by user             ###   ########.fr       */
+/*   Created: 2019/04/08 20:20:07 by dbendu            #+#    #+#             */
+/*   Updated: 2019/08/01 22:16:49 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_max(int amount, ...)
+void	ft_strrev(char *str)
 {
-	int		i;
-	int		temp;
-	int		max_num;
-	va_list	argptr;
+	register size_t start;
+	register size_t end;
+	char temp;
 
-	if (!amount)
-		return (MAX_INT);
-	i = 0;
-	va_start(argptr, amount);
-	while (i < amount)
+	if (!str)
+		return ;
+	start = 0;
+	end = ft_strlen(str) - 1;
+	if (end <= start)
+		return ;
+	while (start < end)
 	{
-		temp = va_arg(argptr, int);
-		if (!i || temp > max_num)
-			max_num = temp;
-		++i;
+		temp = str[start];
+		str[start] = str[end];
+		str[end] = temp;
+		++start;
+		--end;
 	}
-	va_end(argptr);
-	return (max_num);
 }
