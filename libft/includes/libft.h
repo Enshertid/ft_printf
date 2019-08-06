@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 20:28:39 by dbendu            #+#    #+#             */
-/*   Updated: 2019/04/08 20:28:40 by dbendu           ###   ########.fr       */
+/*   Updated: 2019/08/05 14:26:24 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <string.h>
+# include <stdarg.h>
 
 # define MAX_INT (2147483647)
 # define MIN_INT (-2147483648)
@@ -39,8 +40,8 @@ typedef struct		s_dlist
 }					t_dlist;
 
 void				ft_lstpop(t_list **list);
-void				ft_lstclear(t_list **list);
-void				ft_lstremove(t_list **list);
+void				ft_lstpurge(t_list **list);
+void				ft_lstdelone(t_list **list);
 void				ft_lstpopback(t_list **list);
 size_t				ft_lstsize(const t_list *list);
 void				ft_lstdelete(t_list **list, t_list **del);
@@ -52,14 +53,13 @@ void				ft_lstdel(t_list **alst, void (*del)(void*, size_t));
 t_list				*ft_lstnew(void const *content, size_t content_size);
 t_list				*ft_lstmap(t_list *list, t_list *(*f)(t_list *elem));
 
-void				ft_dlstclear(t_dlist **list);
+void				ft_dlstpurge(t_dlist **list);
 size_t				ft_dlstsize(const t_dlist *list);
 void				ft_dlstadd(t_dlist **list, t_dlist *elem);
 t_dlist				*ft_dlstnew(const void *data, size_t size);
 void				ft_dlstappend(t_dlist **list, t_dlist *elem);
 void				ft_dlstiter(t_dlist *list, void (*f)(t_dlist *elem));
 
-void				ft_memdel(void **ap);
 void				*ft_memalloc(size_t size);
 void				*ft_memset(void *dest, int c, size_t n);
 void				*ft_memcpy(void *dest, const void *src, size_t num);
@@ -77,19 +77,19 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *str, int fd);
 void				ft_putendl_fd(const char *str, int fd);
 
-char				*ft_itoa(int num);
+char				*ft_mitoa(long long int num, unsigned base, unsigned size);
+char				*ft_itoa(long long int num, char *str, unsigned base, unsigned size);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
 int					ft_isascii(int c);
 int					ft_isdigit(int c);
 int					ft_isprint(int c);
 int					ft_isspace(int c);
-void				ft_iswap(int *a, int *b);
-void				ft_cswap(char *a, char *b);
-void				ft_dswap(double *a, double *b);
+void				ft_swap(void *a, void *b, size_t size);
 int					ft_atoi(const char *str);
-void				ft_bzero(void *s, size_t n);
+size_t				sizeof_num(long long int num, unsigned base);
 
+char				*ft_strrev(char *str);
 void				ft_strclr(char *str);
 void				ft_strdel(char **str);
 char				*ft_strtrim(char *str);
@@ -117,11 +117,13 @@ char				*ft_strnstr(const char *str, const char *find, size_t len);
 char				*ft_strmapi(char const *str, char (*f)(unsigned int, char));
 char				*ft_strsub(const char *str, unsigned int start, size_t len);
 
-int					ft_min(int a, int b);
-int					ft_max(int a, int b);
-void				ft_reverse_str(char *str);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
-void				ft_charrdel(char ***arr);
+int					ft_min(int a, int b);
+int					ft_max(int a, int b);
+int					ft_minn(int amount, ...);
+int					ft_maxn(int amount, ...);
+void				ft_arrdel(void ***arr);
+void				error(const char *error_msg, int error_code);
 
 #endif

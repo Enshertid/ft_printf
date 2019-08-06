@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dswap.c                                         :+:      :+:    :+:   */
+/*   ft_lstremove.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/08 20:12:56 by dbendu            #+#    #+#             */
-/*   Updated: 2019/04/08 20:12:57 by dbendu           ###   ########.fr       */
+/*   Created: 2019/04/08 20:15:40 by dbendu            #+#    #+#             */
+/*   Updated: 2019/08/01 23:17:19 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_dswap(double *a, double *b)
+void	ft_lstdelone(t_list **list)
 {
-	double temp;
-
-	if (a && b)
-	{
-		temp = *a;
-		*a = *b;
-		*b = temp;
-	}
+	if (!list || !*list)
+		return ;
+	free((*list)->content);
+	free(*list);
+	*list = NULL;
 }

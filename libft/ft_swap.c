@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cswap.c                                         :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/08 20:12:44 by dbendu            #+#    #+#             */
-/*   Updated: 2019/04/08 20:12:47 by dbendu           ###   ########.fr       */
+/*   Created: 2019/08/01 22:42:55 by user              #+#    #+#             */
+/*   Updated: 2019/08/01 22:46:59 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_cswap(char *a, char *b)
+void	ft_swap(void *a, void *b, size_t size)
 {
-	char temp;
+	unsigned char temp[size];
 
-	if (a && b)
-	{
-		temp = *a;
-		*a = *b;
-		*b = temp;
-	}
+	if (a == b)
+		return ;
+	ft_memcpy(temp, a, size);
+	ft_memmove(a, b, size);
+	ft_memcpy(b, temp, size);
 }

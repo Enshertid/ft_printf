@@ -1,10 +1,23 @@
 
-#include "ft_printf.h"
+#include "printf.h"
 
 int			main(void)
-{
-	int a = ft_printf("first_primer:%# 0109.21dd\nsecondblabla\n", -34100);
-	int b = printf("first_primer:%# 0109.21dd\nsecondblabla\n", -34100);
-	printf("original_return_value = %d\n ft_pritnf_return_value = %d\n", b , a);
+{			//		 9223372036854775809
+	printf("%lu\n", 9223372036854775809);
+	// unsigned long long a;
+	// memset(&a, 9, sizeof(unsigned long long));
+	// printf("%llu\n", a);
+	// // a <<= 1;
+	// // a >>= 1;
+	// printf("%llu\n", a);
+
+	//    printf("|qwerty%19.10luzxc|\n", -9223372036854775807);
+	// ft_printf("|qwerty%19.10luzxc|\n", -9223372036854775807);
+
+
+//	   printf("|qwerty%#22.15ozxc|\n", 1854);
+//	ft_printf("|qwerty%#22.15ozxc|\n", 1854);		// error!!!
+	
+
 	return (0);
 }

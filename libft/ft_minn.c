@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_minn.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/08 20:15:59 by dbendu            #+#    #+#             */
-/*   Updated: 2019/08/01 23:18:41 by user             ###   ########.fr       */
+/*   Created: 2019/04/08 20:17:49 by dbendu            #+#    #+#             */
+/*   Updated: 2019/08/04 19:03:12 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *list, t_list *(*f)(t_list *elem))
+int	ft_minn(int amount, ...)
 {
-	t_list			*new_list;
-	register t_list	*iter;
+	int		i;
+	int		temp;
+	int		min_num;
+	va_list	argptr;
 
-	if (!list || !f)
-		return (NULL);
-	new_list = f(list);
-	if (!new_list)
-		return (NULL);
-	iter = new_list;
-	list = list->next;
-	while (list)
+	if (!amount)
+		return (MIN_INT);
+	i = 0;
+	va_start(argptr, amount);
+	while (i < amount)
 	{
-		if (!(iter->next = f(list)))
-		{
-			ft_lstpurge(&new_list);
-			return (NULL);
-		}
-		iter = iter->next;
-		list = list->next;
+		temp = va_arg(argptr, int);
+		if (!i || temp < min_num)
+			min_num = temp;
+		++i;
 	}
-	return (new_list);
+	va_end(argptr);
+	return (min_num);
 }

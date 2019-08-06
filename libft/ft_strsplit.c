@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 20:27:18 by dbendu            #+#    #+#             */
-/*   Updated: 2019/04/08 20:27:19 by dbendu           ###   ########.fr       */
+/*   Updated: 2019/08/01 22:36:21 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char				**ft_strsplit(const char *str, char c)
 	{
 		if (!(arr[iter] = (char*)malloc(word_len + 1)))
 		{
-			ft_charrdel(&arr);
+			ft_arrdel((void***)&arr);
 			return (NULL);
 		}
 		ft_strncpy(arr[iter], str, word_len);
