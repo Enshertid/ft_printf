@@ -1,23 +1,12 @@
-
-#include "printf.h"
+#include "ft_printf.h"
 
 int			main(void)
-{			//		 9223372036854775809
-	printf("%lu\n", 9223372036854775809);
-	// unsigned long long a;
-	// memset(&a, 9, sizeof(unsigned long long));
-	// printf("%llu\n", a);
-	// // a <<= 1;
-	// // a >>= 1;
-	// printf("%llu\n", a);
-
-	//    printf("|qwerty%19.10luzxc|\n", -9223372036854775807);
-	// ft_printf("|qwerty%19.10luzxc|\n", -9223372036854775807);
-
-
-//	   printf("|qwerty%#22.15ozxc|\n", 1854);
-//	ft_printf("|qwerty%#22.15ozxc|\n", 1854);		// error!!!
-	
-
+{
+	int a = ft_printf("first_primer:\n%X|\n%-X|\n%#X|\n%0X\n", 0U, 0U, 0U, 0U);
+	int b = printf("Pirst_primer:\n%X|\n%-X|\n%#X|\n%0X\n", 0U, 0U, 0U, 0U);
+//	int c = ft_printf("second_primer:\n%23ld|\n%-23ld|\n%+23ld|\n% 23ld|\n%023ld\n", LLONG_MAX, LLONG_MAX, LLONG_MAX, LLONG_MAX, LLONG_MAX);
+//	int d = printf("pecond_primer:\n%23ld|\n%-23ld|\n%+23ld|\n% 23ld|\n%023ld\n", LLONG_MAX, LLONG_MAX, LLONG_MAX, LLONG_MAX, LLONG_MAX);
+	printf("2original_return_value = %d\nft_pritnf_return_value = %d\n", b, a );
+//	printf("2original_return_value = %d\nft_pritnf_rкeturn_value = %d\n", d, c );
 	return (0);
 }
