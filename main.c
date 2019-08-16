@@ -21,8 +21,8 @@ int			main(void)
 	// for (int i = 0; i < 40; ++i)
 	// 	a[i] = i;
 
-	   printf("%+-10u|\n", 650);
-	ft_printf("%+-10u|\n", 650);
+	   printf("%.1d|\n", 650);
+	ft_printf("%.1d|\n", 650);
 
 
 	// long a = LLONG_MAX;

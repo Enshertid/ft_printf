@@ -64,6 +64,9 @@ void print_digital(t_buf *buf, t_format *format, va_list argptr)
 			format->width -= 2;
 		if (base == 8 && format->width && format->flag_hash && format->precision <= num_size)
 			--format->width;
+
+		if (format->precision <= num_size)
+			format->precision = 0;
 	}
 	else
 	{
