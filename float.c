@@ -11,7 +11,8 @@ void print_double(double d)
 	else
 	{
 		a = (int)d;
-		printf("%lli|\n", a);
+		float s = d - (float)a;
+		printf("%lli|\n%f\n", a, s);
 	}
 }
 
@@ -32,10 +33,10 @@ void print_long_double(long double d)
 
 void print_float(t_format *format, va_list argptr)
 {
-	if (format->modificate == 'l')
-		print_double(va_arg(argptr, long double));
+	if (format->modificate == LONG_DOUBLE)
+		print_long_double(va_arg(argptr, long double));
 	else
-		print_long_double(va_arg(argptr, double));
+		print_double(va_arg(argptr, double));
 
 	
 }

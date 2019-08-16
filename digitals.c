@@ -50,41 +50,100 @@ void print_digital(t_buf *buf, t_format *format, va_list argptr)
 	ft_itoa(num, cnum, base, format->type == 'X');
 
 
-	if (format->width && base == 10 && (format->flag_space || format->flag_plus || cnum[0] == '-') && (format->type == 'd' || format->type == 'i'))
-		--format->width;
-	if (base == 8 && format->flag_hash && (num_size > format->precision))
-		format->precision = num_size + 1;
-		// ++format->precision;
-	if (!num && format->dot_presence && !format->precision)
-		++format->width;
-	if (base == 16 && format->flag_hash && format->width > 2 && num)
-		format->width -= 2;
 
-	if (!format->flag_minus && !format->flag_zero && format->width > format->precision && format->width > num_size)
-		add_in_buf2(buf, ' ', format->width - ft_max(format->precision, num_size));
+
+	if (!format->flag_zero || format->flag_minus)
+	{
+		if (format->width > (unsigned)ft_max(num_size, format->precision))
+			format->width -= ft_max(num_size, format->precision);
+		else
+			format->width = 0;
+		if (format->width && base == 10 && format->type != 'u' && (num < 10 || format->flag_space || format->flag_plus))
+			--format->width;
+		if (base == 16 && format->width > 1 && format->flag_hash)
+			format->width -= 2;
+		if (base == 8 && format->width && format->flag_hash && format->precision <= num_size)
+			--format->width;
+	}
+	else
+	{
+		if (!format->dot_presence)
+		{
+			if (format->width > num_size)
+			{
+				format->precision = format->width;
+				// format->width = 0;
+				if (format->precision > num_size)
+					format->precision -= num_size;
+				else
+					format->precision = 0;
+				if (base == 16 && format->flag_hash && format->precision > 1)
+					format->precision -= 2;
+				if (base == 8 && format->flag_hash && format->precision > num_size)
+					--format->precision;
+				if (base == 10 && num < 0 /* && format->precision > num_size */)
+					--format->precision;
+			}
+			format->width = 0;
+		}
+	}
 	
-	if (cnum[0] == '-')
+	if (!format->flag_minus && format->width)
+		add_in_buf2(buf, ' ' , format->width);
+
+	if (num < 0)
 		add_in_buf2(buf, '-', 1);
-	else if (base == 10 && format->flag_plus && (format->type == 'd' || format->type == 'i'))
+	else if (base == 10 && format->type != 'u' && format->flag_plus)
 		add_in_buf2(buf, '+', 1);
-	else if (base == 10 && format->flag_space)
+	else if (base == 10 && format->type != 'u' && format->flag_space)
 		add_in_buf2(buf, ' ', 1);
 
-	if (base == 16 && format->flag_hash && num)
-		add_in_buf(buf, format->type == 'x' ? "0x" : "0X", 2);
+	if (base == 16 && format->flag_hash)
+		add_in_buf(buf, format->type == 'X' ? "0X" : "0x", 2);
+	if (base == 8 && format->flag_hash)
+		add_in_buf2(buf, '0', 1);
+	if (format->precision)
+		add_in_buf2(buf, '0', format->precision);
+	add_in_buf(buf, cnum + (cnum[0] == '-'), num_size);
+	
+	if (format->flag_minus && format->width)
+		add_in_buf2(buf, ' ' , format->width);
+	
+	// if (format->width && base == 10 && (format->flag_space || format->flag_plus || cnum[0] == '-') && (format->type == 'd' || format->type == 'i'))
+	// 	--format->width;
+	// if (base == 8 && format->flag_hash && (num_size > format->precision))
+	// 	format->precision = num_size + 1;
+	// 	// ++format->precision;
+	// if (!num && format->dot_presence && !format->precision)
+	// 	++format->width;
+	// if (base == 16 && format->flag_hash && format->width > 2 && num)
+	// 	format->width -= 2;
 
-	if (format->precision > num_size)
-		add_in_buf2(buf, '0', format->precision - num_size);
-	else if (!format->dot_presence && !format->flag_minus && format->flag_zero && format->width)
-		add_in_buf2(buf, '0', format->width - num_size);
+	// if (!format->flag_minus && !format->flag_zero && format->width > format->precision && format->width > num_size)
+	// 	add_in_buf2(buf, ' ', format->width - ft_max(format->precision, num_size));
+	
+	// if (cnum[0] == '-')
+	// 	add_in_buf2(buf, '-', 1);
+	// else if (base == 10 && format->flag_plus && (format->type == 'd' || format->type == 'i'))
+	// 	add_in_buf2(buf, '+', 1);
+	// else if (base == 10 && format->flag_space)
+	// 	add_in_buf2(buf, ' ', 1);
+
+	// if (base == 16 && format->flag_hash && num)
+	// 	add_in_buf(buf, format->type == 'x' ? "0x" : "0X", 2);
+
+	// if (format->precision > num_size)
+	// 	add_in_buf2(buf, '0', format->precision - num_size);
+	// else if (!format->dot_presence && !format->flag_minus && format->flag_zero && format->width)
+	// 	add_in_buf2(buf, '0', format->width - num_size);
 
 
 	
-	if (!(!num && format->dot_presence && !format->precision))
-		add_in_buf(buf, cnum + (cnum[0] == '-'), num_size);
+	// if (!(!num && format->dot_presence && !format->precision))
+	// 	add_in_buf(buf, cnum + (cnum[0] == '-'), num_size);
 
-	if (format->flag_minus && format->width > format->precision && format->width > num_size)
-			add_in_buf2(buf, ' ', format->width - ft_max(format->precision, num_size));
+	// if (format->flag_minus && format->width > format->precision && format->width > num_size)
+	// 		add_in_buf2(buf, ' ', format->width - ft_max(format->precision, num_size));
 
 
 

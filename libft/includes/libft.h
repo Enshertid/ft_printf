@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 20:28:39 by dbendu            #+#    #+#             */
-/*   Updated: 2019/08/15 12:45:07 by user             ###   ########.fr       */
+/*   Updated: 2019/08/16 11:55:20 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,5 +126,6 @@ int					ft_minn(int amount, ...);
 int					ft_maxn(int amount, ...);
 void				ft_arrdel(void ***arr);
 void				error(const char *error_msg, int error_code);
+long double			ft_pow(long double a, int n);
 
 #endif

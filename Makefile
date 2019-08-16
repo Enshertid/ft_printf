@@ -64,8 +64,8 @@ wc:
 
 
 t:
-		@clear
+	@clear
 	@make -C libft
-	@gcc main_test.c digitals.c buf.c alphas.c printf.c pointers.c format.c libft/libft.a -Ilibft/includes
+	@gcc main_test.c digitals.c buf.c alphas.c printf.c pointers.c float.c format.c libft/libft.a -Ilibft/includes
 	@clear
 	@./a.out

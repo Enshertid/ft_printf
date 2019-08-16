@@ -2,6 +2,7 @@ NAME = libft.a
 
 SRCS =	ft_abs.c								\
 		error.c									\
+		ft_pow.c								\
 		ft_swap.c								\
 		ft_arrdel.c								\
 		ft_sizeof_num.c							\
