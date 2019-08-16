@@ -3,32 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 20:18:45 by dbendu            #+#    #+#             */
-/*   Updated: 2019/04/08 20:18:46 by dbendu           ###   ########.fr       */
+/*   Updated: 2019/08/12 12:34:25 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int nbr, int fd)
+void	ft_putnbr_fd(int num, int fd)
 {
-	if (nbr == MIN_INT)
-		ft_putstr_fd("-2147483648", fd);
-	else
+	char	cnum[11];
+	size_t	iter;
+
+	if (num == MIN_INT)
 	{
-		if (nbr >= 10)
-		{
-			ft_putnbr_fd(nbr / 10, fd);
-			ft_putchar_fd(nbr % 10 + '0', fd);
-		}
-		else if (nbr < 0)
-		{
-			write(fd, "-", sizeof(char));
-			ft_putnbr_fd(-nbr, fd);
-		}
-		else
-			ft_putchar_fd(nbr % 10 + '0', fd);
+		ft_putstr_fd("-2147483648", fd);
+		return ;
 	}
+	iter = 0;
+	if (num < 0)
+	{
+		cnum[iter++] = '-';
+		num = -num;
+	}
+	while (num)
+	{
+		cnum[iter] = num % 10 + '0';
+		num /= 10;
+		++iter;
+	}
+	cnum[iter] = '\0';
+	ft_strrev(cnum + (cnum[0] == '-'));
+	ft_putstr_fd(cnum, fd);
 }

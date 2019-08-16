@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dlstappend.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 18:23:49 by dbendu            #+#    #+#             */
-/*   Updated: 2019/06/26 18:23:50 by dbendu           ###   ########.fr       */
+/*   Updated: 2019/08/12 11:48:23 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_dlstappend(t_dlist **list, t_dlist *new)
 	else
 	{
 		new->prev = (*list)->end;
-		new->prev->next = new;
+		(*list)->end->next = new;
 		(*list)->end = new;
 	}
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_lstpurge.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:47:22 by dbendu            #+#    #+#             */
-/*   Updated: 2019/08/01 23:15:40 by user             ###   ########.fr       */
+/*   Updated: 2019/08/12 12:16:10 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	ft_lstpurge(t_list **list)
 	iter = *list;
 	while (iter)
 	{
+		temp = iter->next;
 		free(iter->content);
-		temp = iter;
-		iter = iter->next;
-		free(temp);
+		free(iter);
+		iter = temp;
 	}
 	*list = NULL;
 }

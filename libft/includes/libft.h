@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 20:28:39 by dbendu            #+#    #+#             */
-/*   Updated: 2019/08/01 23:19:56 by user             ###   ########.fr       */
+/*   Updated: 2019/08/15 12:45:07 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *str, int fd);
 void				ft_putendl_fd(const char *str, int fd);
 
-char				*ft_itoa(int num, unsigned base);
+char				*ft_mitoa(__int128_t num, unsigned base, unsigned size);
+char				*ft_itoa(__int128_t num, char *str, unsigned base, unsigned size);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
 int					ft_isascii(int c);
@@ -86,9 +87,9 @@ int					ft_isprint(int c);
 int					ft_isspace(int c);
 void				ft_swap(void *a, void *b, size_t size);
 int					ft_atoi(const char *str);
-size_t				sizeof_num(int num, unsigned base);
+size_t				sizeof_num(__int128_t num, unsigned base);
 
-void				ft_strrev(char *str);
+char				*ft_strrev(char *str);
 void				ft_strclr(char *str);
 void				ft_strdel(char **str);
 char				*ft_strtrim(char *str);
@@ -116,10 +117,13 @@ char				*ft_strnstr(const char *str, const char *find, size_t len);
 char				*ft_strmapi(char const *str, char (*f)(unsigned int, char));
 char				*ft_strsub(const char *str, unsigned int start, size_t len);
 
+int					ft_abs(int a);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
-int					ft_min(int amount, ...);
-int					ft_max(int amount, ...);
+int					ft_min(int a, int b);
+int					ft_max(int a, int b);
+int					ft_minn(int amount, ...);
+int					ft_maxn(int amount, ...);
 void				ft_arrdel(void ***arr);
 void				error(const char *error_msg, int error_code);
 

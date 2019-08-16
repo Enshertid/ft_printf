@@ -1,36 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_mitoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/04 19:51:34 by user              #+#    #+#             */
-/*   Updated: 2019/08/15 21:48:11 by user             ###   ########.fr       */
+/*   Created: 2019/04/08 20:14:35 by dbendu            #+#    #+#             */
+/*   Updated: 2019/08/12 12:22:16 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(__int128_t num, char *str, unsigned base, unsigned is_upper)
+char	*ft_mitoa(__int128_t num, unsigned base, unsigned is_upper)
 {
 	const char	*alphabet = is_upper ? "0123456789ABCDEF" : "0123456789abcdef";
-	char		*iter;
+	char		*result;
+	size_t		pos;
 
-	iter = str;
+	if (num == MIN_INT)
+		return (ft_strdup("-2147483648"));
+	if (base < 2 || base > 16 ||
+		!(result = ft_strnew(sizeof_num(num, base))))
+		return (NULL);
+	pos = 0;
 	if (base == 10 && num < 0)
 	{
-		*iter++ = '-';
 		num = -num;
+		result[pos++] = '-';
 	}
-	if (!num)
-		*iter++ = '0';
+	result[pos] = '0';
 	while (num)
 	{
-		*iter++ = alphabet[num % base];
+		result[pos++] = alphabet[num % base];
 		num /= base;
 	}
-	*iter = '\0';
-	ft_strrev(str + (*str == '-'));
-	return (str);
+	ft_strrev(result + (result[0] == '-'));
+	return (result);
 }

@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlstclear.c                                     :+:      :+:    :+:   */
+/*   ft_dlstpurge.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 18:24:01 by dbendu            #+#    #+#             */
-/*   Updated: 2019/06/26 18:24:20 by dbendu           ###   ########.fr       */
+/*   Updated: 2019/08/12 12:16:32 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_dlstclear(t_dlist **list)
+void	ft_dlstpurge(t_dlist **list)
 {
 	register t_dlist	*iter;
-	t_dlist				*temp;
+	register t_dlist	*temp;
 
 	if (!list || !*list)
 		return ;
 	iter = *list;
 	while (iter)
 	{
-		temp = iter;
+		temp = iter->next;
 		free(iter->data);
-		iter = iter->next;
-		free(temp);
+		free(iter);
+		iter = temp;
 	}
 	*list = NULL;
 }

@@ -6,20 +6,18 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 23:13:17 by user              #+#    #+#             */
-/*   Updated: 2019/08/02 21:04:35 by user             ###   ########.fr       */
+/*   Updated: 2019/08/12 13:29:46 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	sizeof_num(int num, unsigned base)
+size_t	sizeof_num(__int128_t num, unsigned base)
 {
 	size_t size;
 
 	if (!num)
 		return (1);
-	if (num == MIN_INT)
-		return (10);
 	if (base == 10 && num < 0)
 		num = -num;
 	size = 0;
