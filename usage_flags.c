@@ -1,50 +1,50 @@
 #include "ft_printf.h"
 
-char				*ft_flagsfor_signedzero(t_spec *list, char *numb)
+char				*ft_flagsfor_signedzero(t_spec *list, char *flagged)
 {
 	if (list->flag_plus == 1 || list->flag_space == 1)
 	{
 		if (list->presence_dot == 0)
 		{
-			numb = ft_strnew(2);
-			numb[1] = '0';
+			flagged = ft_strnew(2);
+			flagged[1] = '0';
 		}
 		else
-			numb = ft_strnew(1);
-		numb[0] = list->flag_plus == 1 ? '+' : ' ';
+			flagged = ft_strnew(1);
+		flagged[0] = list->flag_plus == 1 ? '+' : ' ';
 		list->flag_us++;
 	}
 	else if ((list->flag_plus == 0 && list->flag_space == 0) && list->presence_dot == 1)
-		numb = ft_strnew(0);
+		flagged = ft_strnew(0);
 	else
 	{
-		numb = ft_strnew(1);
-		numb[0] = '0';
+		flagged = ft_strnew(1);
+		flagged[0] = '0';
 	}
-	return (numb);
+	return (flagged);
 }
 
 char				*ft_flag_sign(long long int num, t_spec *list)
 {
-	char				*numb;
+	char				*flagged;
 
-	numb = NULL;
+	flagged = NULL;
 	if (num > 0 && (list->flag_plus == 1 || list->flag_space == 1))
 	{
-		numb = ft_itoa(-num);
-		numb[0] = list->flag_plus == 1 ? '+' : ' ';
+		flagged = ft_itoa(-num);
+		flagged[0] = list->flag_plus == 1 ? '+' : ' ';
 		list->flag_us++;
 	}
 	else if (num < 0)
 	{
-		numb = ft_itoa(num);
+		flagged = ft_itoa(num);
 		list->flag_us++;
 	}
 	else if (num == 0)
-		return (ft_flagsfor_signedzero(list, numb));
+		return (ft_flagsfor_signedzero(list, flagged));
 	else
-		numb = ft_itoa(num);
-	return (numb);
+		flagged = ft_itoa(num);
+	return (flagged);
 }
 
 char				*ft_fillingflag_hex(char *numb, int size, int base, t_spec *list)
@@ -65,9 +65,9 @@ char				*ft_fillingflag_hex(char *numb, int size, int base, t_spec *list)
 		flagged = ft_strnew(ft_strlen(numb) + 1);
 		flagged[0] = '0';
 		i = 1;
+		list->flag_o = 1;
 	}
 	list->flag_us += i;
-	list->flag_hashus = 1;
 	j = 0;
 	while (numb[j])
 		flagged[i++] = numb[j++];

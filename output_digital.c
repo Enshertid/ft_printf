@@ -32,7 +32,7 @@ char					*ft_width_with_precision(char *numb,
 
 	numb_head = numb;
 	iter = (ft_strlen(numb) - list->flag_us <= list->precision) ?
-			(ft_strlen(str) - list->precision - list->flag_us) :
+			(ft_strlen(str) - list->precision - list->flag_us + list->flag_o) :
 			(ft_strlen(str) - ft_strlen(numb));
 	if (numb[0] == '0' && (numb[1] == 'x' || numb[1] == 'X'))
 	{
@@ -86,7 +86,8 @@ char					*ft_right_aligned_with_precision(char *numb,
 	else if (numb[0] == '+' || numb[0] == '-' || numb[0] == ' ' || numb[0] == '0')
 		*str++ = *numb++;
 	iter = 0;
-	start_of_numb = list->precision - ft_strlen(numb);
+	start_of_numb = (list->precision >= ft_strlen(numb)) ?
+			list->precision - ft_strlen(numb) - list->flag_o : 0;
 	while (iter != start_of_numb)
 		str[iter++] = '0';
 	while (str[iter] && *numb)
@@ -111,7 +112,7 @@ char					*ft_output_only_precision(char *numb, t_spec *list)
 	}
 	else if (numb[0] == '+' || numb[0] == '-' || numb[0] == ' ' || numb[0] == '0')
 		*str++ = *numb++;
-	ft_memset(str,'0',list->precision);
+	ft_memset(str,'0',list->precision - list->flag_o);
 	str += (ft_strlen(str) - ft_strlen(numb));
 	while (*str && *numb)
 		*str++ = *numb++;

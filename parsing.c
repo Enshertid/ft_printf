@@ -87,9 +87,9 @@ char					*ft_parswidth(t_spec *list, char *numb)
 		return (ft_width_noprecision(numb, list, str, str_head));
 	else if ((list->presence_dot == 1 && list->flag_minus == 0))
 		return (ft_width_with_precision(numb, list, str, str_head));
-	else if (list->flag_minus == 1 && ft_strlen(numb) >= list->precision)
+	else if (list->flag_minus == 1 && list->presence_dot == 0)
 		return (ft_right_aligned_without_precision(numb, str, str_head));
-	else if (list->flag_minus == 1 && ft_strlen(numb) < list->precision)
+	else if (list->flag_minus == 1 && list->presence_dot == 1)
 		return (ft_right_aligned_with_precision(numb, str, list, str_head));
 	else
 		return (str);
@@ -121,14 +121,55 @@ char				*ft_digitals(const char **str, t_spec *list, va_list per)
 		return (numb);
 }
 
+//char				*ft_charzero(t_spec *list, char symbol, char *str_out)
+//{
+//	char			*str_out1;
+//	str_out = ft_strnew(list->width + 1);
+//	return (str_out);
+//}
+
+char				*ft_signed_char(const char **str, t_spec *list, char symbol)
+{
+	char			*str_out;
+
+	str_out = NULL;
+	ft_cleaningflags_char(list);
+	(*str)++;
+	if (list->width != 0 && symbol != 0)
+	{
+		str_out = ft_strnew(list->width + 1);
+		if (list->flag_zero == 1 && list->flag_minus == 0)
+		{
+			ft_memset(str_out, '0', list->width);
+			str_out[list->width] = symbol;
+		}
+		else
+		{
+			ft_memset(str_out, ' ', list->width);
+			if (list->flag_minus == 1)
+				str_out[0] = symbol;
+			else
+				str_out[list->width] = symbol;
+		}
+	}
+	else if (symbol != 0)
+	{
+		str_out = ft_strnew(1);
+		str_out[0] = symbol;
+	}
+//	else
+//		return (ft_charzero(list, symbol, str_out));
+	return (str_out);
+}
+
 char				*ft_type_definition(const char **str,
 										  t_spec *list, va_list per)
 {
 	if (**str == 'd' || **str == 'i' || **str == 'u' || **str == 'o' ||
 		**str == 'x' || **str == 'X')
 		return (ft_digitals(str, list, per));
-//		else if (**str == 'c')
-//		return (ft_signed_char(str, list, per));
+	else if (**str == 'c')
+		return (ft_signed_char(str, list, va_arg(per, int)));
 //	else if (**str == 's')
 //		return (ft_string_output(str, list, per));
 //	else if (**str == 'p')

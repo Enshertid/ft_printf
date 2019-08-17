@@ -5,7 +5,7 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-unsigned	ft_checklenght(unsigned num, int base)
+unsigned int	ft_checklenght(unsigned long long  num, int base)
 {
 	unsigned		i;
 
@@ -15,11 +15,11 @@ unsigned	ft_checklenght(unsigned num, int base)
 	return (i + 1);
 }
 
-char		*ft_unsigned_itoa_base(unsigned int num,int base , unsigned size)
+char		*ft_unsigned_itoa_base(unsigned long long int num,int base , unsigned size)
 {
 	char						*s;
 	char						*base_ar;
-	unsigned					lenght;
+	unsigned int					lenght;
 
 	lenght =ft_checklenght(num, base);
 	if (base == 16)
