@@ -13,25 +13,25 @@
 #include "ft_printf.h"
 
 char		*ft_second_step(const char **str,
-					va_list per, t_spec *list)
+					va_list per, t_spec *list, t_buff *buff)
 {
 	ft_check_flags(str, list);
 	ft_check_width(str, list, per);
 	while (ft_isdigit(**str))
 		(*str)++;
 	ft_check_modificate(str, list);
-	return (ft_type_definition(str, list, per));
+	return (ft_type_definition(str, list, per, buff));
 }
 
 void		ft_str_out(char *str_out, t_buff *buff)
 {
 	int j;
 
+
 	j = 0;
 	if (ft_strlen(str_out) + buff->i > BUFF_SIZE)
 	{
 		write(1, buff->buff, buff->i);
-//		ft_strclr(buff->buff);
 		write(1, str_out, ft_strlen(str_out));
 		j += buff->i;
 		j += ft_strlen(str_out);
@@ -60,7 +60,6 @@ void		ft_cleanbuff_andout(t_spec *list, t_buff *buff)
 
 void			ft_real_second_step(t_buff *buff, t_spec *list, const char *str, va_list per)
 {
-	char *str_out;
 
 	while (*str && buff->i < BUFF_SIZE + 1)
 	{
@@ -71,12 +70,9 @@ void			ft_real_second_step(t_buff *buff, t_spec *list, const char *str, va_list 
 		if(*str == '%')
 		{
 			str++;
-			if (*str == '%')
-				buff->buff[buff->i++] = *str++;
-			else if (*str)
+			if (*str)
 			{
-				str_out = ft_second_step(&str, per, list);
-				ft_str_out(str_out, buff);
+				ft_str_out(ft_second_step(&str, per, list, buff), buff);
 				ft_list_clear(list);
 			}
 		}

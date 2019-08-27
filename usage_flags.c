@@ -107,8 +107,8 @@ char				*ft_flag_unsign(unsigned long long int num, t_spec *list,
 	int		size;
 
 	size = 0;
-	if (type == 'u' || type == 'o')
-		base = type == 'u' ? 10 : 8;
+	if (type == 'u' || type == 'o' || type == 'U')
+		base = type == 'o' ? 8 : 10;
 	else
 		base = 16;
 	if (type == 'X')

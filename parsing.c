@@ -99,10 +99,12 @@ char				*ft_digitals(const char **str, t_spec *list, va_list per)
 {
 	char			*numb;
 
+	if(**str == 'U')
+		list->mod = LONG_LONG;
 	if (list->mod != DEFAULT && (**str == 'd' || **str == 'i'))
 		numb = (ft_mod_sign(list, per));
 	else if (list->mod != DEFAULT && (**str == 'o' ||
-	**str == 'x' || **str == 'X' || **str == 'u'))
+	**str == 'x' || **str == 'X' || **str == 'u' || **str == 'U'))
 		numb = (ft_mod_unsign(list, per, **str));
 	else if (**str == 'd' || **str == 'i')
 		numb = ft_flag_sign(va_arg(per, int), list);
@@ -121,64 +123,26 @@ char				*ft_digitals(const char **str, t_spec *list, va_list per)
 		return (numb);
 }
 
-//char				*ft_charzero(t_spec *list, char symbol, char *str_out)
-//{
-//	char			*str_out1;
-//	str_out = ft_strnew(list->width + 1);
-//	return (str_out);
-//}
-
-char				*ft_signed_char(const char **str, t_spec *list, char symbol)
-{
-	char			*str_out;
-
-	str_out = NULL;
-	ft_cleaningflags_char(list);
-	(*str)++;
-	if (list->width != 0 && symbol != 0)
-	{
-		str_out = ft_strnew(list->width + 1);
-		if (list->flag_zero == 1 && list->flag_minus == 0)
-		{
-			ft_memset(str_out, '0', list->width);
-			str_out[list->width] = symbol;
-		}
-		else
-		{
-			ft_memset(str_out, ' ', list->width);
-			if (list->flag_minus == 1)
-				str_out[0] = symbol;
-			else
-				str_out[list->width] = symbol;
-		}
-	}
-	else if (symbol != 0)
-	{
-		str_out = ft_strnew(1);
-		str_out[0] = symbol;
-	}
-//	else
-//		return (ft_charzero(list, symbol, str_out));
-	return (str_out);
-}
 
 char				*ft_type_definition(const char **str,
-										  t_spec *list, va_list per)
+		t_spec *list, va_list per, t_buff *buff)
 {
 	if (**str == 'd' || **str == 'i' || **str == 'u' || **str == 'o' ||
-		**str == 'x' || **str == 'X')
+		**str == 'x' || **str == 'X' || **str == 'U')
 		return (ft_digitals(str, list, per));
 	else if (**str == 'c')
-		return (ft_signed_char(str, list, va_arg(per, int)));
-//	else if (**str == 's')
-//		return (ft_string_output(str, list, per));
-//	else if (**str == 'p')
-//		return (ft_pointer_output(str, list, per));
+		return (ft_signed_char(str, list, va_arg(per, int), buff));
+	else if (**str == '%')
+		return (ft_signed_char(str, list, '%', buff));
+	else if (**str == 's')
+		return (ft_string_output(str, list, va_arg(per, char*)));
+	else if (**str == 'p')
+		return (ft_pointer_output(str, list, va_arg(per, ptrdiff_t)));
 //	else if (**str == 'f')
 //		return (ft_signed_float(str, list, per));
 	else
 	{
 		(*str)++;
-		return (NULL);
+		return(ft_strdup("\n😁we are not working with it yet😁\n"));
 	}
 }

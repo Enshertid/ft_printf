@@ -55,8 +55,6 @@ void		ft_cleaningflags_char(t_spec *list)
 	list->flag_hash = 0;
 	list->flag_space = 0;
 	list->mod= DEFAULT;
-	list->precision = 0;
-	list->presence_dot = 0;
 }
 
 t_buff		*ft_buf_new()

@@ -9,7 +9,7 @@ char					*ft_width_noprecision(char *numb, t_spec *list,
 	char				*numb_head;
 
 	numb_head = numb;
-	if (numb[0] == '0' && (numb[1] == 'x' || numb[1] == 'X'))
+	if (numb[0] == '0' && (numb[1] == 'x' || numb[1] == 'X') && (list->flag_hash == 0 || list->flag_zero == 1))
 	{
 		*str++ = *numb++;
 		*str++ = *numb++;
@@ -119,4 +119,3 @@ char					*ft_output_only_precision(char *numb, t_spec *list)
 	free(numb_head);
 	return (str_head);
 }
-

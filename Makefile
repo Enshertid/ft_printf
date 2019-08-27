@@ -6,7 +6,7 @@
 #    By: ymanilow <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 18:18:19 by ymanilow          #+#    #+#              #
-#    Updated: 2019/08/12 17:12:37 by ymanilow         ###   ########.fr        #
+#    Updated: 2019/08/25 14:49:59 by ymanilow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,9 @@ SRCS_C = ./ft_printf.c\
 		 ./list_functions.c\
 		 ./output_digital.c\
 		 ./parsing.c\
+		 ./pointer.c\
+		 ./string.c\
+		 ./ft_char.c\
 		 ./usage_flags.c
 
 SRCS_O = $(SRCS_C:.c=.o)\

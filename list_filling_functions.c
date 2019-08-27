@@ -79,34 +79,23 @@ void				ft_check_width(const char **str,
 	}
 	ft_check_precision(str, list, per);
 }
-
-void			ft_check_modificate(const char **str, t_spec *list)
+void ft_check_modificate(const char **str, t_spec *list)
 {
 	if (**str == 'h')
 	{
-		(*str)++;
-		if (**str == 'h')
+		if (*(++*str) == 'h')
 			list->mod = CHAR;
 		else
-		{
 			list->mod = SHORT;
-			(*str)--;
-		}
 	}
 	else if (**str == 'l')
 	{
-		(*str)++;
-		if (**str == 'l')
+		if (*(++*str) == 'l')
 			list->mod = LONG_LONG;
 		else
-		{
 			list->mod = LONG;
-			(*str)--;
-		}
 	}
 	else if (**str == 'L')
 		list->mod = LONG_DOUBLE;
-	else
-		(*str)--;
-	(*str)++;
+	*str += (**str == 'h' || **str == 'l' || **str == 'L');
 }

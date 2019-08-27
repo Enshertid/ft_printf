@@ -18,8 +18,9 @@
 # include <stdarg.h>
 # include "libft/includes/libft.h"
 # include <stdio.h>
+# include <stddef.h>
 
-# define BUFF_SIZE 10
+# define BUFF_SIZE 1000
 # define LONG_MAX 4294967295
 # define INT_MIN -2147483648
 # define LLONG_MAX 9223372036854775807
@@ -70,6 +71,8 @@ void					ft_check_width(const char **str,
 													 t_spec *list, va_list per);
 void					ft_cleaning_buf(t_buff *buff);
 void					ft_cleaningflags_char(t_spec *list);
+void					ft_cleanbuff_andout(t_spec *list, t_buff *buff);
+void					ft_str_out(char *str_out, t_buff *buff);
 char					*ft_flag_unsign(unsigned long long int num, t_spec *list,
 												  char type);
 char					*ft_flag_sign(long long int num, t_spec *list);
@@ -78,7 +81,7 @@ char					*ft_parswidth(t_spec *list, char *numb);
 char					*ft_output_only_precision(char *numb, t_spec *list);
 char					*ft_digitals(const char **str, t_spec *list, va_list per);
 char					*ft_type_definition(const char **str,
-						t_spec *list, va_list per);
+						t_spec *list, va_list per, t_buff *buff);
 char					*ft_width_noprecision(char *numb, t_spec *list,
 											  char *str, char *str_head);
 char					*ft_width_with_precision(char *numb,
@@ -88,4 +91,14 @@ char					*ft_right_aligned_without_precision(char *numb,
 char					*ft_right_aligned_with_precision(char *numb,
 														 char *str, t_spec *list, char *str_head);
 char					*ft_output_only_precision(char *numb, t_spec *list);
+char					*ft_signed_char(const char **str,
+									t_spec *list, char symbol, t_buff *buff);
+char					*ft_charnotzero(t_spec *list, char *str_out, char symbol);
+char					*ft_charzero(t_spec *list, char *str_out, t_buff *buff);
+char					*ft_string_output(const char **str, t_spec *list, char *str_arg);
+char					*ft_string_all(t_spec *list, char *str_arg, char *str_head, char *str_out);
+char					*ft_string_all_width(t_spec *list, char *str_arg, char *str_head, char *str_out);
+char					*ft_stringonly_precision(t_spec *list, char *str_arg, char *str_head, char *str_out);
+char					*ft_stringonly_width(t_spec *list, char *str_arg, char *str_head, char *str_out);
+char					*ft_pointer_output(const char **str, t_spec *list, ptrdiff_t per);
 #endif
