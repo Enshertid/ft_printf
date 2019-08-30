@@ -6,7 +6,7 @@
 /*   By: ymanilow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:17:47 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/07/22 14:53:53 by ymanilow         ###   ########.fr       */
+/*   Updated: 2019/08/30 11:37:12 by ymanilow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,5 @@ char					*ft_string_all_width(t_spec *list, char *str_arg, char *str_head, char 
 char					*ft_stringonly_precision(t_spec *list, char *str_arg, char *str_head, char *str_out);
 char					*ft_stringonly_width(t_spec *list, char *str_arg, char *str_head, char *str_out);
 char					*ft_pointer_output(const char **str, t_spec *list, ptrdiff_t per);
+char					*ft_float(char **str, double numb, t_spec *list);
 #endif
