@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymanilow <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:17:47 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/08/30 11:37:12 by ymanilow         ###   ########.fr       */
+/*   Updated: 2019/09/10 23:03:04 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <stddef.h>
 
 # define BUFF_SIZE 1000
+# define DBL_SIZE 1100
+# define INT_PART 620
 # define LONG_MAX 4294967295
 # define INT_MIN -2147483648
 # define LLONG_MAX 9223372036854775807
@@ -38,6 +40,15 @@ enum types
 	LONG_LONG,
 	LONG_DOUBLE
 };
+
+typedef struct	s_double
+{
+	short		exp;
+	short		sign;
+	short		is_inf;
+	short		is_nan;
+	ull			mantissa;
+}				t_double;
 
 typedef struct	s_spec
 {
@@ -101,5 +112,11 @@ char					*ft_string_all_width(t_spec *list, char *str_arg, char *str_head, char 
 char					*ft_stringonly_precision(t_spec *list, char *str_arg, char *str_head, char *str_out);
 char					*ft_stringonly_width(t_spec *list, char *str_arg, char *str_head, char *str_out);
 char					*ft_pointer_output(const char **str, t_spec *list, ptrdiff_t per);
-char					*ft_float(char **str, double numb, t_spec *list);
+char					*get_double(char **str, double numb, t_spec *list);
+void parse_double(long double *d, t_double *num);
+void mult(char *str, unsigned long multiplier);
+void add(char *str, char *plus);
+int offset(int i);
+void evaluate_mantissa(char *str, char *plus, ull mantissa, int iter);
+char *expand(char *str, size_t size);
 #endif
