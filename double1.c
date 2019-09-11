@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 22:49:41 by user              #+#    #+#             */
-/*   Updated: 2019/09/10 23:05:24 by user             ###   ########.fr       */
+/*   Updated: 2019/09/11 11:09:10 by ymanilow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,31 +84,33 @@ void add(char *str, char *plus)
 
 
 
-// int offset(int i)
-// {
-// 	return ((i / 10) * 3 + 
-// 			((i % 10) / 4 ? 1 : 0) +
-// 			((i % 10) / 7 ? 1 : 0) +
-// 			(i > 146));
-// }
+ int offset(int i)
+ {
+ 	return ((i / 10) * 3 +
+ 			((i % 10) / 4 ? 1 : 0) +
+ 			((i % 10) / 7 ? 1 : 0) +
+ 			(i > 146));
+ }
 
 void evaluate_mantissa(char *str, char *plus, ull mantissa, int iter)
 {
 	char	*plus_head;
 	int		offset;
 
-	plus_head = plus + SIZE - 2;
+	plus_head = plus + DBL_SIZE - 2;
 	while (mantissa)
 	{
 		if (mantissa >> 63)
 		{
-			plus_head = ft_memrchr(plus_head, 0, SIZE) + 1;
-			offet = (iter / 10) * 3 + ((iter % 10) / 4 ? 1 : 0) +
+			plus_head = ft_memnchr(plus_head, 0, DBL_SIZE) + 1;
+			offset = (iter / 10) * 3 + ((iter % 10) / 4 ? 1 : 0) +
 					((iter % 10) / 7 ? 1 : 0) + (iter > 146);
-			add(str + offset + ft_strlen(plus_head) - 1, plus + SIZE - 2);
+			add(str + offset + ft_strlen(plus_head) - 1, plus + DBL_SIZE - 2);
 		}
 		if ((mantissa <<= 1))
-			mult(plus + SIZE - 2, 5);
+			mult(plus + DBL_SIZE - 2, 5);
+		print_bits(&mantissa, 8);
+		write(1, "\n", 1);
 		++iter;
 	}
 	while (!*str)
@@ -124,7 +126,7 @@ char *expand(char *str, size_t size)
 	size_t new_size;
 
 	len = ft_strlen(str + 2) + 2;
-	new_size = (char*)ft_memchr(str, '.', SIZE) - str + size + 2;
+	new_size = (char*)ft_memchr(str, '.', DBL_SIZE) - str + size + 2;
 	new = (char*)malloc(new_size);
 	ft_memcpy(new, str, len);
 	ft_memset(new + len, 0, new_size - len);

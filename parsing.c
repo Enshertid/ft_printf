@@ -6,7 +6,7 @@
 /*   By: ymanilow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 19:10:54 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/08/30 11:26:34 by ymanilow         ###   ########.fr       */
+/*   Updated: 2019/09/11 16:12:02 by ymanilow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ char				*ft_type_definition(const char **str,
 	else if (**str == 'p')
 		return (ft_pointer_output(str, list, va_arg(per, ptrdiff_t)));
 	else if (**str == 'f')
-		return (ft_float(str, va_arg(per, double),  list0));
+		return (ft_float(str, per, list));
 	else
 	{
 		(*str)++;

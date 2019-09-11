@@ -111,7 +111,7 @@ char				*ft_flagsfor_unsignedzero(char *numb, int base, t_spec *list)
 	return (flagged);
 }
 
-char				*ft_flag_unsign(unsigned long long int num, t_spec *list,
+char				*ft_flag_unsign(ull num, t_spec *list,
 					char type)
 {
 	char	*numb;

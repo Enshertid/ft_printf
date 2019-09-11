@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ymanilow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:17:47 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/10 23:03:04 by user             ###   ########.fr       */
+/*   Updated: 2019/09/11 16:12:02 by ymanilow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,16 @@
 # include <stdio.h>
 # include <stddef.h>
 
+#define ull unsigned long long
+#define ul unsigned long
+
+# define TOSTR(a)	#a
+
+
 # define BUFF_SIZE 1000
 # define DBL_SIZE 1100
 # define INT_PART 620
+# define BUFF_SIZE 1000
 # define LONG_MAX 4294967295
 # define INT_MIN -2147483648
 # define LLONG_MAX 9223372036854775807
@@ -30,6 +37,7 @@
 # define INT_MAX 2147483647
 # define UINT_MAX 429496729
 # define ULLONG_MAX 18446744073709551615
+# define MAX_SIZE_T	(18446744073709551615llu)
 
 enum types
 {
@@ -40,15 +48,6 @@ enum types
 	LONG_LONG,
 	LONG_DOUBLE
 };
-
-typedef struct	s_double
-{
-	short		exp;
-	short		sign;
-	short		is_inf;
-	short		is_nan;
-	ull			mantissa;
-}				t_double;
 
 typedef struct	s_spec
 {
@@ -72,6 +71,15 @@ typedef struct s_buff
 	int			return_value;
 }						t_buff;
 
+typedef struct	s_double
+{
+	short				exp;
+	short				sign;
+	short				is_inf;
+	short				is_nan;
+	unsigned long long	mantissa;
+}				t_double;
+
 int						ft_printf(const char *str, ...);
 t_spec					*ft_list_new();
 t_buff					*ft_buf_new();
@@ -84,10 +92,10 @@ void					ft_cleaning_buf(t_buff *buff);
 void					ft_cleaningflags_char(t_spec *list);
 void					ft_cleanbuff_andout(t_spec *list, t_buff *buff);
 void					ft_str_out(char *str_out, t_buff *buff);
-char					*ft_flag_unsign(unsigned long long int num, t_spec *list,
+char					*ft_flag_unsign(ull num, t_spec *list,
 												  char type);
 char					*ft_flag_sign(long long int num, t_spec *list);
-char					*ft_unsigned_itoa_base(unsigned long long int num,int base , unsigned size);
+char					*ft_unsigned_itoa_base(ull num,int base , unsigned size);
 char					*ft_parswidth(t_spec *list, char *numb);
 char					*ft_output_only_precision(char *numb, t_spec *list);
 char					*ft_digitals(const char **str, t_spec *list, va_list per);
@@ -112,11 +120,23 @@ char					*ft_string_all_width(t_spec *list, char *str_arg, char *str_head, char 
 char					*ft_stringonly_precision(t_spec *list, char *str_arg, char *str_head, char *str_out);
 char					*ft_stringonly_width(t_spec *list, char *str_arg, char *str_head, char *str_out);
 char					*ft_pointer_output(const char **str, t_spec *list, ptrdiff_t per);
-char					*get_double(char **str, double numb, t_spec *list);
-void parse_double(long double *d, t_double *num);
-void mult(char *str, unsigned long multiplier);
-void add(char *str, char *plus);
-int offset(int i);
-void evaluate_mantissa(char *str, char *plus, ull mantissa, int iter);
-char *expand(char *str, size_t size);
+char					*ft_float(const char **str, va_list per, t_spec *list);
+
+void					parse_double(long double *d, t_double *num);
+void					mult(char *str, unsigned long multiplier);
+void					add(char *str, char *plus);
+int						offset(int i);
+void					evaluate_mantissa(char *str, char *plus, ull mantissa, int iter);
+char					*expand(char *str, size_t size);
+
+char					*get_integer_part(char *str, t_double num);
+int						offset(int i);
+void					parse_double(long double *d, t_double *num);
+void					mult(char *str, unsigned long multiplier);
+void					add(char *str, char *plus);
+void					evaluate_mantissa(char *str, char *plus, ull mantissa, int iter);
+void					get_fract_part(char *str, t_double num);
+char					*get_double(long double d, t_spec *list);
+char					*set_precision(char *str, t_spec *format);
+char					*expand(char *str, size_t size);
 #endif

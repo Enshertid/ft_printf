@@ -6,7 +6,7 @@
 /*   By: ymanilow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:53:40 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/08/06 18:02:57 by ymanilow         ###   ########.fr       */
+/*   Updated: 2019/09/11 16:51:40 by ymanilow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ char		*ft_second_step(const char **str,
 void		ft_str_out(char *str_out, t_buff *buff)
 {
 	int j;
+	char *temp = str_out;
 
+	str_out = ft_memnchr(str_out, 0, DBL_SIZE);
 
+		write(1, "DEBUG:\n\n", 8);
 	j = 0;
 	if (ft_strlen(str_out) + buff->i > BUFF_SIZE)
 	{
@@ -37,13 +40,13 @@ void		ft_str_out(char *str_out, t_buff *buff)
 		j += ft_strlen(str_out);
 		ft_cleaning_buf(buff);
 		buff->return_value += j;
-		free(str_out);
+		free(temp);
 	}
 	else
 	{
 		while(str_out[j] && buff->i < BUFF_SIZE)
 			buff->buff[buff->i++] = str_out[j++];
-		free(str_out);
+		free(temp);
 	}
 }
 
