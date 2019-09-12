@@ -2,8 +2,8 @@
 
 int			main(void)
 {
-	int d = ft_printf("first primer:\n%.6f\n", 3.55);
-	int c = printf("Pirst primer:\n%.6f\n", 3.55);
-	printf("\nft_printf return value: %d\n2original return value: %d\n",d, c);
+	// long double d = 9.99;
+	   printf("|%15.8f|%-15.8f|%+15.8f|% 15.8f|%#15.8f|%015.8f|\n", 0., 0., 0., 0., 0., 0.);
+	ft_printf("|%15.8f|%-15.8f|%+15.8f|% 15.8f|%#15.8f|%015.8f|\n", 0., 0., 0., 0., 0., 0.);
 	return (0);
 }

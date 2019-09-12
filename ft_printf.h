@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymanilow <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:17:47 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/11 16:12:02 by ymanilow         ###   ########.fr       */
+/*   Updated: 2019/09/12 20:13:10 by dbendu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,14 +129,15 @@ int						offset(int i);
 void					evaluate_mantissa(char *str, char *plus, ull mantissa, int iter);
 char					*expand(char *str, size_t size);
 
-char					*get_integer_part(char *str, t_double num);
+char					*double_to_str(long double d, t_spec *format);
+char					*get_integer_part(char *str, t_double num, t_spec *list);
 int						offset(int i);
 void					parse_double(long double *d, t_double *num);
 void					mult(char *str, unsigned long multiplier);
 void					add(char *str, char *plus);
 void					evaluate_mantissa(char *str, char *plus, ull mantissa, int iter);
 void					get_fract_part(char *str, t_double num);
-char					*get_double(long double d, t_spec *list);
+char					*get_double(const char **str, va_list pre, t_spec *list);
 char					*set_precision(char *str, t_spec *format);
 char					*expand(char *str, size_t size);
 #endif

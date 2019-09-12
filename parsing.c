@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_of_the_output.c                              :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymanilow <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 19:10:54 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/11 16:12:02 by ymanilow         ###   ########.fr       */
+/*   Updated: 2019/09/12 18:41:26 by dbendu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ char				*ft_type_definition(const char **str,
 	else if (**str == 'p')
 		return (ft_pointer_output(str, list, va_arg(per, ptrdiff_t)));
 	else if (**str == 'f')
-		return (ft_float(str, per, list));
+		return (get_double(str, per, list));
 	else
 	{
 		(*str)++;

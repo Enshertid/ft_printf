@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymanilow <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:53:40 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/11 16:51:40 by ymanilow         ###   ########.fr       */
+/*   Updated: 2019/09/12 18:45:28 by dbendu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ void		ft_str_out(char *str_out, t_buff *buff)
 	int j;
 	char *temp = str_out;
 
-	str_out = ft_memnchr(str_out, 0, DBL_SIZE);
-
-		write(1, "DEBUG:\n\n", 8);
 	j = 0;
 	if (ft_strlen(str_out) + buff->i > BUFF_SIZE)
 	{
