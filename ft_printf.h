@@ -26,7 +26,7 @@
 # define TOSTR(a)	#a
 
 
-# define BUFF_SIZE 1000
+# define BUFF_SIZE 10
 # define DBL_SIZE 1100
 # define INT_PART 620
 # define BUFF_SIZE 1000
@@ -49,6 +49,22 @@ enum types
 	LONG_DOUBLE
 };
 
+enum colors
+{
+	WHITE,
+	BLACK,
+	RED,
+	GREEN,
+	YELLOW,
+	BLUE,
+	PURPLE,
+	PINK,
+	ORANGE,
+	GREY,
+	TURQUOISE,
+	USUAL
+};
+
 typedef struct	s_spec
 {
 	unsigned			flag_zero;
@@ -62,6 +78,7 @@ typedef struct	s_spec
 	unsigned			flag_us;
 	unsigned			flag_o;
 	enum types			mod;
+	enum colors			color;
 }						t_spec;
 
 typedef struct s_buff
@@ -88,10 +105,14 @@ void					ft_check_modificate(const char **str, t_spec *list);
 void					ft_list_clear(t_spec *list);
 void					ft_check_width(const char **str,
 													 t_spec *list, va_list per);
+void					ft_check_color(const char **str, t_spec *list);
+void					ft_check_othercolor(const char **str, t_spec *list);
 void					ft_cleaning_buf(t_buff *buff);
 void					ft_cleaningflags_char(t_spec *list);
 void					ft_cleanbuff_andout(t_spec *list, t_buff *buff);
-void					ft_str_out(char *str_out, t_buff *buff);
+void					ft_str_out(char *str_out, t_buff *buff, t_spec *list);
+void					ft_end_color_to_buff(t_buff *buff, t_spec *list);
+void					ft_add_color_to_buff(t_buff *buff, t_spec *list);
 char					*ft_flag_unsign(ull num, t_spec *list,
 												  char type);
 char					*ft_flag_sign(long long int num, t_spec *list);

@@ -6,7 +6,7 @@
 #    By: user <user@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 18:18:19 by ymanilow          #+#    #+#              #
-#    Updated: 2019/09/13 10:05:02 by user             ###   ########.fr        #
+#    Updated: 2019/09/13 11:29:25 by ymanilow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ fclean: clean
 
 a:  fclean all
 	clear
-	@gcc -Wall -Wextra -Werror  libftprintf.a -o ft_printf -Ilibft/includes
+	@gcc -Wall -Wextra -Werror  libftprintf.a -o ft_printf -Ilibft/includes main.c
 	@./ft_printf
 
 c: 	clean

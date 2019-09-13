@@ -29,6 +29,7 @@ t_spec		*ft_list_new()
 	list->mod = DEFAULT;
 	list->flag_us = 0;
 	list->flag_o = 0;
+	list->color = USUAL;
 	return (list);
 }
 
@@ -45,6 +46,7 @@ void		ft_list_clear(t_spec *list)
 	list->flag_us = 0;
 	list->flag_o = 0;
 	list->mod= DEFAULT;
+	list->color = USUAL;
 }
 
 void		ft_cleaningflags_char(t_spec *list)
@@ -54,7 +56,7 @@ void		ft_cleaningflags_char(t_spec *list)
 	list->flag_space = 0;
 	list->flag_hash = 0;
 	list->flag_space = 0;
-	list->mod= DEFAULT;
+	list->mod = DEFAULT;
 }
 
 t_buff		*ft_buf_new()
@@ -65,8 +67,6 @@ t_buff		*ft_buf_new()
 	i = 0;
 	if(!(buf = malloc(sizeof(t_buff))))
 		return (NULL);
-	while (i < BUFF_SIZE)
-		buf->buff[i++] = '0';
 	buf->return_value = 0;
 	buf->i = 0;
 	return (buf);
