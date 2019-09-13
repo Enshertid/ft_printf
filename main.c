@@ -1,13 +1,15 @@
 #include "ft_printf.h"
-#include "math.h"
 
 int			main(void)
 {
-//	printf("%20.120f\n", 9.99);
-//	printf ("%20.120d\n", 999);
-	int b = ft_printf("first primer:%-+f % 11f\n", 9.999, 9.999);
-//	int d = printf("Pirst primer%f%11f\n",-3.167, 3.167);
-//	printf("\nft_printf return value: %d\n2original return value: %d\n",b, d);
-//	printf("\nft_printf return value: %d\n2original return value: %d\n",a, c);
+	// long double d = 9.99;
+	//    printf("|%15.8f|%-15.8f|%+15.8f|% 15.8f|%#15.8f|%015.8f|\n", 0., 0., 0., 0., 0., 0.);
+	// ft_printf("|%15.8f|%-15.8f|%+15.8f|% 15.8f|%#15.8f|%015.8f|\n", 0., 0., 0., 0., 0., 0.);
+
+	long double d = 0;
+
+	   printf("|%+12.Lf|\n", d);
+	ft_printf("|%+12.Lf|\n", d);
+
 	return (0);
 }

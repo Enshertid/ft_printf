@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymanilow <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 13:00:55 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/07/23 13:00:56 by ymanilow         ###   ########.fr       */
+/*   Updated: 2019/09/13 07:17:11 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,6 @@ t_buff		*ft_buf_new()
 
 void		ft_cleaning_buf(t_buff *buff)
 {
-	int i;
-
-	i = 0;
 	buff->i = 0;
 	ft_strclr(buff->buff);
 }

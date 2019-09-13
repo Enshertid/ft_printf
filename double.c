@@ -65,9 +65,11 @@ void			add(char *str, char *plus)
 	}
 }
 
-char *get_integer_part(char *str, t_double num)
+char *get_integer_part(char *str, t_double num, t_spec *list)
 {
 	*(str - DBL_SIZE + 2) = (num.sign ? '-' : 0);
+	*(str - DBL_SIZE + 2) = (list->flag_space ? ' ' : *(str - DBL_SIZE + 2));
+	*(str - DBL_SIZE + 2) = (list->flag_plus ? '+' : *(str - DBL_SIZE + 2));
 	if (num.exp < 1)
 		ft_itoa_buf(0, str, 10, 0);
 	else
@@ -164,12 +166,12 @@ char				*set_precision(char *str, t_spec *format)
 		len = ft_strlen((dot = ft_memchr(str, '.', DBL_SIZE))) - 1;
 	}
 	if (format->precision > len)
-		ft_memset(dot + 1 + len, '0', format->width - len);
+		ft_memset(dot + 1 + len, '0', format->precision - len);
 	else
 	{
 		if (dot[format->precision + 1] > '4')
 			add(dot + format->precision, "\0001" + 1);
-		dot[format->presence_dot && !format->precision ?
+		dot[!format->flag_hash && format->presence_dot && !format->precision ?
 			0 : format->precision + 1] = '\0';
 	}
 	if (!str[1] && str[0])
@@ -177,7 +179,7 @@ char				*set_precision(char *str, t_spec *format)
 	return (str);
 }
 
-char				*get_double(long double d, t_spec *format)
+char *double_to_str(long double d, t_spec *format)
 {
 	char		*str;
 	t_double	num;
@@ -186,11 +188,10 @@ char				*get_double(long double d, t_spec *format)
 
 	parse_double(&d, &num);
 	if (num.is_inf || num.is_nan)
-		return (ft_strjoin(num.is_inf && num.sign ? "-" : "",
-			num.is_inf ? "inf" : "nan"));
+		return (ft_strjoin(num.sign ? "-" : "", num.is_inf ? "inf" : "nan"));
 	str = (char*)malloc(DBL_SIZE);
 	ft_memset(str, 0, DBL_SIZE);
-	iter = get_integer_part(str + DBL_SIZE - 2, num);
+	iter = get_integer_part(str + DBL_SIZE - 2, num, format);
 	len = ft_strlen(iter);
 	ft_memcpy(str + 2, iter, len);
 	ft_memset(iter, 0, len);
