@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+         #
+#    By: user <user@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 18:18:19 by ymanilow          #+#    #+#              #
-#    Updated: 2019/09/12 20:10:16 by dbendu           ###   ########.fr        #
+#    Updated: 2019/09/13 10:05:02 by user             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C libft
-	@gcc -Wall -Werror -Wextra -Ilibft/includes/libft.h $(SRCS_C) -c
+	@gcc -Wall -Werror -Wextra -Ilibft/includes/ $(SRCS_C) -c
 	@ar rc $(NAME) $(SRCS_O)
 
 clean:
@@ -46,7 +46,7 @@ fclean: clean
 
 a:  fclean all
 	clear
-	@gcc -Wall -Wextra -Werror  main.c libftprintf.a -o ft_printf
+	@gcc -Wall -Wextra -Werror  libftprintf.a -o ft_printf -Ilibft/includes
 	@./ft_printf
 
 c: 	clean
@@ -57,6 +57,6 @@ c: 	clean
 re: fclean all
 
 g:
-	@gcc -g -Wall -Werror -Wextra -Ilibft/includes/libft.h $(SRCS_C) -c
-	@gcc $(SRCS_O) libft/glibft.a
+	@gcc -g -Wall -Werror -Wextra -Ilibft/includes/ main.c $(SRCS_C) -c
+	@gcc $(SRCS_O) main.o libft/glibft.a
 	@clear
