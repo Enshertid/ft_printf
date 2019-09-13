@@ -28,9 +28,6 @@ void		ft_str_out(char *str_out, t_buff *buff)
 	int j;
 	char *temp = str_out;
 
-	str_out = ft_memnchr(str_out, 0, DBL_SIZE);
-
-		write(1, "DEBUG:\n\n", 8);
 	j = 0;
 	if (ft_strlen(str_out) + buff->i > BUFF_SIZE)
 	{

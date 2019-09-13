@@ -177,7 +177,7 @@ char				*set_precision(char *str, t_spec *format)
 	return (str);
 }
 
-char *get_double(long double d, t_spec *format)
+char				*get_double(long double d, t_spec *format)
 {
 	char		*str;
 	t_double	num;
@@ -186,7 +186,8 @@ char *get_double(long double d, t_spec *format)
 
 	parse_double(&d, &num);
 	if (num.is_inf || num.is_nan)
-		return (ft_strjoin(num.sign ? "-" : "", num.is_inf ? "inf" : "nan"));
+		return (ft_strjoin(num.is_inf && num.sign ? "-" : "",
+			num.is_inf ? "inf" : "nan"));
 	str = (char*)malloc(DBL_SIZE);
 	ft_memset(str, 0, DBL_SIZE);
 	iter = get_integer_part(str + DBL_SIZE - 2, num);

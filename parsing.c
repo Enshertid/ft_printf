@@ -140,6 +140,11 @@ char				*ft_type_definition(const char **str,
 		return (ft_pointer_output(str, list, va_arg(per, ptrdiff_t)));
 	else if (**str == 'f')
 		return (ft_float(str, per, list));
+	else if (**str == 'b')
+	{
+		(*str)++;
+		return (ft_binary_output(list, va_arg(per, void*)));
+	}
 	else
 	{
 		(*str)++;

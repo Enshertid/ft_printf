@@ -6,7 +6,7 @@
 #    By: ymanilow <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 18:18:19 by ymanilow          #+#    #+#              #
-#    Updated: 2019/09/11 11:54:16 by ymanilow         ###   ########.fr        #
+#    Updated: 2019/09/12 14:26:48 by ymanilow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,26 +23,25 @@ SRCS_C = ./ft_printf.c\
 		 ./ft_char.c\
 		 ./float.c\
 		 ./double.c\
-		 ./double1.c\
 		 ./usage_flags.c
 
 SRCS_O = $(SRCS_C:.c=.o)\
-		libft/*.o
+		libft1/*.o
 
 
 all: $(NAME)
 
 $(NAME):
-	@make -C ./libft/
-	@gcc -Wall -Werror -Wextra -Ilibft/includes/libft.h $(SRCS_C) -c
+	@make -C ./libft1/
+	@gcc -Wall -Werror -Wextra -Ilibft1/includes/libft.h $(SRCS_C) -c
 	@ar rc $(NAME) $(SRCS_O) 
 
 clean:
-	@make clean -C ./libft
+	@make clean -C ./libft1
 	@rm -f $(SRCS_O)
 
 fclean: clean
-	@make fclean -C ./libft
+	@make fclean -C ./libft1
 	@rm -f $(NAME)
 
 a:  fclean all
