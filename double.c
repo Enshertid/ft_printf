@@ -13,6 +13,11 @@ void							parse_double(long double *d, t_double *num)
 	else
 		num->sign = 0;
 	num->mantissa = *((ull*)d);
+	// printf("%llu\n%llu\n", *((ull*)d), num->mantissa);
+	// print_bits(d, 10);
+	// write(1, "\n00000000 00000000 ", 19);
+	// print_bits(&num->mantissa, 8);
+	// write(1, "\n", 1);
 	num->exp -= 16382;
 	if (*d != *d)
 		num->is_nan = 1;
@@ -67,9 +72,13 @@ void			add(char *str, char *plus)
 
 char *get_integer_part(char *str, t_double num, t_spec *list)
 {
+	static int i = 0;
+	++i;
 	*(str - DBL_SIZE + 2) = (num.sign ? '-' : 0);
-	*(str - DBL_SIZE + 2) = (list->flag_space ? ' ' : *(str - DBL_SIZE + 2));
-	*(str - DBL_SIZE + 2) = (list->flag_plus ? '+' : *(str - DBL_SIZE + 2));
+	if (!*(str - DBL_SIZE + 2) && list->flag_space)
+		*(str - DBL_SIZE + 2) = ' ';
+	if (*(str - DBL_SIZE + 2) != '-' && list->flag_plus)
+		*(str - DBL_SIZE + 2) = '+';
 	if (num.exp < 1)
 		ft_itoa_buf(0, str, 10, 0);
 	else
@@ -158,6 +167,7 @@ char				*set_precision(char *str, t_spec *format)
 
 	if (!format->presence_dot)
 		format->precision = 6;
+	format->precision = (format->precision > INT_MAX ? INT_MAX : format->precision);
 	dot = ft_memchr(str, '.', DBL_SIZE);
 	len = ft_strlen(dot + 1);
 	if (dot - str + format->precision + 1 > DBL_SIZE)

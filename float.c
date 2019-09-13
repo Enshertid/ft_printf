@@ -46,6 +46,8 @@ char	*set_width(char *str, char *iter, t_spec *list, size_t double_len)
 	char	*new_str;
 	size_t	pos;
 
+	if (list->width > INT_MAX)
+		list->width = INT_MAX;
 	new_str = (char*)malloc(list->width + 1);
 	list->width -= double_len;
 	pos = 0;
