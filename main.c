@@ -4,11 +4,13 @@ int			main(void)
 {
 	// long double d = 9.99;
 	//    printf("|%15.8f|%-15.8f|%+15.8f|% 15.8f|%#15.8f|%015.8f|\n", 0., 0., 0., 0., 0., 0.);
-	 ft_printf("|%23li|%-23li|%+23li|% 23li|%023li\n", LLONG_MAX, LLONG_MAX, LLONG_MAX, LLONG_MAX, LLONG_MAX);
+//	 int fd = open("/Users/ymanilow/curcus42/ft_printfall/file.txt", O_RDWR);
+	 ft_printf("|%23li|%-23li|%+23li|% 23li|%023li\n", LLONG_MAX, LLONG_MAX, LLONG_MAX, LLONG_MAX,
+	 		LLONG_MAX);
 	 printf ("|%23li|%-23li|%+23li|% 23li|%023li", LLONG_MAX, LLONG_MAX, LLONG_MAX, LLONG_MAX, LLONG_MAX);
 
 
-	long double d = 244.11;
+//	long double d = 244.11;
 
 	/*{
 		"\e[38;5;001m", "\e[38;5;002m", "\e[38;5;003m",

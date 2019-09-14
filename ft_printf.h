@@ -13,6 +13,7 @@
 #ifndef FT_PRINTF
 #define FT_PRINTF
 
+# include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdarg.h>
@@ -26,7 +27,7 @@
 # define TOSTR(a)	#a
 
 
-# define BUFF_SIZE 10
+# define BUFF_SIZE 1000
 # define DBL_SIZE 1100
 # define INT_PART 620
 # define BUFF_SIZE 1000
@@ -77,6 +78,7 @@ typedef struct	s_spec
 	unsigned			width;
 	unsigned			flag_us;
 	unsigned			flag_o;
+	int					fd;
 	enum types			mod;
 	enum colors			color;
 }						t_spec;

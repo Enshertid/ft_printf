@@ -6,7 +6,7 @@
 #    By: user <user@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 18:18:19 by ymanilow          #+#    #+#              #
-#    Updated: 2019/09/13 11:29:25 by ymanilow         ###   ########.fr        #
+#    Updated: 2019/09/14 10:28:08 by ymanilow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS_C =	ft_printf.c\
 		 ./output_digital.c\
 		 ./parsing.c\
 		 ./pointer.c\
+		 ./color_work.c\
 		 ./string.c\
 		 ./ft_char.c\
 		 ./float.c\

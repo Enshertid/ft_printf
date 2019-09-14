@@ -45,14 +45,14 @@ void		ft_end_color_to_buff(t_buff *buff, t_spec *list)
 	int j;
 
 	j = 0;
-	if (buff->i + 5 > BUFF_SIZE)
+	if (buff->i + 5 > BUFF_SIZE && list->fd > 0)
 	{
-		write(1, buff->buff, buff->i);
-		write(1, "\e[0m", 5);
+		write(list->fd, buff->buff, buff->i);
+		write(list->fd, "\e[0m", 5);
 		buff->return_value += 5;
 		ft_cleaning_buf(buff);
 	}
-	else
+	else if (list->fd > 0)
 	{
 		while(j < 4 && buff->i < BUFF_SIZE)
 			buff->buff[buff->i++] = str[j++];
@@ -70,14 +70,14 @@ void		ft_add_color_to_buff(t_buff *buff, t_spec *list)
 	};
 
 	j = 0;
-	if (buff->i + 12 > BUFF_SIZE)
+	if (buff->i + 12 > BUFF_SIZE && list->fd > 0)
 	{
-		write(1, buff->buff, buff->i);
-		write(1, str[list->color], 12);
+		write(list->fd, buff->buff, buff->i);
+		write(list->fd, str[list->color], 12);
 		buff->return_value += 12;
 		ft_cleaning_buf(buff);
 	}
-	else
+	else if (list->fd > 0)
 	{
 		while(j < 11 && buff->i < BUFF_SIZE)
 			buff->buff[buff->i++] = str[list->color][j++];
