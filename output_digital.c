@@ -105,7 +105,7 @@ char					*ft_right_aligned_with_precision(char *numb,
 	return (str_head);
 }
 
-char *ft_output_only_precision(char *numb, t_spec *list)
+char					*ft_output_only_precision(char *numb, t_spec *list)
 {
 	char				*str;
 	char				*str_head;

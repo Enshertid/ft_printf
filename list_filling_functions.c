@@ -79,7 +79,6 @@ void				ft_check_width(const char **str,
 	}
 	ft_check_precision(str, list, per);
 }
-
 void ft_check_modificate(const char **str, t_spec *list)
 {
 	if (**str == 'h')

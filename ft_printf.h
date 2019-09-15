@@ -6,14 +6,13 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:17:47 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/15 12:32:44 by user             ###   ########.fr       */
+/*   Updated: 2019/09/15 20:13:58 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF
 #define FT_PRINTF
 
-# include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdarg.h>
@@ -21,13 +20,13 @@
 # include <stdio.h>
 # include <stddef.h>
 
-#define ull unsigned long long
-#define ul unsigned long
+#define ULL unsigned long long
+#define UL unsigned long
 
 # define TOSTR(a)	#a
 
 
-# define BUFF_SIZE 1024
+# define BUFF_SIZE 1000
 # define DBL_SIZE 16500
 # define INT_PART 11000
 # define LONG_MAX 4294967295
@@ -49,22 +48,6 @@ enum types
 	LONG_DOUBLE
 };
 
-enum colors
-{
-	WHITE,
-	BLACK,
-	RED,
-	GREEN,
-	YELLOW,
-	BLUE,
-	PURPLE,
-	PINK,
-	ORANGE,
-	GREY,
-	TURQUOISE,
-	USUAL
-};
-
 typedef struct	s_spec
 {
 	unsigned			flag_zero;
@@ -77,9 +60,7 @@ typedef struct	s_spec
 	unsigned			width;
 	unsigned			flag_us;
 	unsigned			flag_o;
-	int					fd;
 	enum types			mod;
-	enum colors			color;
 }						t_spec;
 
 typedef struct s_buff
@@ -106,14 +87,10 @@ void					ft_check_modificate(const char **str, t_spec *list);
 void					ft_list_clear(t_spec *list);
 void					ft_check_width(const char **str,
 													 t_spec *list, va_list per);
-void					ft_check_color(const char **str, t_spec *list);
-void					ft_check_othercolor(const char **str, t_spec *list);
 void					ft_cleaning_buf(t_buff *buff);
 void					ft_cleaningflags_char(t_spec *list);
 void					ft_cleanbuff_andout(t_spec *list, t_buff *buff);
-void					ft_str_out(char *str_out, t_buff *buff, t_spec *list);
-void					ft_end_color_to_buff(t_buff *buff, t_spec *list);
-void					ft_add_color_to_buff(t_buff *buff, t_spec *list);
+void					ft_str_out(char *str_out, t_buff *buff);
 char					*ft_flag_unsign(ull num, t_spec *list,
 												  char type);
 char					*ft_flag_sign(long long int num, t_spec *list);
@@ -151,6 +128,15 @@ int						offset(int i);
 void					evaluate_mantissa(char *str, char *plus, ull mantissa, int iter);
 char					*expand(char *str, size_t size);
 
+char					*double_to_str(long double d, t_spec *format);
+char					*get_integer_part(char *str, t_double num, t_spec *list);
+int						offset(int i);
+void					parse_double(long double *d, t_double *num);
+void					mult(char *str, unsigned long multiplier);
+void					add(char *str, char *plus);
+void					evaluate_mantissa(char *str, char *plus, ull mantissa, int iter);
+void					get_fract_part(char *str, t_double num);
 char					*get_double(const char **str, va_list pre, t_spec *list);
-char		*double_to_str(long double d, t_spec *format);
+char					*set_precision(char *str, t_spec *format);
+char					*expand(char *str, size_t size);
 #endif
