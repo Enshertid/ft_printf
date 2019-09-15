@@ -6,13 +6,14 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:17:47 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/14 10:38:26 by user             ###   ########.fr       */
+/*   Updated: 2019/09/15 12:32:44 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF
 #define FT_PRINTF
 
+# include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdarg.h>
@@ -76,6 +77,7 @@ typedef struct	s_spec
 	unsigned			width;
 	unsigned			flag_us;
 	unsigned			flag_o;
+	int					fd;
 	enum types			mod;
 	enum colors			color;
 }						t_spec;
@@ -109,7 +111,7 @@ void					ft_check_othercolor(const char **str, t_spec *list);
 void					ft_cleaning_buf(t_buff *buff);
 void					ft_cleaningflags_char(t_spec *list);
 void					ft_cleanbuff_andout(t_spec *list, t_buff *buff);
-void					ft_str_out(char *str_out, t_buff *buff);
+void					ft_str_out(char *str_out, t_buff *buff, t_spec *list);
 void					ft_end_color_to_buff(t_buff *buff, t_spec *list);
 void					ft_add_color_to_buff(t_buff *buff, t_spec *list);
 char					*ft_flag_unsign(ull num, t_spec *list,

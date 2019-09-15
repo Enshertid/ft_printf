@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 10:59:05 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/13 19:33:12 by user             ###   ########.fr       */
+/*   Updated: 2019/09/15 12:33:25 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char				*ft_charzero(t_spec *list, char *str_out, t_buff *buff)
 			ft_memset(str_out, '0', list->width - 1);
 		else
 			ft_memset(str_out, ' ', list->width - 1);
-		ft_str_out(str_out, buff);
+		ft_str_out(str_out, buff, list);
 		str_out = ft_strnew(0);
 	}
 	else if (list->width != 0 && list->flag_minus == 1)

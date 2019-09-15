@@ -6,9 +6,10 @@
 #    By: user <user@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 18:18:19 by ymanilow          #+#    #+#              #
-#    Updated: 2019/09/14 10:41:55 by user             ###   ########.fr        #
+#    Updated: 2019/09/15 12:31:37 by user             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = libftprintf.a
 
@@ -23,6 +24,19 @@ SRCS_C =	double.c					\
 			pointer.c					\
 			string.c					\
 			usage_flags.c
+
+SRCS_C =	ft_printf.c\
+		 ./ft_unsigneditoa_base.c\
+		 ./list_filling_functions.c\
+		 ./list_functions.c\
+		 ./output_digital.c\
+		 ./parsing.c\
+		 ./pointer.c\
+		 ./color_work.c\
+		 ./string.c\
+		 ./ft_char.c\
+		 ./double.c\
+		 ./usage_flags.c
 
 SRCS_O = $(SRCS_C:.c=.o)\
 		libft/*.o

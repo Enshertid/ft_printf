@@ -30,6 +30,7 @@ t_spec		*ft_list_new()
 	list->flag_us = 0;
 	list->flag_o = 0;
 	list->color = USUAL;
+	list->fd = 1;
 	return (list);
 }
 
@@ -45,7 +46,7 @@ void		ft_list_clear(t_spec *list)
 	list->presence_dot = 0;
 	list->flag_us = 0;
 	list->flag_o = 0;
-	list->mod= DEFAULT;
+	list->mod = DEFAULT;
 	list->color = USUAL;
 }
 
