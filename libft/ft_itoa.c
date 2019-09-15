@@ -3,14 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/08 20:14:35 by dbendu            #+#    #+#             */
-/*   Updated: 2019/09/11 10:33:02 by ymanilow         ###   ########.fr       */
+/*   Created: 2019/08/04 19:51:34 by user              #+#    #+#             */
+/*   Updated: 2019/09/15 15:36:24 by dbendu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+char	*ft_itoa_buf(__int128_t num, char *str, unsigned base, unsigned is_upper)
+{
+	const char	*alphabet = is_upper ? "0123456789ABCDEF" : "0123456789abcdef";
+	char		*iter;
+
+	iter = str;
+	if (base == 10 && num < 0)
+	{
+		*iter++ = '-';
+		num = -num;
+	}
+	if (!num)
+		*iter++ = '0';
+	while (num)
+	{
+		*iter++ = alphabet[num % base];
+		num /= base;
+	}
+	*iter = '\0';
+	ft_strrev(str + (*str == '-'));
+	return (str);
+}
 
 static void		ft_isnegative_topos(long long int *num, size_t *is_negative)
 {
@@ -39,7 +62,7 @@ char			*ft_itoa(long long int num)
 	register size_t	size;
 	size_t			sign;
 
-	if (num == (-LLONG_MAX - 1LL))
+	if (num == (-MAX_LLONG - 1LL))
 		return (ft_strdup("-9223372036854775808"));
 	size = ft_size_of_num(num) + 1 + (num < 0);
 	ft_isnegative_topos(&num, &sign);

@@ -54,7 +54,7 @@ ft_lstdelone.c	ft_lstappend.c	ft_lstpopback.c	\
 												\
 ft_dlstnew.c	ft_dlstnew.c	ft_dlstiter.c	\
 ft_dlstsize.c	ft_dlstpurge.c	ft_dlstappend.c	\
-ft_itoa_buf.c	ft_gnl.c\
+
 
 
 

@@ -6,7 +6,7 @@
 /*   By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 20:28:39 by dbendu            #+#    #+#             */
-/*   Updated: 2019/09/11 11:25:57 by ymanilow         ###   ########.fr       */
+/*   Updated: 2019/09/15 15:36:11 by dbendu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 # include <string.h>
 # include <stdarg.h>
 
-# define GNL_BUFF_SIZE 1000
 # define MAX_INT	(2147483647)
 # define MIN_INT	(-2147483648)
-# define LLONG_MAX 9223372036854775807
 # define MAX_SIZE_T	(18446744073709551615llu)
+# define MAX_LLONG	(9223372036854775807ll)
+# define MIN_LLONG	-MAX_LLONG
 
-#define ull unsigned long long
-#define ul unsigned long
+# define ULL		unsigned long long
+# define UL			unsigned long
 
 # define TOSTR(a)	#a
 
@@ -46,7 +46,6 @@ typedef struct		s_dlist
 	struct s_dlist	*end;
 }					t_dlist;
 
-int					get_next_line(int fd, char **line);
 void				ft_lstpop(t_list **list);
 void				ft_lstpurge(t_list **list);
 void				ft_lstdelone(t_list **list);
@@ -91,7 +90,6 @@ void				ft_putendl_fd(const char *str, int fd);
 char				*ft_mitoa(__int128_t num, unsigned base, unsigned size);
 char				*ft_itoa_buf(__int128_t num, char *str, unsigned base,
 														unsigned size);
-char				*ft_itoa(long long int num);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
 int					ft_isascii(int c);
@@ -135,12 +133,14 @@ int					ft_tolower(int c);
 int					ft_toupper(int c);
 int					ft_min(int a, int b);
 int					ft_max(int a, int b);
+void				ft_arrdel(void ***arr);
 int					ft_minn(int amount, ...);
 int					ft_maxn(int amount, ...);
-void				ft_arrdel(void ***arr);
-void				error(const char *error_msg, int error_code);
-unsigned long long	ft_ipow(unsigned long long num, int n);
 long double			ft_dpow(long double num, int n);
 void				print_bits(void *a, size_t size);
+void				printn_bits(void *a, size_t size);
+unsigned long long	ft_ipow(unsigned long long num, int n);
+void				error(const char *error_msg, int error_code);
+char			*ft_itoa(long long int num);
 
 #endif

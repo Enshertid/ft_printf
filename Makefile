@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: user <user@student.42.fr>                  +#+  +:+       +#+         #
+#    By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 18:18:19 by ymanilow          #+#    #+#              #
-#    Updated: 2019/09/15 12:31:37 by user             ###   ########.fr        #
+#    Updated: 2019/09/15 14:31:32 by dbendu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ c:
 
 wc:
 	@clear
-	@gcc  $(SRCS_C) libft/libft.a -Ilibft/includes
+	@gcc $(SRCS_C) main.c libft/libft.a -Ilibft/includes
 	@clear
 	@./a.out
 

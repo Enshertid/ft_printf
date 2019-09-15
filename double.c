@@ -118,13 +118,9 @@ void get_fract_part(char *num, t_double info)
 	// skip integer part in mantissa | 		Do it smaller!
 	while (info.exp > 0)
 	{
-		// mult(plus + DBL_SIZE - 2, 5);
 		info.mantissa <<= 1;
 		--info.exp;
-		// ++iter;
 	}
-	print_bits(&info.mantissa, 8);
-	write(1, "\n", 1);
 	while (info.exp < 0)
 	{
 		++iter;
@@ -146,6 +142,80 @@ void get_fract_part(char *num, t_double info)
 	*(char*)ft_memchr(num, 0, DBL_SIZE) = '\0';
 }
 
+char				*expand_str(char *str, size_t size)
+{
+	char *new;
+	size_t len;
+	size_t new_size;
+
+	len = ft_strlen(str + 2) + 2;
+	new_size = (char*)ft_memchr(str, '.', DBL_SIZE) - str + size + 2;
+	new = (char*)malloc(new_size);
+	ft_memcpy(new, str, len);
+	ft_memset(new + len, 0, new_size - len);
+	free(str);
+	return (new);
+}
+
+char				*set_precision(char *num, t_spec *format)
+{
+	char	*dot;
+	size_t	len;
+
+	if (!format->presence_dot)
+		format->precision = 6;
+	dot = ft_memchr(num, '.', DBL_SIZE);
+	len = ft_strlen(dot + 1);
+	if (dot - num + format->precision + 1 > DBL_SIZE)
+	{
+		num = expand_str(num, format->precision);
+		len = ft_strlen((dot = ft_memchr(num, '.', DBL_SIZE))) - 1;
+	}
+	if (format->precision > len)
+		ft_memset(dot + 1 + len, '0', format->precision - len);
+	else
+	{
+		if (dot[format->precision + 1] > '4')
+			add(dot + format->precision, "\0001" + 1);
+		dot[!format->flag_hash && format->presence_dot && !format->precision ?
+			0 : format->precision + 1] = '\0';
+	}
+	if (!num[1] && num[0])
+		ft_swap(num, num + 1, 1);
+	if (!num[0])
+		ft_memcpy(num + (num[1] == '\0'), num + 1 + (num[1] == '\0'), ft_strlen(num + 1 + (num[1] == '\0')));
+	return (num);
+}
+
+char	*set_width(char *str, char *iter, t_spec *list, size_t double_len)
+{
+	char		*new_str;
+	size_t		pos;
+
+	new_str = ft_strnew(list->width);
+	pos = 0;
+	if (!ft_isdigit(*iter))
+	{
+		new_str[pos++] = *iter++;
+		--double_len;
+	}
+	if (list->flag_zero || !list->flag_minus)
+	{
+		ft_memset(new_str + pos, list->flag_zero ? '0' : ' ',
+					list->width - double_len);
+		pos += list->width - double_len;
+	}
+	ft_memcpy(new_str + pos, iter, double_len);
+	pos += double_len;
+	if (list->flag_minus)
+	{
+		ft_memset(new_str + pos, ' ', list->width - double_len);
+		pos += list->width - double_len;
+	}
+	free(str);
+	return (new_str);
+}
+
 char		*double_to_str(long double d, t_spec *format)
 {
 	char		*num;
@@ -157,6 +227,8 @@ char		*double_to_str(long double d, t_spec *format)
 	parse_double(&d, &num_info);
 	get_integer_part(num, num_info, format);
 	get_fract_part(num, num_info);
+	num = set_precision(num, format);
+	num = set_width(num, ft_memnchr(num, 0, DBL_SIZE), format, )
 	// write(1, "\n\n\nDEBUG: ", 10);
 	// for (int i = 0; i < DBL_SIZE; ++i)
 	// {

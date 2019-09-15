@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_bits.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 14:13:45 by user              #+#    #+#             */
-/*   Updated: 2019/09/11 11:18:32 by ymanilow         ###   ########.fr       */
+/*   Updated: 2019/09/15 15:05:24 by dbendu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,10 @@ void	print_bits(void *a, size_t size)
 		buf[pos++] = ' ';
 	}
 	write(1, buf, size * 8 + size);
+}
+
+void	printn_bits(void *a, size_t size)
+{
+	print_bits(a, size);
+	write(1, "\n", 1);
 }
