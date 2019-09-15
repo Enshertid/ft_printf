@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 13:00:55 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/13 07:17:11 by user             ###   ########.fr       */
+/*   Updated: 2019/09/13 19:27:19 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,7 @@ void		ft_cleaningflags_char(t_spec *list)
 t_buff		*ft_buf_new()
 {
 	t_buff	*buf;
-	int		i;
 
-	i = 0;
 	if(!(buf = malloc(sizeof(t_buff))))
 		return (NULL);
 	buf->return_value = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:17:47 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/12 20:13:10 by dbendu           ###   ########.fr       */
+/*   Updated: 2019/09/14 10:38:26 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@
 # define TOSTR(a)	#a
 
 
-# define BUFF_SIZE 10
-# define DBL_SIZE 1100
-# define INT_PART 620
-# define BUFF_SIZE 1000
+# define BUFF_SIZE 1024
+# define DBL_SIZE 16500
+# define INT_PART 11000
 # define LONG_MAX 4294967295
 # define INT_MIN -2147483648
 # define LLONG_MAX 9223372036854775807
@@ -110,7 +109,7 @@ void					ft_check_othercolor(const char **str, t_spec *list);
 void					ft_cleaning_buf(t_buff *buff);
 void					ft_cleaningflags_char(t_spec *list);
 void					ft_cleanbuff_andout(t_spec *list, t_buff *buff);
-void					ft_str_out(char *str_out, t_buff *buff, t_spec *list);
+void					ft_str_out(char *str_out, t_buff *buff);
 void					ft_end_color_to_buff(t_buff *buff, t_spec *list);
 void					ft_add_color_to_buff(t_buff *buff, t_spec *list);
 char					*ft_flag_unsign(ull num, t_spec *list,
@@ -150,15 +149,6 @@ int						offset(int i);
 void					evaluate_mantissa(char *str, char *plus, ull mantissa, int iter);
 char					*expand(char *str, size_t size);
 
-char					*double_to_str(long double d, t_spec *format);
-char					*get_integer_part(char *str, t_double num, t_spec *list);
-int						offset(int i);
-void					parse_double(long double *d, t_double *num);
-void					mult(char *str, unsigned long multiplier);
-void					add(char *str, char *plus);
-void					evaluate_mantissa(char *str, char *plus, ull mantissa, int iter);
-void					get_fract_part(char *str, t_double num);
 char					*get_double(const char **str, va_list pre, t_spec *list);
-char					*set_precision(char *str, t_spec *format);
-char					*expand(char *str, size_t size);
+char		*double_to_str(long double d, t_spec *format);
 #endif
