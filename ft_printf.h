@@ -91,10 +91,10 @@ void					ft_cleaning_buf(t_buff *buff);
 void					ft_cleaningflags_char(t_spec *list);
 void					ft_cleanbuff_andout(t_spec *list, t_buff *buff);
 void					ft_str_out(char *str_out, t_buff *buff);
-char					*ft_flag_unsign(ull num, t_spec *list,
+char					*ft_flag_unsign(ULL num, t_spec *list,
 												  char type);
 char					*ft_flag_sign(long long int num, t_spec *list);
-char					*ft_unsigned_itoa_base(ull num,int base , unsigned size);
+char					*ft_unsigned_itoa_base(ULL num,int base , unsigned size);
 char					*ft_parswidth(t_spec *list, char *numb);
 char					*ft_output_only_precision(char *numb, t_spec *list);
 char					*ft_digitals(const char **str, t_spec *list, va_list per);
@@ -125,7 +125,7 @@ void					parse_double(long double *d, t_double *num);
 void					mult(char *str, unsigned long multiplier);
 void					add(char *str, char *plus);
 int						offset(int i);
-void					evaluate_mantissa(char *str, char *plus, ull mantissa, int iter);
+void					evaluate_mantissa(char *str, char *plus, ULL mantissa, int iter);
 char					*expand(char *str, size_t size);
 
 char					*double_to_str(long double d, t_spec *format);
@@ -134,7 +134,7 @@ int						offset(int i);
 void					parse_double(long double *d, t_double *num);
 void					mult(char *str, unsigned long multiplier);
 void					add(char *str, char *plus);
-void					evaluate_mantissa(char *str, char *plus, ull mantissa, int iter);
+void					evaluate_mantissa(char *str, char *plus, ULL mantissa, int iter);
 void					get_fract_part(char *str, t_double num);
 char					*get_double(const char **str, va_list pre, t_spec *list);
 char					*set_precision(char *str, t_spec *format);

@@ -105,7 +105,7 @@ char				*ft_string_output(const char **str, t_spec *list, char *str_arg)
 	str_out = NULL;
 	str_head = str_out;
 	if (!str_arg)
-		return (ft_string_output(str, list, "(null)"));
+		return (ft_string_output(str, list, "(nULL)"));
 	(*str)++;
 	if (list->presence_dot == 0 && list->width > ft_strlen(str_arg))
 		return(ft_stringonly_width(list, str_arg, str_head, str_out));

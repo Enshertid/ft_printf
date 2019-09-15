@@ -12,7 +12,7 @@ void							parse_double(long double *d, t_double *num)
 	}
 	else
 		num->sign = 0;
-	num->mantissa = *((ull*)d);
+	num->mantissa = *((ULL*)d);
 	num->exp -= 16382;
 	if (*d != *d)
 		num->is_nan = 1;
@@ -101,7 +101,7 @@ int						offset(int i)
 			(i > 16380));
 }
 
-void					evaluate_mantissa(char *str, char *plus, ull mantissa, int iter)
+void					evaluate_mantissa(char *str, char *plus, ULL mantissa, int iter)
 {
 	char	*plus_head;
 

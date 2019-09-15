@@ -13,7 +13,7 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-unsigned int	ft_checklenght(ull  num, int base)
+unsigned int	ft_checklenght(ULL  num, int base)
 {
 	unsigned		i;
 
@@ -23,7 +23,7 @@ unsigned int	ft_checklenght(ull  num, int base)
 	return (i + 1);
 }
 
-char		*ft_unsigned_itoa_base(ull num,int base , unsigned size)
+char		*ft_unsigned_itoa_base(ULL num,int base , unsigned size)
 {
 	char						*s;
 	char						*base_ar;

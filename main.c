@@ -4,10 +4,9 @@
 
 int			main(void)
 {
-	long double d = LDBL_MIN;
 
-	int a =    printf("%-.Lf\n", d);
-	int b = ft_printf("%-2000000.200100Lf\n", d);
+	int a =    printf("%5f|%-5f|%+5f|% 5f|%#5f|%05f|\n", -INFINITY, -INFINITY, -INFINITY, -INFINITY, -INFINITY, -INFINITY);
+	int b = ft_printf("%5f|%-5f|%+5f|% 5f|%#5f|%05f|\n", -INFINITY, -INFINITY, -INFINITY, -INFINITY, -INFINITY, -INFINITY);
 
 	printf("%i - %i\n", a, b);
 
