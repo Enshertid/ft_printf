@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 16:59:11 by dbendu            #+#    #+#             */
-/*   Updated: 2019/09/13 10:01:51 by user             ###   ########.fr       */
+/*   Updated: 2019/09/15 21:25:57 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ char	*set_width(char *str, char *iter, t_spec *list, size_t double_len)
 	char	*new_str;
 	size_t	pos;
 
-	if (list->width > INT_MAX)
-		list->width = INT_MAX;
+	if (list->width > 20000)
+		list->width = 20000;
 	new_str = (char*)malloc(list->width + 1);
 	list->width -= double_len;
 	pos = 0;

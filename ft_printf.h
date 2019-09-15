@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:17:47 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/15 20:13:58 by user             ###   ########.fr       */
+/*   Updated: 2019/09/15 21:21:55 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 
 # define BUFF_SIZE 1000
-# define DBL_SIZE 16500
+# define DBL_SIZE 20000
 # define INT_PART 11000
 # define LONG_MAX 4294967295
 # define INT_MIN -2147483648

@@ -13,11 +13,6 @@ void							parse_double(long double *d, t_double *num)
 	else
 		num->sign = 0;
 	num->mantissa = *((ull*)d);
-	// printf("%llu\n%llu\n", *((ull*)d), num->mantissa);
-	// print_bits(d, 10);
-	// write(1, "\n00000000 00000000 ", 19);
-	// print_bits(&num->mantissa, 8);
-	// write(1, "\n", 1);
 	num->exp -= 16382;
 	if (*d != *d)
 		num->is_nan = 1;
@@ -104,9 +99,6 @@ int						offset(int i)
 			((i % 10) / 7 ? 1 : 0) +
 			(i / 970 - 1 + (i % 970 != 0)) + 
 			(i > 16380));
-			// (i > 970) + (i > 1940) + (i > 2910) + (i > 3880) + (i > 4850) + (i > 5820) + (i > 6790) + (i > 7760));
-			// ((i % 10) / 7 ? 1 : 0) +
-			// (i > 146));
 }
 
 void					evaluate_mantissa(char *str, char *plus, ull mantissa, int iter)
@@ -149,7 +141,7 @@ void				get_fract_part(char *str, t_double num)
 	evaluate_mantissa(str, plus, num.mantissa, iter);
 }
 
-char				*expand(char *str, size_t size)
+char				*expand_str(char *str, size_t size)
 {
 	char *new;
 	size_t len;
@@ -157,6 +149,8 @@ char				*expand(char *str, size_t size)
 
 	len = ft_strlen(str + 2) + 2;
 	new_size = (char*)ft_memchr(str, '.', DBL_SIZE) - str + size + 2;
+	if (new_size > 20000)
+		new_size = 20000;
 	new = (char*)malloc(new_size);
 	ft_memcpy(new, str, len);
 	ft_memset(new + len, 0, new_size - len);
@@ -171,14 +165,18 @@ char				*set_precision(char *str, t_spec *format)
 
 	if (!format->presence_dot)
 		format->precision = 6;
+	if (format->precision > 214748199)
+		format->precision = 214748199;
 	format->precision = (format->precision > INT_MAX ? INT_MAX : format->precision);
 	dot = ft_memchr(str, '.', DBL_SIZE);
 	len = ft_strlen(dot + 1);
+	// if (dot - str + format->precision + 1 > DBL_SIZE)
+	// {
+	// 	str = expand_str(str, format->precision);
+	// 	len = ft_strlen((dot = ft_memchr(str, '.', DBL_SIZE))) - 1;
+	// }
 	if (dot - str + format->precision + 1 > DBL_SIZE)
-	{
-		str = expand(str, format->precision);
-		len = ft_strlen((dot = ft_memchr(str, '.', DBL_SIZE))) - 1;
-	}
+		format->precision = DBL_SIZE - (dot - str) + 1;
 	if (format->precision > len)
 		ft_memset(dot + 1 + len, '0', format->precision - len);
 	else

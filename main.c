@@ -4,13 +4,15 @@
 
 int			main(void)
 {
-	long double d = DBL_MAX;
-	int prec = 100;
+	long double d = LDBL_MIN;
 
-	int a =    printf("%+ .*Lf\n", prec, d);
-	int b = ft_printf("%+ .*Lf\n", prec, d);
+	int a =    printf("%-.Lf\n", d);
+	int b = ft_printf("%-2000000.200100Lf\n", d);
 
 	printf("%i - %i\n", a, b);
 
 	return (0);
 }
+
+// 2147483647
+// 2147481999
