@@ -12,7 +12,7 @@
 
 NAME = libftprintf.a
 
-SRCS_C =	ft_printf.c\
+SRCS_C = ./ft_printf.c\
 		 ./ft_unsigneditoa_base.c\
 		 ./list_filling_functions.c\
 		 ./list_functions.c\
@@ -24,6 +24,7 @@ SRCS_C =	ft_printf.c\
 		 ./double.c\
 		 ./double1.c\
 		 ./double2.c\
+		 ./output_bits.c\
 		 ./usage_flags.c
 
 SRCS_O = $(SRCS_C:.c=.o)\

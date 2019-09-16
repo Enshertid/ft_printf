@@ -155,7 +155,6 @@ void					add(char *str, char *plus);
 int						offset(int i);
 void					evaluate_mantissa(char *str, char *plus,
 						ULL mantissa, int iter);
-char					*expand(char *str, size_t size);
 
 char					*double_to_str(long double d, t_spec *format);
 char					*get_integer_part(char *str, t_double num,
@@ -163,6 +162,8 @@ char					*get_integer_part(char *str, t_double num,
 void					get_fract_part(char *str, t_double num);
 char					*get_double(const char **str, va_list pre,
 						t_spec *list);
+char					*get_binary(char *ptr, t_spec *format);
+
 char					*set_precision(char *str, t_spec *format);
 char					*set_width(char *str, char *iter, t_spec *list,
 						size_t double_len);

@@ -136,9 +136,8 @@ char	*ft_type_definition(const char **str,
 		return (ft_pointer_output(str, list, va_arg(per, ptrdiff_t)));
 	else if (**str == 'f')
 		return (get_double(str, per, list));
+	else if (**str == 'b')
+		return (get_binary(va_arg(per, char*), list));
 	else
-	{
-		(*str)++;
-		return (ft_strdup("\n😁we are not working with it yet😁\n"));
-	}
+		return (ft_strdup(""));
 }
