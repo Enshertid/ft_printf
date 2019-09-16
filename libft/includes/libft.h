@@ -6,7 +6,7 @@
 /*   By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 20:28:39 by dbendu            #+#    #+#             */
-/*   Updated: 2019/09/15 15:36:11 by dbendu           ###   ########.fr       */
+/*   Updated: 2019/09/16 18:49:24 by dbendu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,6 @@ void				print_bits(void *a, size_t size);
 void				printn_bits(void *a, size_t size);
 unsigned long long	ft_ipow(unsigned long long num, int n);
 void				error(const char *error_msg, int error_code);
-char			*ft_itoa(long long int num);
+char				*ft_itoa(long long int num);
 
 #endif
