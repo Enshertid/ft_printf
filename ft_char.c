@@ -21,7 +21,7 @@ char	*ft_charzero(t_spec *list, char *str_out, t_buff *buff)
 			ft_memset(str_out, '0', list->width - 1);
 		else
 			ft_memset(str_out, ' ', list->width - 1);
-		ft_str_out(str_out, buff);
+		ft_str_out(str_out, buff, list);
 		str_out = ft_strnew(0);
 	}
 	else if (list->width != 0 && list->flag_minus == 1)

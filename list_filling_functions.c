@@ -6,16 +6,16 @@
 /*   By: ymanilow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 17:17:14 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/08/06 18:02:06 by ymanilow         ###   ########.fr       */
+/*   Updated: 2019/09/16 19:07:07 by ymanilow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_check_flags(const char **str, t_spec *list)
+void				ft_check_flags(const char **str, t_spec *list)
 {
 	while (**str == '+' || **str == '-' || **str == '#' ||
-		   **str == ' '|| (**str == '0' && list->flag_zero == 0))
+		**str == ' ' || (**str == '0' && list->flag_zero == 0))
 	{
 		if (**str == '-')
 			list->flag_minus = 1;
@@ -56,7 +56,7 @@ void				ft_check_precision(const char **str,
 }
 
 void				ft_check_width(const char **str,
-												 t_spec *list, va_list per)
+												t_spec *list, va_list per)
 {
 	long int			width;
 
@@ -79,7 +79,8 @@ void				ft_check_width(const char **str,
 	}
 	ft_check_precision(str, list, per);
 }
-void ft_check_modificate(const char **str, t_spec *list)
+
+void				ft_check_modificate(const char **str, t_spec *list)
 {
 	if (**str == 'h')
 	{

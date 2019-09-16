@@ -6,7 +6,7 @@
 /*   By: ymanilow <ymanilow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 11:20:06 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/08/30 11:20:06 by ymanilow         ###   ########.fr       */
+/*   Updated: 2019/09/16 19:03:28 by ymanilow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char					*ft_width_noprecision(char *numb, t_spec *list,
 		*str++ = *numb++;
 	}
 	if ((numb[0] == '+' || numb[0] == '-' || numb[0] == ' ') &&
-											list->flag_zero== 1)
+											list->flag_zero == 1)
 		*str++ = *numb++;
 	str += (ft_strlen(str) - ft_strlen(numb));
 	while (*str && *numb)
@@ -35,7 +35,7 @@ char					*ft_width_noprecision(char *numb, t_spec *list,
 }
 
 char					*ft_width_with_precision(char *numb,
-					t_spec *list, char *str , char *str_head)
+					t_spec *list, char *str, char *str_head)
 {
 	char				*numb_head;
 	int					start_of_numb;
@@ -127,7 +127,7 @@ char					*ft_output_only_precision(char *numb, t_spec *list)
 	else if (numb[0] == '+' || numb[0] == '-' ||
 				numb[0] == ' ' || numb[0] == '0')
 		*str++ = *numb++;
-	ft_memset(str,'0',list->precision - list->flag_o);
+	ft_memset(str, '0', list->precision - list->flag_o);
 	str += (ft_strlen(str) - ft_strlen(numb));
 	while (*str && *numb)
 		*str++ = *numb++;

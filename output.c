@@ -1,6 +1,14 @@
-//
-// Created by Yaxley Manilow on 16/09/2019.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   output.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ymanilow <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/16 19:02:12 by ymanilow          #+#    #+#             */
+/*   Updated: 2019/09/16 19:07:39 by ymanilow         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
@@ -10,7 +18,7 @@ void				ft_str_out(char *str_out, t_buff *buff, t_spec *list)
 
 	j = 0;
 	if (list->color != USUAL)
-		ft_add_color_to_buff(buff,list);
+		ft_add_color_to_buff(buff, list);
 	if (ft_strlen(str_out) + buff->i > BUFF_SIZE && list->fd > 0)
 	{
 		write(list->fd, buff->buff, buff->i);
@@ -22,7 +30,7 @@ void				ft_str_out(char *str_out, t_buff *buff, t_spec *list)
 	}
 	else if (list->fd > 0)
 	{
-		while(str_out[j] && buff->i < BUFF_SIZE)
+		while (str_out[j] && buff->i < BUFF_SIZE)
 			buff->buff[buff->i++] = str_out[j++];
 		free(str_out);
 	}

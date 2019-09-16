@@ -6,7 +6,7 @@
 #    By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 18:18:19 by ymanilow          #+#    #+#              #
-#    Updated: 2019/09/16 18:57:31 by ymanilow         ###   ########.fr        #
+#    Updated: 2019/09/16 19:47:06 by ymanilow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,9 @@ SRCS_C =	ft_printf.c\
 		 ./pointer.c\
 		 ./string.c\
 		 ./ft_char.c\
-		 ./float.c\
 		 ./double.c\
+		 ./double1.c\
+		 ./double2.c\
 		 ./usage_flags.c
 
 SRCS_O = $(SRCS_C:.c=.o)\

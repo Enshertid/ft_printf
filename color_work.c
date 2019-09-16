@@ -1,21 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color_work.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ymanilow <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/16 19:28:29 by ymanilow          #+#    #+#             */
+/*   Updated: 2019/09/16 19:28:59 by ymanilow         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void	ft_check_fd(const char **str, t_spec *list, va_list per)
-{
-	if (**str == 'f')
-	{
-		(*str)++;
-		if (**str == 'd')
-		{
-			list->fd = (va_arg(per, int));
-			(*str)++;
-		}
-		else
-			(*str)--;
-	}
-}
-
-void		ft_check_othercolor(const char **str, t_spec *list)
+void			ft_check_othercolor(const char **str, t_spec *list)
 {
 	if (**str == 'b')
 		list->color = BLUE;
@@ -31,7 +28,7 @@ void		ft_check_othercolor(const char **str, t_spec *list)
 		list->color = TURQUOISE;
 }
 
-void		ft_check_color(const char **str, t_spec *list)
+void			ft_check_color(const char **str, t_spec *list)
 {
 	if (**str == 'k')
 	{
@@ -54,48 +51,79 @@ void		ft_check_color(const char **str, t_spec *list)
 	}
 }
 
-void		ft_end_color_to_buff(t_buff *buff, t_spec *list)
+void			ft_end_color_to_buff(t_buff *buff, t_spec *list)
 {
-	char str[5] = {"\e[0m"};
-	int j;
+	char		*str;
+	int			j;
+
+	str = ft_strdup("\e[0m");
 	j = 0;
 	if (buff->i + 5 > BUFF_SIZE && list->fd > 0)
 	{
 		write(list->fd, buff->buff, buff->i);
-		write(list->fd, "\e[0m", 5);
+		write(list->fd, str, 5);
 		buff->return_value += 5;
 		buff->i = 0;
 		ft_strclr(buff->buff);
+		free(str);
 	}
 	else if (list->fd > 0)
 	{
-		while(j < 4 && buff->i < BUFF_SIZE)
+		while (j < 4 && buff->i < BUFF_SIZE)
 			buff->buff[buff->i++] = str[j++];
+		free(str);
 	}
 }
 
-void		ft_add_color_to_buff(t_buff *buff, t_spec *list)
+char			*ft_create_color(t_spec *list)
 {
-	int j;
-	static const char str[11][12] = {
-			"\e[38;5;255m", "\e[38;5;232m", "\e[38;5;001m",
-			"\e[38;5;040m", "\e[38;5;011m", "\e[38;5;075m",
-			"\e[38;5;105m", "\e[38;5;013m", "\e[38;5;130m",
-			"\e[38;5;007m", "\e[38;5;123m",
-	};
+	char	*str;
 
+	if (list->color == WHITE)
+		str = ft_strdup("\e[38;5;255m");
+	else if (list->color == BLACK)
+		str = ft_strdup("\e[38;5;232m");
+	else if (list->color == RED)
+		str = ft_strdup("\e[38;5;001m");
+	else if (list->color == GREEN)
+		str = ft_strdup("\e[38;5;040m");
+	else if (list->color == YELLOW)
+		str = ft_strdup("\e[38;5;011m");
+	else if (list->color == BLUE)
+		str = ft_strdup("\e[38;5;075m");
+	else if (list->color == PURPLE)
+		str = ft_strdup("\e[38;5;105m");
+	else if (list->color == PINK)
+		str = ft_strdup("\e[38;5;013m");
+	else if (list->color == ORANGE)
+		str = ft_strdup("\e[38;5;130m");
+	else if (list->color == GREY)
+		str = ft_strdup("\e[38;5;007m");
+	else
+		str = ft_strdup("\e[38;5;123m");
+	return (str);
+}
+
+void			ft_add_color_to_buff(t_buff *buff, t_spec *list)
+{
+	int		j;
+	char	*str;
+
+	str = ft_create_color(list);
 	j = 0;
 	if (buff->i + 12 > BUFF_SIZE && list->fd > 0)
 	{
 		write(list->fd, buff->buff, buff->i);
-		write(list->fd, str[list->color], 12);
+		write(list->fd, str, 12);
 		buff->return_value += 12;
 		buff->i = 0;
 		ft_strclr(buff->buff);
+		free(str);
 	}
 	else if (list->fd > 0)
 	{
-		while(j < 11 && buff->i < BUFF_SIZE)
-			buff->buff[buff->i++] = str[list->color][j++];
+		while (j < 11 && buff->i < BUFF_SIZE)
+			buff->buff[buff->i++] = str[j++];
+		free(str);
 	}
 }

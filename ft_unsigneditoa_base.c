@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-unsigned int	ft_checklenght(ULL  num, int base)
+unsigned int	ft_checklenght(ULL num, int base)
 {
 	unsigned		i;
 
@@ -22,13 +22,13 @@ unsigned int	ft_checklenght(ULL  num, int base)
 	return (i + 1);
 }
 
-char		*ft_unsigned_itoa_base(ULL num,int base , unsigned size)
+char			*ft_unsigned_itoa_base(ULL num, int base, unsigned size)
 {
-	char						*s;
-	char						*base_ar;
-	unsigned int					lenght;
+	char				*s;
+	char				*base_ar;
+	unsigned int		lenght;
 
-	lenght =ft_checklenght(num, base);
+	lenght = ft_checklenght(num, base);
 	if (base == 16)
 		base_ar = (size == 0) ? "0123456789abcdef" : "0123456789ABCDEF";
 	else if (base == 8)

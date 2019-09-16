@@ -27,16 +27,16 @@ char				*ft_third_step(const char **str,
 	return (ft_type_definition(str, list, per, buff));
 }
 
-void				ft_second_step(t_buff *buff, t_spec *list, const char *str, va_list per)
+void				ft_second_step(t_buff *buff, t_spec *list,
+					const char *str, va_list per)
 {
-
 	while (*str && buff->i < BUFF_SIZE + 1)
 	{
-		if(*str != '%' && buff->i != BUFF_SIZE)
+		if (*str != '%' && buff->i != BUFF_SIZE)
 			buff->buff[buff->i++] = *str++;
 		if (buff->i == BUFF_SIZE)
 			ft_cleanbuff_andout(list, buff);
-		if(*str == '%')
+		if (*str == '%')
 		{
 			str++;
 			if (*str)
@@ -48,7 +48,7 @@ void				ft_second_step(t_buff *buff, t_spec *list, const char *str, va_list per)
 	}
 }
 
-int			ft_first_step(const char *str, va_list per)
+int					ft_first_step(const char *str, va_list per)
 {
 	t_buff			*buff;
 	t_spec			*list;
@@ -64,7 +64,7 @@ int			ft_first_step(const char *str, va_list per)
 	return (return_value);
 }
 
-int 		ft_printf(const char *str, ...)
+int					ft_printf(const char *str, ...)
 {
 	va_list		per;
 	int			return_value;
