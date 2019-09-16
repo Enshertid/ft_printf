@@ -6,14 +6,13 @@
 /*   By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 19:51:34 by user              #+#    #+#             */
-/*   Updated: 2019/09/16 18:49:38 by dbendu           ###   ########.fr       */
+/*   Updated: 2019/09/15 15:36:24 by dbendu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char			*ft_itoa_buf(__int128_t num, char *str, unsigned base,
-					unsigned is_upper)
+char	*ft_itoa_buf(__int128_t num, char *str, unsigned base, unsigned is_upper)
 {
 	const char	*alphabet = is_upper ? "0123456789ABCDEF" : "0123456789abcdef";
 	char		*iter;

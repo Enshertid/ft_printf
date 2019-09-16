@@ -18,12 +18,14 @@ char					*ft_width_noprecision(char *numb, t_spec *list,
 	char				*numb_head;
 
 	numb_head = numb;
-	if (numb[0] == '0' && (numb[1] == 'x' || numb[1] == 'X') && (list->flag_hash == 0 || list->flag_zero == 1))
+	if (numb[0] == '0' && (numb[1] == 'x' || numb[1] == 'X') &&
+				(list->flag_hash == 0 || list->flag_zero == 1))
 	{
 		*str++ = *numb++;
 		*str++ = *numb++;
 	}
-	if ((numb[0] == '+' || numb[0] == '-' || numb[0] == ' ') && list->flag_zero== 1)
+	if ((numb[0] == '+' || numb[0] == '-' || numb[0] == ' ') &&
+											list->flag_zero== 1)
 		*str++ = *numb++;
 	str += (ft_strlen(str) - ft_strlen(numb));
 	while (*str && *numb)
@@ -49,7 +51,8 @@ char					*ft_width_with_precision(char *numb,
 		str[iter++] = numb[1];
 		numb += 2;
 	}
-	else if (numb[0] == '+' || numb[0] == '-' || numb[0] == ' ' || numb[0] == '0')
+	else if (numb[0] == '+' || numb[0] == '-' || numb[0] == ' ' ||
+													numb[0] == '0')
 		str[iter++] = *numb++;
 	start_of_numb = ft_strlen(str) - ft_strlen(numb);
 	while (iter != start_of_numb)
@@ -71,7 +74,8 @@ char					*ft_right_aligned_without_precision(char *numb,
 		*str++ = *numb++;
 		*str++ = *numb++;
 	}
-	else if (numb[0] == '+' || numb[0] == '-' || numb[0] == ' ' || numb[0] == '0')
+	else if (numb[0] == '+' || numb[0] == '-' ||
+				numb[0] == ' ' || numb[0] == '0')
 		*str++ = *numb++;
 	while (*numb && *str)
 		*str++ = *numb++;
@@ -92,7 +96,8 @@ char					*ft_right_aligned_with_precision(char *numb,
 		*str++ = *numb++;
 		*str++ = *numb++;
 	}
-	else if (numb[0] == '+' || numb[0] == '-' || numb[0] == ' ' || numb[0] == '0')
+	else if (numb[0] == '+' || numb[0] == '-' ||
+				numb[0] == ' ' || numb[0] == '0')
 		*str++ = *numb++;
 	iter = 0;
 	start_of_numb = (list->precision >= ft_strlen(numb)) ?
@@ -119,7 +124,8 @@ char					*ft_output_only_precision(char *numb, t_spec *list)
 		*str++ = *numb++;
 		*str++ = *numb++;
 	}
-	else if (numb[0] == '+' || numb[0] == '-' || numb[0] == ' ' || numb[0] == '0')
+	else if (numb[0] == '+' || numb[0] == '-' ||
+				numb[0] == ' ' || numb[0] == '0')
 		*str++ = *numb++;
 	ft_memset(str,'0',list->precision - list->flag_o);
 	str += (ft_strlen(str) - ft_strlen(numb));

@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ymanilow <ymanilow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 11:20:37 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/16 18:41:22 by dbendu           ###   ########.fr       */
+/*   Updated: 2019/08/30 11:20:37 by ymanilow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_stringonly_width(t_spec *list, char *str_arg,
-										char *str_head, char *str_out)
+char				*ft_stringonly_width(t_spec *list, char *str_arg, char *str_head, char *str_out)
 {
 	str_out = ft_strnew(list->width);
 	str_head = str_out;
@@ -23,13 +22,12 @@ char	*ft_stringonly_width(t_spec *list, char *str_arg,
 		ft_memset(str_out, ' ', list->width);
 	if (list->flag_minus == 0)
 		str_out += list->width - ft_strlen(str_arg);
-	while (*str_arg && *str_out)
+	while(*str_arg && *str_out)
 		*str_out++ = *str_arg++;
 	return (str_head);
 }
 
-char	*ft_stringonly_precision(t_spec *list, char *str_arg,
-											char *str_head, char *str_out)
+char				*ft_stringonly_precision(t_spec *list, char *str_arg, char *str_head, char *str_out)
 {
 	size_t lenght;
 
@@ -39,13 +37,12 @@ char	*ft_stringonly_precision(t_spec *list, char *str_arg,
 	str_out = ft_strnew(lenght);
 	str_head = str_out;
 	ft_memset(str_out, ' ', lenght);
-	while (*str_arg && *str_out)
+	while(*str_arg && *str_out)
 		*str_out++ = *str_arg++;
 	return (str_head);
 }
 
-char	*ft_string_all_width(t_spec *list, char *str_arg,
-										char *str_head, char *str_out)
+char				*ft_string_all_width(t_spec *list, char *str_arg, char *str_head, char *str_out)
 {
 	size_t lenght;
 
@@ -69,17 +66,16 @@ char	*ft_string_all_width(t_spec *list, char *str_arg,
 			*str_out++ = *str_arg++;
 			list->precision--;
 		}
-	return (str_head);
+	return(str_head);
 }
 
-char	*ft_string_all(t_spec *list, char *str_arg,
-									char *str_head, char *str_out)
+char				*ft_string_all(t_spec *list, char *str_arg, char *str_head, char *str_out)
 {
 	size_t lenght;
 
 	lenght = ft_strlen(str_arg);
 	if (list->width > list->precision)
-		return (ft_string_all_width(list, str_arg, str_head, str_out));
+		return(ft_string_all_width(list, str_arg, str_head, str_out));
 	else
 	{
 		if (list->width >= lenght)
@@ -96,13 +92,12 @@ char	*ft_string_all(t_spec *list, char *str_arg,
 		if (list->width >= lenght && list->flag_minus == 0)
 			str_out += list->width - lenght;
 	}
-	while (*str_out && *str_arg)
+	while(*str_out && *str_arg)
 		*str_out++ = *str_arg++;
-	return (str_head);
+	return(str_head);
 }
 
-char	*ft_string_output(const char **str, t_spec *list,
-									char *str_arg)
+char				*ft_string_output(const char **str, t_spec *list, char *str_arg)
 {
 	char *str_out;
 	char *str_head;
@@ -113,16 +108,15 @@ char	*ft_string_output(const char **str, t_spec *list,
 		return (ft_string_output(str, list, "(nULL)"));
 	(*str)++;
 	if (list->presence_dot == 0 && list->width > ft_strlen(str_arg))
-		return (ft_stringonly_width(list, str_arg, str_head, str_out));
+		return(ft_stringonly_width(list, str_arg, str_head, str_out));
 	else if (list->presence_dot == 1 && list->width == 0)
 		return (ft_stringonly_precision(list, str_arg, str_head, str_out));
-	else if (list->presence_dot == 1 && list->width != 0 &&
-				list->precision != 0)
-		return (ft_string_all(list, str_arg, str_head, str_out));
+	else if (list->presence_dot == 1 && list->width != 0 && list->precision != 0)
+		return(ft_string_all(list, str_arg, str_head, str_out));
 	else
 	{
 		str_out = ft_strnew(ft_strlen(str_arg));
 		str_head = ft_strcpy(str_out, str_arg);
-		return (str_head);
+		return(str_head);
 	}
 }

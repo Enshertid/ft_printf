@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pointer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ymanilow <ymanilow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 11:20:31 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/16 18:39:24 by dbendu           ###   ########.fr       */
+/*   Updated: 2019/08/30 11:20:31 by ymanilow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_pointer_output(const char **str, t_spec *list, ptrdiff_t per)
+char				*ft_pointer_output(const char **str, t_spec *list, ptrdiff_t per)
 {
 	char *numb;
 
@@ -27,7 +27,7 @@ char	*ft_pointer_output(const char **str, t_spec *list, ptrdiff_t per)
 		list->precision + list->flag_us >= ft_strlen(numb))
 		return (ft_output_only_precision(numb, list));
 	else if (ft_strlen(numb) - list->flag_us > list->precision &&
-			ft_strlen(numb) > list->width)
+			 ft_strlen(numb) > list->width)
 		return (numb);
 	else if (list->width > list->precision)
 		return (ft_parswidth(list, numb));

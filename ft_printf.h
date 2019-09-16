@@ -13,19 +13,14 @@
 #ifndef FT_PRINTF
 #define FT_PRINTF
 
-# include <stdio.h>
 # include <stdlib.h>
 # include <stdarg.h>
 # include "libft/includes/libft.h"
-# include <stdio.h>
 # include <stddef.h>
 
-#define ULL unsigned long long
-#define UL unsigned long
-
+# define ULL unsigned long long
+# define UL unsigned long
 # define TOSTR(a)	#a
-
-
 # define BUFF_SIZE 1000
 # define DBL_SIZE 20000
 # define INT_PART 11000
@@ -37,6 +32,22 @@
 # define UINT_MAX 429496729
 # define ULLONG_MAX 18446744073709551615
 # define MAX_SIZE_T	(18446744073709551615llu)
+
+enum colors
+{
+	WHITE,
+	BLACK,
+	RED,
+	GREEN,
+	YELLOW,
+	BLUE,
+	PURPLE,
+	PINK,
+	ORANGE,
+	GREY,
+	TURQUOISE,
+	USUAL
+};
 
 enum types
 {
@@ -50,6 +61,7 @@ enum types
 
 typedef struct	s_spec
 {
+	int					fd;
 	unsigned			flag_zero;
 	unsigned			flag_minus;
 	unsigned			flag_plus;
@@ -61,6 +73,7 @@ typedef struct	s_spec
 	unsigned			flag_us;
 	unsigned			flag_o;
 	enum types			mod;
+	enum colors			color;
 }						t_spec;
 
 typedef struct s_buff
@@ -79,18 +92,26 @@ typedef struct	s_double
 	unsigned long long	mantissa;
 }				t_double;
 
+
 int						ft_printf(const char *str, ...);
 t_spec					*ft_list_new();
 t_buff					*ft_buf_new();
-void					ft_check_flags(const char **str, t_spec *list);
-void					ft_check_modificate(const char **str, t_spec *list);
 void					ft_list_clear(t_spec *list);
-void					ft_check_width(const char **str,
-													 t_spec *list, va_list per);
-void					ft_cleaning_buf(t_buff *buff);
 void					ft_cleaningflags_char(t_spec *list);
 void					ft_cleanbuff_andout(t_spec *list, t_buff *buff);
-void					ft_str_out(char *str_out, t_buff *buff);
+
+void					ft_end_color_to_buff(t_buff *buff, t_spec *list);
+void					ft_add_color_to_buff(t_buff *buff, t_spec *list);
+void					ft_check_color(const char **str, t_spec *list);
+void					ft_check_othercolor(const char **str, t_spec *list);
+void					ft_check_fd(const char **str, t_spec *list, va_list per);
+
+void					ft_check_flags(const char **str, t_spec *list);
+void					ft_check_modificate(const char **str, t_spec *list);
+void					ft_check_width(const char **str,
+													 t_spec *list, va_list per);
+
+void					ft_str_out(char *str_out, t_buff *buff, t_spec *list);
 char					*ft_flag_unsign(ULL num, t_spec *list,
 												  char type);
 char					*ft_flag_sign(long long int num, t_spec *list);
@@ -119,8 +140,6 @@ char					*ft_string_all_width(t_spec *list, char *str_arg, char *str_head, char 
 char					*ft_stringonly_precision(t_spec *list, char *str_arg, char *str_head, char *str_out);
 char					*ft_stringonly_width(t_spec *list, char *str_arg, char *str_head, char *str_out);
 char					*ft_pointer_output(const char **str, t_spec *list, ptrdiff_t per);
-char					*ft_float(const char **str, va_list per, t_spec *list);
-
 void					parse_double(long double *d, t_double *num);
 void					mult(char *str, unsigned long multiplier);
 void					add(char *str, char *plus);
@@ -130,13 +149,8 @@ char					*expand(char *str, size_t size);
 
 char					*double_to_str(long double d, t_spec *format);
 char					*get_integer_part(char *str, t_double num, t_spec *list);
-int						offset(int i);
-void					parse_double(long double *d, t_double *num);
-void					mult(char *str, unsigned long multiplier);
-void					add(char *str, char *plus);
-void					evaluate_mantissa(char *str, char *plus, ULL mantissa, int iter);
 void					get_fract_part(char *str, t_double num);
 char					*get_double(const char **str, va_list pre, t_spec *list);
 char					*set_precision(char *str, t_spec *format);
-char					*expand(char *str, size_t size);
+
 #endif

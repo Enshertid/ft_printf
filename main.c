@@ -1,39 +1,15 @@
 #include "float.h"
 #include "math.h"
 #include "ft_printf.h"
-
-char	*get_binary(void *ptr, t_spec *format)
-{
-	char	*str;
-	size_t size;
-
-	str = (char*)malloc(format->)
-}
-	void	print_bits(void *a, size_t size)
-{
-	char	buf[size * 8 + size];
-	size_t	pos;
-	int		byte;
-	int		offset;
-
-	pos = 0;
-	byte = size;
-	while (--byte >= 0)
-	{
-		offset = 8;
-		while (--offset >= 0)
-			buf[pos++] = '0' + ((*((char*)a + byte) >> offset) & 1);
-		buf[pos++] = ' ';
-	}
-	write(1, buf, size * 8 + size);
-}
+#include <fcntl.h>
 
 int			main(void)
 {
 	long double d = 44.5 + 1e-52;
-	int a =    printf("%.f|%.f|%.f|%.f|%.Lf|\n", 44.5, 44.4, 44.6, 44.50001, d);
-	int b = ft_printf("%.f|%.f|%.f|%.f|%.Lf|\n", 44.5, 44.4, 44.6, 44.50001, d);
-
+	int fd = open("/Users/ymanilow/curcus42/ft_printf/file.txt", O_RDWR);
+	int a =    printf("%100.1d\n", 9554532);
+	int b = ft_printf("%10.4b\n%0100d\n",555, fd, 9554532);
+	printf("%100.1d\n", 9554532);
 
 
 
@@ -42,7 +18,7 @@ int			main(void)
 	// printn_bits(&d2, 8);
 	// printn_bits(&d3, 8);
 
-	printf("%i - %i\n", a, b);
+//	printf("%i - %i\n", a, b);
 
 	return (0);
 }

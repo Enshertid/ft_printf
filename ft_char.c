@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_char.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ymanilow <ymanilow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 10:59:05 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/16 18:33:05 by dbendu           ###   ########.fr       */
+/*   Updated: 2019/08/30 10:59:05 by ymanilow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_charzero(t_spec *list, char *str_out, t_buff *buff)
+char				*ft_charzero(t_spec *list, char *str_out, t_buff *buff)
 {
 	if (list->width != 0 && list->flag_minus == 0)
 	{
@@ -21,7 +21,7 @@ char	*ft_charzero(t_spec *list, char *str_out, t_buff *buff)
 			ft_memset(str_out, '0', list->width - 1);
 		else
 			ft_memset(str_out, ' ', list->width - 1);
-		ft_str_out(str_out, buff);
+		ft_str_out(str_out, buff, list);
 		str_out = ft_strnew(0);
 	}
 	else if (list->width != 0 && list->flag_minus == 1)
@@ -36,8 +36,7 @@ char	*ft_charzero(t_spec *list, char *str_out, t_buff *buff)
 	write(1, "\0", 1);
 	return (str_out);
 }
-
-char	*ft_charnotzero(t_spec *list, char *str_out, char symbol)
+char				*ft_charnotzero(t_spec *list, char *str_out, char symbol)
 {
 	str_out = ft_strnew(list->width);
 	if (list->flag_zero == 1 && list->flag_minus == 0)
@@ -53,11 +52,11 @@ char	*ft_charnotzero(t_spec *list, char *str_out, char symbol)
 		else
 			str_out[list->width - 1] = symbol;
 	}
-	return (str_out);
+	return(str_out);
 }
 
-char	*ft_signed_char(const char **str,
-						t_spec *list, char symbol, t_buff *buff)
+char				*ft_signed_char(const char **str,
+									t_spec *list, char symbol, t_buff *buff)
 {
 	char			*str_out;
 

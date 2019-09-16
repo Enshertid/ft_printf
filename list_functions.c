@@ -29,6 +29,8 @@ t_spec		*ft_list_new()
 	list->mod = DEFAULT;
 	list->flag_us = 0;
 	list->flag_o = 0;
+	list->color = USUAL;
+	list->fd = 1;
 	return (list);
 }
 
@@ -54,7 +56,7 @@ void		ft_cleaningflags_char(t_spec *list)
 	list->flag_space = 0;
 	list->flag_hash = 0;
 	list->flag_space = 0;
-	list->mod= DEFAULT;
+	list->mod = DEFAULT;
 }
 
 t_buff		*ft_buf_new()
@@ -70,10 +72,4 @@ t_buff		*ft_buf_new()
 	buf->return_value = 0;
 	buf->i = 0;
 	return (buf);
-}
-
-void		ft_cleaning_buf(t_buff *buff)
-{
-	buff->i = 0;
-	ft_strclr(buff->buff);
 }

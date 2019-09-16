@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   usage_flags.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ymanilow <ymanilow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 11:20:46 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/16 18:44:10 by dbendu           ###   ########.fr       */
+/*   Updated: 2019/08/30 11:20:46 by ymanilow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_flagsfor_signedzero(t_spec *list, char *flagged)
+char				*ft_flagsfor_signedzero(t_spec *list, char *flagged)
 {
 	if (list->flag_plus == 1 || list->flag_space == 1)
 	{
@@ -26,8 +26,7 @@ char	*ft_flagsfor_signedzero(t_spec *list, char *flagged)
 		flagged[0] = list->flag_plus == 1 ? '+' : ' ';
 		list->flag_us++;
 	}
-	else if ((list->flag_plus == 0 && list->flag_space == 0) &&
-				list->presence_dot == 1)
+	else if ((list->flag_plus == 0 && list->flag_space == 0) && list->presence_dot == 1)
 		flagged = ft_strnew(0);
 	else
 	{
@@ -37,7 +36,7 @@ char	*ft_flagsfor_signedzero(t_spec *list, char *flagged)
 	return (flagged);
 }
 
-char	*ft_flag_sign(long long int num, t_spec *list)
+char				*ft_flag_sign(long long int num, t_spec *list)
 {
 	char				*flagged;
 
@@ -60,13 +59,13 @@ char	*ft_flag_sign(long long int num, t_spec *list)
 	return (flagged);
 }
 
-char	*ft_fillingflag_hex(char *numb, int size, int base, t_spec *list)
+char				*ft_fillingflag_hex(char *numb, int size, int base, t_spec *list)
 {
 	char			*flagged;
 	size_t			i;
 	size_t			j;
 
-	if (base == 16)
+	if(base == 16)
 	{
 		flagged = ft_strnew(ft_strlen(numb) + 2);
 		flagged[0] = '0';
@@ -88,12 +87,11 @@ char	*ft_fillingflag_hex(char *numb, int size, int base, t_spec *list)
 	return (flagged);
 }
 
-char	*ft_flagsfor_unsignedzero(char *numb, int base, t_spec *list)
+char				*ft_flagsfor_unsignedzero(char *numb, int base, t_spec *list)
 {
-	char		*flagged;
+	char			*flagged;
 
-	if (list->flag_hash == 1 && base == 8 && list->presence_dot == 1 &&
-		list->precision == 0)
+	if (list->flag_hash == 1 && base == 8 && list->presence_dot == 1 && list->precision == 0)
 	{
 		flagged = ft_strnew(1);
 		flagged[0] = '0';
@@ -113,7 +111,7 @@ char	*ft_flagsfor_unsignedzero(char *numb, int base, t_spec *list)
 	return (flagged);
 }
 
-char	*ft_flag_unsign(ULL num, t_spec *list,
+char				*ft_flag_unsign(ULL num, t_spec *list,
 					char type)
 {
 	char	*numb;
@@ -131,13 +129,13 @@ char	*ft_flag_unsign(ULL num, t_spec *list,
 	{
 		numb = ft_unsigned_itoa_base(num, base, size);
 		if (list->flag_hash == 1 && (base == 16 || base == 8))
-			return (ft_fillingflag_hex(numb, size, base, list));
+			return (ft_fillingflag_hex(numb, size,base, list));
 		else
 			return (numb);
 	}
 	else
 	{
 		numb = ft_unsigned_itoa_base(num, base, size);
-		return (ft_flagsfor_unsignedzero(numb, base, list));
+		return (ft_flagsfor_unsignedzero(numb,base, list));
 	}
 }
