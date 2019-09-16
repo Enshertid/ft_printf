@@ -6,13 +6,13 @@
 /*   By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 19:10:54 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/12 18:41:26 by dbendu           ###   ########.fr       */
+/*   Updated: 2019/09/16 18:38:45 by dbendu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char				*ft_mod_sign(t_spec *list, va_list per)
+char	*ft_mod_sign(t_spec *list, va_list per)
 {
 	char			num_char;
 	short int		num_short;
@@ -41,12 +41,12 @@ char				*ft_mod_sign(t_spec *list, va_list per)
 	}
 }
 
-char				*ft_mod_unsign(t_spec *list, va_list per, char type)
+char	*ft_mod_unsign(t_spec *list, va_list per, char type)
 {
-	unsigned char						num_char;
-	unsigned short int					num_short;
-	unsigned long int					num_long;
-	unsigned long long int				num_long_long;
+	unsigned char				num_char;
+	unsigned short int			num_short;
+	unsigned long int			num_long;
+	unsigned long long int		num_long_long;
 
 	if (list->mod == CHAR)
 	{
@@ -63,19 +63,16 @@ char				*ft_mod_unsign(t_spec *list, va_list per, char type)
 		num_long = (unsigned long int)va_arg(per, unsigned long int);
 		return (ft_flag_unsign(num_long, list, type));
 	}
-	else
-	{
-		num_long_long = (unsigned long long int)va_arg(per, unsigned long long int);
-		return (ft_flag_unsign(num_long_long, list, type));
-	}
+	num_long_long = (unsigned long long int)va_arg(per, unsigned long long int);
+	return (ft_flag_unsign(num_long_long, list, type));
 }
 
-char					*ft_parswidth(t_spec *list, char *numb)
+char	*ft_parswidth(t_spec *list, char *numb)
 {
-	char				*str_head;
-	char				*str;
+	char	*str_head;
+	char	*str;
 
-	str = ft_strnew(list->width );
+	str = ft_strnew(list->width);
 	if (list->presence_dot == 0 && list->flag_zero == 1 &&
 									list->flag_minus == 0)
 		ft_memset(str, '0', list->width);
@@ -95,11 +92,11 @@ char					*ft_parswidth(t_spec *list, char *numb)
 		return (str);
 }
 
-char				*ft_digitals(const char **str, t_spec *list, va_list per)
+char	*ft_digitals(const char **str, t_spec *list, va_list per)
 {
-	char			*numb;
+	char	*numb;
 
-	if(**str == 'U')
+	if (**str == 'U')
 		list->mod = LONG_LONG;
 	if (list->mod != DEFAULT && (**str == 'd' || **str == 'i'))
 		numb = (ft_mod_sign(list, per));
@@ -123,8 +120,7 @@ char				*ft_digitals(const char **str, t_spec *list, va_list per)
 		return (numb);
 }
 
-
-char				*ft_type_definition(const char **str,
+char	*ft_type_definition(const char **str,
 		t_spec *list, va_list per, t_buff *buff)
 {
 	if (**str == 'd' || **str == 'i' || **str == 'u' || **str == 'o' ||
@@ -133,7 +129,7 @@ char				*ft_type_definition(const char **str,
 	else if (**str == 'c')
 		return (ft_signed_char(str, list, va_arg(per, int), buff));
 	else if (**str == '%')
-		return (ft_signed_char(str, list,'%', buff));
+		return (ft_signed_char(str, list, '%', buff));
 	else if (**str == 's')
 		return (ft_string_output(str, list, va_arg(per, char*)));
 	else if (**str == 'p')
@@ -143,6 +139,6 @@ char				*ft_type_definition(const char **str,
 	else
 	{
 		(*str)++;
-		return(ft_strdup("\n😁we are not working with it yet😁\n"));
+		return (ft_strdup("\n😁we are not working with it yet😁\n"));
 	}
 }
