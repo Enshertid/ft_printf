@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   float.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 16:59:11 by dbendu            #+#    #+#             */
-/*   Updated: 2019/09/15 21:25:57 by user             ###   ########.fr       */
+/*   Updated: 2019/09/16 16:39:26 by dbendu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,14 @@ char	*set_width(char *str, char *iter, t_spec *list, size_t double_len)
 	char	*new_str;
 	size_t	pos;
 
-	if (list->width > 20000)
-		list->width = 20000;
-	new_str = (char*)malloc(list->width + 1);
-	list->width -= double_len;
+	list->width = (list->width > 20000 ? 20000 : list->width) - double_len;
+	new_str = (char*)malloc(list->width + double_len + 1);
 	pos = 0;
-	if (!list->flag_minus && list->flag_zero && !ft_isdigit(*iter))
+	if (!list->flag_minus && list->flag_zero && ft_isdigit(*(str + 2)) && !ft_isdigit(*iter))
 		new_str[pos++] = *(iter++);
 	if (!list->flag_minus)
 	{
-		ft_memset(new_str + pos, list->flag_zero ? '0' : ' ', list->width);
+		ft_memset(new_str + pos, list->flag_zero && ft_isdigit(*(str + 2)) ? '0' : ' ', list->width);
 		pos += list->width;
 	}
 	if (!list->flag_minus && !list->flag_zero && !ft_isdigit(*iter))
@@ -74,6 +72,8 @@ char	*set_width(char *str, char *iter, t_spec *list, size_t double_len)
 
 char *get_double(const char **str, va_list pre, t_spec *list)
 {
+	static int i = 0;
+	++i;
 	char		*str_out;
 	char		*iter;
 	char		*iter1;

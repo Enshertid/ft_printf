@@ -2,6 +2,8 @@
 
 void							parse_double(long double *d, t_double *num)
 {
+	// write(1, "orig: ", 6);
+	// printn_bits(d, 10);
 	ft_memset(num, 0, sizeof(t_double));
 	*(char*)&(num->exp) = *((char*)d + 8);
 	*((char*)&(num->exp) + 1) = *((char*)d + 9);
@@ -18,6 +20,9 @@ void							parse_double(long double *d, t_double *num)
 		num->is_nan = 1;
 	else if (*d && *d == (*d * 10))
 		num->is_inf = 1;
+	// write(1, "my:   ", 6);
+	// print_bits(&num->exp, 2);
+	// printn_bits(&num->mantissa, 8);
 }
 
 void						mult(char *str, unsigned long multiplier)
@@ -200,7 +205,15 @@ char *double_to_str(long double d, t_spec *format)
 
 	parse_double(&d, &num);
 	if (num.is_inf || num.is_nan)
-		return (ft_strjoin(num.sign ? "-" : "", num.is_inf ? "inf" : "nan"));
+	{
+		if (num.sign)
+			return (ft_strjoin("-", num.is_inf ? "inf" : "nan"));
+		if (format->flag_plus)
+			return (ft_strjoin("+", num.is_inf ? "inf" : "nan"));
+		if (format->flag_space)
+			return (ft_strjoin(" ", num.is_inf ? "inf" : "nan"));
+		return (ft_strjoin("", num.is_inf ? "inf" : "nan"));
+	}
 	str = (char*)malloc(DBL_SIZE);
 	ft_memset(str, 0, DBL_SIZE);
 	iter = get_integer_part(str + DBL_SIZE - 2, num, format);
