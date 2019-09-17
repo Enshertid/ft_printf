@@ -6,7 +6,7 @@
 /*   By: ymanilow <ymanilow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 11:20:06 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/16 19:03:28 by ymanilow         ###   ########.fr       */
+/*   Updated: 2019/09/17 14:35:55 by ymanilow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,10 @@ char					*ft_output_only_precision(char *numb, t_spec *list)
 	else if (numb[0] == '+' || numb[0] == '-' ||
 				numb[0] == ' ' || numb[0] == '0')
 		*str++ = *numb++;
-	ft_memset(str, '0', list->precision - list->flag_o);
+	if (ft_strlen(numb) >= list->precision)
+		ft_memset(str, '0', list->precision);
+	else
+		ft_memset(str, '0', list->precision - list->flag_o);
 	str += (ft_strlen(str) - ft_strlen(numb));
 	while (*str && *numb)
 		*str++ = *numb++;

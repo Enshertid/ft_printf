@@ -45,6 +45,6 @@ void				ft_cleanbuff_andout(t_spec *list, t_buff *buff)
 	if (buff->i == BUFF_SIZE)
 		buff->i = 0;
 	buff->i = 0;
-	ft_strclr(buff->buff);
+//	ft_strclr(buff->buff);
 	ft_list_clear(list);
 }

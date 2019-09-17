@@ -6,7 +6,7 @@
 /*   By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 10:59:05 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/16 18:33:05 by dbendu           ###   ########.fr       */
+/*   Updated: 2019/09/17 14:10:01 by ymanilow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*ft_charnotzero(t_spec *list, char *str_out, char symbol)
 	if (list->flag_zero == 1 && list->flag_minus == 0)
 	{
 		ft_memset(str_out, '0', list->width);
-		str_out[list->width] = symbol;
+		str_out[list->width - 1] = symbol;
 	}
 	else
 	{

@@ -86,8 +86,8 @@ t_buff		*ft_buf_new(void)
 	i = 0;
 	if (!(buf = malloc(sizeof(t_buff))))
 		return (NULL);
-	while (i < BUFF_SIZE)
-		buf->buff[i++] = '0';
+//	while (i < BUFF_SIZE)
+//		buf->buff[i++] = '0';
 	buf->return_value = 0;
 	buf->i = 0;
 	return (buf);
