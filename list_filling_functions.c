@@ -6,7 +6,7 @@
 /*   By: ymanilow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 17:17:14 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/16 19:07:07 by ymanilow         ###   ########.fr       */
+/*   Updated: 2019/09/16 21:35:27 by ymanilow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void				ft_check_precision(const char **str,
 		else
 		{
 			list->flag_minus = 1;
-			list->precision = precision * -1;
+			list->precision = -precision;
+			list->wtf = 1;
 		}
 	}
 }
@@ -64,19 +65,23 @@ void				ft_check_width(const char **str,
 	{
 		width = va_arg(per, int);
 		(*str)++;
+		if (width >= 0)
+			list->width = width;
+		else
+		{
+			list->flag_minus = 1;
+			list->width = width * -1;
+		}
+		if (ft_isdigit(**str))
+		{
+			width = ft_atoi(*str);
+			list->width = width;
+		}
 	}
-	width = ft_atoi(*str);
-	if (width >= 0)
-		list->width = width;
 	else
-	{
-		list->flag_minus = 1;
-		list->width = width * -1;
-	}
+		list->width = ft_atoi(*str);
 	while (ft_isdigit(**str))
-	{
 		(*str)++;
-	}
 	ft_check_precision(str, list, per);
 }
 

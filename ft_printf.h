@@ -61,6 +61,7 @@ enum	e_types
 
 typedef struct			s_spec
 {
+	unsigned			wtf;
 	int					fd;
 	unsigned			flag_zero;
 	unsigned			flag_minus;

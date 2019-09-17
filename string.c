@@ -6,7 +6,7 @@
 /*   By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 11:20:37 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/16 18:41:22 by dbendu           ###   ########.fr       */
+/*   Updated: 2019/09/16 20:27:07 by ymanilow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char	*ft_string_output(const char **str, t_spec *list,
 	str_out = NULL;
 	str_head = str_out;
 	if (!str_arg)
-		return (ft_string_output(str, list, "(nULL)"));
+		return (ft_string_output(str, list, "(null)"));
 	(*str)++;
 	if (list->presence_dot == 0 && list->width > ft_strlen(str_arg))
 		return (ft_stringonly_width(list, str_arg, str_head, str_out));
@@ -119,6 +119,8 @@ char	*ft_string_output(const char **str, t_spec *list,
 	else if (list->presence_dot == 1 && list->width != 0 &&
 				list->precision != 0)
 		return (ft_string_all(list, str_arg, str_head, str_out));
+	else if (list->presence_dot == 1 && list->precision == 0)
+		return (ft_memset(ft_strnew(list->width), ' ', list->width));
 	else
 	{
 		str_out = ft_strnew(ft_strlen(str_arg));

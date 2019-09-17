@@ -41,6 +41,8 @@ char				*ft_flag_sign(long long int num, t_spec *list)
 {
 	char				*flagged;
 
+	if (list->wtf == 1)
+		list->precision = list->width;
 	flagged = NULL;
 	if (num > 0 && (list->flag_plus == 1 || list->flag_space == 1))
 	{

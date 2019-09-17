@@ -6,7 +6,7 @@
 #    By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 18:18:19 by ymanilow          #+#    #+#              #
-#    Updated: 2019/09/16 19:47:06 by ymanilow         ###   ########.fr        #
+#    Updated: 2019/09/16 20:13:32 by ymanilow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRCS_C = ./ft_printf.c\
 		 ./list_filling_functions.c\
 		 ./list_functions.c\
 		 ./output_digital.c\
+		 ./output.c\
 		 ./parsing.c\
 		 ./pointer.c\
 		 ./string.c\
@@ -24,6 +25,7 @@ SRCS_C = ./ft_printf.c\
 		 ./double.c\
 		 ./double1.c\
 		 ./double2.c\
+		 ./color_work.c\
 		 ./output_bits.c\
 		 ./usage_flags.c
 
@@ -46,36 +48,4 @@ fclean: clean
 	@make fclean -C ./libft
 	@rm -f $(NAME)
 
-a:  fclean all
-	clear
-	@gcc -Wall -Wextra -Werror  libftprintf.a -o ft_printf -Ilibft/includes main.c
-	@./ft_printf
-
-
 re: fclean all
-
-c:
-	@clear
-	@gcc -Wall -Werror -Wextra *.c libft/libft.a -Ilibft/includes
-	@clear
-	@./a.out
-
-wc:
-	@clear
-	@gcc *.c libft/libft.a -Ilibft/includes
-	@clear
-	@./a.out
-
-
-g:
-	@clear
-	@gcc -g -Wall -Werror -Wextra *.c libft/libft.a -Ilibft/includes
-	@clear
-
-wg:
-	@clear
-	@gcc -g *.c libft/libft.a -Ilibft/includes
-	@clear
-
-a:
-	gcc -Wall -Werror -Wextra
