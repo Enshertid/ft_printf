@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:17:47 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/16 19:24:29 by ymanilow         ###   ########.fr       */
+/*   Updated: 2019/09/17 15:46:43 by ymanilow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define ULL unsigned long long
 # define UL unsigned long
 # define TOSTR(a)	#a
-# define BUFF_SIZE 1000
+# define BUFF_SIZE 5000
 # define DBL_SIZE 20000
 # define INT_PART 11000
 # define LONG_MAX 4294967295

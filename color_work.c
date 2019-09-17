@@ -6,7 +6,7 @@
 /*   By: ymanilow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 19:28:29 by ymanilow          #+#    #+#             */
-/*   Updated: 2019/09/16 21:22:54 by ymanilow         ###   ########.fr       */
+/*   Updated: 2019/09/17 15:42:15 by ymanilow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void			ft_end_color_to_buff(t_buff *buff, t_spec *list)
 		write(list->fd, str, 5);
 		buff->return_value += 5;
 		buff->i = 0;
-		ft_strclr(buff->buff);
 		free(str);
 	}
 	else if (list->fd > 0)
@@ -117,7 +116,6 @@ void			ft_add_color_to_buff(t_buff *buff, t_spec *list)
 		write(list->fd, str, 12);
 		buff->return_value += 12;
 		buff->i = 0;
-		ft_strclr(buff->buff);
 		free(str);
 	}
 	else if (list->fd > 0)
