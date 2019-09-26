@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+         #
+#    By: user <user@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 18:18:19 by ymanilow          #+#    #+#              #
-#    Updated: 2019/09/16 20:13:32 by ymanilow         ###   ########.fr        #
+#    Updated: 2019/09/26 21:15:45 by user             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,3 +49,31 @@ fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
+
+rc:
+	@clear
+	@gcc -Wall -Werror -Wextra main.c $(SRCS_C) libft/*.c -Ilibft/includes
+	@clear
+	@./a.out
+
+c:
+	@clear
+	@gcc -Wall -Werror -Wextra main.c libftprintf.a -Ilibft/includes
+	@clear
+	@./a.out
+
+wc:
+	@clear
+	@gcc main.c libftprintf.a -Ilibft/includes
+	@clear
+	@./a.out
+
+w:
+	make -C libft
+	@gcc -Ilibft/includes/ $(SRCS_C) -c
+	@ar rc $(NAME) $(SRCS_O)
+
+g:
+	@clear
+	@gcc -g -Wall -Werror -Wextra *.c libft/glibft.a -Ilibft/includes
+	@clear

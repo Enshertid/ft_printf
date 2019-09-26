@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   double.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbendu <dbendu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 16:59:11 by dbendu            #+#    #+#             */
-/*   Updated: 2019/09/16 18:25:55 by dbendu           ###   ########.fr       */
+/*   Updated: 2019/09/26 21:13:56 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,9 @@ char	*get_double(const char **str, va_list pre, t_spec *list)
 	if (list->width > double_len)
 		return (set_width(str_out, iter, list, double_len));
 	iter1 = str_out;
-	while (*(iter))
-		*(iter1++) = *(iter++);
+	ft_memmove(iter1, iter, ft_strlen(iter) + 1);
+	// while (*(iter))
+	// 	*(iter1++) = *(iter++);
 	*iter1 = *iter;
 	return (str_out);
 }
