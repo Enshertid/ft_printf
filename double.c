@@ -107,6 +107,5 @@ char	*get_double(const char **str, va_list pre, t_spec *list)
 	ft_memmove(iter1, iter, ft_strlen(iter) + 1);
 	// while (*(iter))
 	// 	*(iter1++) = *(iter++);
-	*iter1 = *iter;
 	return (str_out);
 }
